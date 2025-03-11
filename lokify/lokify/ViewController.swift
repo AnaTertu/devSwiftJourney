@@ -1,0 +1,44 @@
+enum Shift: String {
+    case day = "Good morning"
+    case night = "Good night"
+}
+
+import UIKit
+
+class ViewController: UIViewController {
+
+    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var textField: UITextField!
+    
+    var shift: Shift = .day
+    var name: String = ""
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setLayout()
+    }
+    
+    func setLayout(){
+        view.backgroundColor = UIColor(named: shift == .day ? "dayBackground" : "nightBackground")
+        label.text = "\(shift.rawValue) \(name) !"
+        label.textColor = UIColor(named: shift == .day ? "dayText" : "nightText")
+        image.layer.cornerRadius = 40
+        image.clipsToBounds = true
+        image.image =  UIImage(named: shift == .day ? "dayWindow" : "nightWindow")
+        
+        
+    }
+
+    @IBAction func ChangeShiftButtom(_ sender: Any) {
+        self.shift = shift == .day ? .night : .day
+        setLayout( )
+    }
+    @IBAction func changeNameButtom(_ sender: Any) {
+        name = textField.text ?? ""
+        textField.text = ""
+        setLayout()
+    }
+    
+}
+
