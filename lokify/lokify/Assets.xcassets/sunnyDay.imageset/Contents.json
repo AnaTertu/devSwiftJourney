@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "star.jpeg",
+      "filename" : "sunnyDay.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "star@2x.jpeg",
+      "filename" : "sunnyDay@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "star@3x.jpeg",
+      "filename" : "sunnyDay@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

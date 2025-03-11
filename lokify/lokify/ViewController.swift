@@ -40,5 +40,14 @@ class ViewController: UIViewController {
         setLayout()
     }
     
+    // a segue vai chamar essa função qdo botão for clicado
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         
+        if segue.identifier == "toDetailsShift" { // aqui desemcapsulamos a view controller guardando numa constante que vai receber o destino dessa segue
+            let detailsShiftViewController = segue.destination as! DetailsShiftViewController // usamos force ! pq sabemos q é essa class
+            detailsShiftViewController.shift = self.shift // a shift da deteils recebe a shift desta página, passamos qual é o turno de uma tela pra a outra
+        }
+    }
+    
 }
 

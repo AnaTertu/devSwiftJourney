@@ -89,9 +89,7 @@
                                     <color key="titleShadowColor" systemColor="groupTableViewBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <segue destination="3Oj-24-gu5" kind="popoverPresentation" popoverAnchorView="JqE-CO-dfs" id="1ai-r0-3bP">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
+                                    <segue destination="3Oj-24-gu5" kind="show" identifier="toDetailsShift" id="1ai-r0-3bP"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -125,16 +123,16 @@
             </objects>
             <point key="canvasLocation" x="1066.4122137404579" y="3.5211267605633805"/>
         </scene>
-        <!--View Controller-->
+        <!--Details Shift View Controller-->
         <scene sceneID="Pzf-Tq-TYw">
             <objects>
-                <viewController id="3Oj-24-gu5" sceneMemberID="viewController">
+                <viewController id="3Oj-24-gu5" customClass="DetailsShiftViewController" customModule="lokify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B2a-c0-YFN">
-                        <rect key="frame" x="0.0" y="0.0" width="440" height="946"/>
+                        <rect key="frame" x="0.0" y="0.0" width="440" height="956"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starImage" translatesAutoresizingMaskIntoConstraints="NO" id="iLn-ei-XfR">
-                                <rect key="frame" x="0.0" y="0.0" width="440" height="946"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starryNight" translatesAutoresizingMaskIntoConstraints="NO" id="iLn-ei-XfR">
+                                <rect key="frame" x="0.0" y="106" width="440" height="816"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ikl-l2-CFi"/>
@@ -147,6 +145,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="F68-tx-FH5"/>
+                    <connections>
+                        <outlet property="image" destination="iLn-ei-XfR" id="DQZ-NE-HEf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B6U-dG-Vt1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -172,7 +173,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="starImage" width="402" height="874"/>
+        <image name="starryNight" width="402" height="874"/>
         <namedColor name="dayText">
             <color red="0.13503365960802616" green="0.24898363919750047" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
