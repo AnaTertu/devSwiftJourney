@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="aPx-F1-G0a">
-    <device id="iPad13_0rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <device id="retina6_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
@@ -14,11 +14,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="lokify" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="1032" height="1376"/>
+                        <rect key="frame" x="0.0" y="0.0" width="440" height="956"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u3r-BE-QL3">
-                                <rect key="frame" x="432" y="202" width="168" height="168"/>
+                                <rect key="frame" x="136" y="234" width="168" height="168"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="u3r-BE-QL3" secondAttribute="height" multiplier="1:1" id="0th-Le-Djr"/>
                                     <constraint firstAttribute="width" constant="168" id="Jsu-a3-hA2"/>
@@ -35,7 +35,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Esreva seu nome" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bxx-61-GYd">
-                                <rect key="frame" x="16" y="430" width="1000" height="34"/>
+                                <rect key="frame" x="16" y="462" width="408" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="kLD-rt-iIv"/>
                                 </constraints>
@@ -43,10 +43,10 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="51" translatesAutoresizingMaskIntoConstraints="NO" id="TW1-Jw-3EC">
-                                <rect key="frame" x="42" y="808" width="948" height="40"/>
+                                <rect key="frame" x="42" y="598" width="356" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Trt-pt-AGI">
-                                        <rect key="frame" x="0.0" y="0.0" width="448.5" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="152.66666666666666" height="40"/>
                                         <color key="backgroundColor" systemColor="systemIndigoColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="ODD-WP-hUc"/>
@@ -60,7 +60,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lDr-NG-TGc">
-                                        <rect key="frame" x="499.5" y="0.0" width="448.5" height="40"/>
+                                        <rect key="frame" x="203.66666666666663" y="0.0" width="152.33333333333337" height="40"/>
                                         <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="0rH-yy-FrQ"/>
@@ -76,7 +76,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JqE-CO-dfs">
-                                <rect key="frame" x="467.5" y="908" width="97" height="54"/>
+                                <rect key="frame" x="171.66666666666663" y="698" width="97" height="54"/>
                                 <color key="backgroundColor" name="dayText"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="WbJ-gV-cYE"/>
@@ -89,7 +89,9 @@
                                     <color key="titleShadowColor" systemColor="groupTableViewBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <segue destination="3Oj-24-gu5" kind="show" id="1ai-r0-3bP"/>
+                                    <segue destination="3Oj-24-gu5" kind="popoverPresentation" popoverAnchorView="JqE-CO-dfs" id="1ai-r0-3bP">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
                                 </connections>
                             </button>
                         </subviews>
@@ -128,27 +130,27 @@
             <objects>
                 <viewController id="3Oj-24-gu5" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B2a-c0-YFN">
-                        <rect key="frame" x="0.0" y="0.0" width="1032" height="1376"/>
+                        <rect key="frame" x="0.0" y="0.0" width="440" height="946"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" highlightedImage="star" highlighted="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jYv-Qh-ig0">
-                                <rect key="frame" x="0.0" y="74" width="1032" height="1282"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="starImage" translatesAutoresizingMaskIntoConstraints="NO" id="iLn-ei-XfR">
+                                <rect key="frame" x="0.0" y="0.0" width="440" height="946"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ikl-l2-CFi"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.080802996134020644" green="0.069676233526541231" blue="0.073382021567027139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="Ikl-l2-CFi" firstAttribute="trailing" secondItem="jYv-Qh-ig0" secondAttribute="trailing" id="17c-qj-xhg"/>
-                            <constraint firstItem="jYv-Qh-ig0" firstAttribute="leading" secondItem="Ikl-l2-CFi" secondAttribute="leading" id="79B-Ut-tYf"/>
-                            <constraint firstItem="jYv-Qh-ig0" firstAttribute="top" secondItem="Ikl-l2-CFi" secondAttribute="top" id="8Rj-zX-woa"/>
-                            <constraint firstItem="Ikl-l2-CFi" firstAttribute="bottom" secondItem="jYv-Qh-ig0" secondAttribute="bottom" id="9en-3F-ogO"/>
+                            <constraint firstItem="iLn-ei-XfR" firstAttribute="leading" secondItem="Ikl-l2-CFi" secondAttribute="leading" id="0Ai-pp-PJA"/>
+                            <constraint firstItem="iLn-ei-XfR" firstAttribute="top" secondItem="Ikl-l2-CFi" secondAttribute="top" id="4Z6-wc-0Fm"/>
+                            <constraint firstItem="Ikl-l2-CFi" firstAttribute="trailing" secondItem="iLn-ei-XfR" secondAttribute="trailing" id="BdT-Kk-jxN"/>
+                            <constraint firstItem="Ikl-l2-CFi" firstAttribute="bottom" secondItem="iLn-ei-XfR" secondAttribute="bottom" id="COm-Dg-Hcg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="F68-tx-FH5"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B6U-dG-Vt1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1782.4427480916029" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="1782.2727272727275" y="3.1380753138075317"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QA1-q0-6da">
@@ -156,7 +158,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aPx-F1-G0a" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Cq-zB-6T8">
-                        <rect key="frame" x="0.0" y="24" width="1032" height="50"/>
+                        <rect key="frame" x="0.0" y="62" width="440" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -170,7 +172,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="star" width="154" height="154"/>
+        <image name="starImage" width="402" height="874"/>
         <namedColor name="dayText">
             <color red="0.13503365960802616" green="0.24898363919750047" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
