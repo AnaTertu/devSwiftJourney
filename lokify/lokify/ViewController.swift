@@ -34,6 +34,7 @@ class ViewController: UIViewController {
         self.shift = shift == .day ? .night : .day
         setLayout( )
     }
+    
     @IBAction func changeNameButtom(_ sender: Any) {
         name = textField.text ?? ""
         textField.text = ""
@@ -47,6 +48,7 @@ class ViewController: UIViewController {
             let detailsShiftViewController = segue.destination as! DetailsShiftViewController // usamos force ! pq sabemos q é essa class
             detailsShiftViewController.shift = self.shift // a shift da deteils recebe a shift desta página, passamos qual é o turno de uma tela pra a outra
             detailsShiftViewController.view.backgroundColor = self.view.backgroundColor
+            // hierarquica
         }
     }
 }
