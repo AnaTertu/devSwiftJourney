@@ -1,9 +1,9 @@
+import UIKit
+
 enum Shift: String {
     case day = "Good morning"
     case night = "Good night"
 }
-
-import UIKit
 
 class ViewController: UIViewController {
 
@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     
     var shift: Shift = .day
     var name: String = ""
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
