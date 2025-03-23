@@ -20,3 +20,12 @@ letters = ["a", "b", "c", "a"].reduce(into: Set<Character>()) { result, char in
     result.insert(char)
 }
 
+letters = []
+
+var favoriteCharacters: Set<Character> = ["a", "e", "i", "o", "u"]
+favoriteCharacters.insert("A")
+favoriteCharacters.remove("e") 
+
+favoriteCharacters
+
+var nemSet: Set = ["a", "b", "c"] 
