@@ -1,8 +1,6 @@
 import Foundation
 
-//INICIALIZADOR DE CLASS NORMAL REQUIRED CONVINENCI
-
-//Normal
+//Normal(designado)
 class Pessoa {
     var nome: String
     var idade: Int

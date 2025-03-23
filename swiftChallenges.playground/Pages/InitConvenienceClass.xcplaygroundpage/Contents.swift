@@ -6,7 +6,7 @@ class Carro {
     var ano: Int
     var cor: String
     
-    // Inicializador designado
+    // Inicializador designado (normal)
     init(modelo: String, ano: Int, cor: String) {
         self.modelo = modelo
         self.ano = ano

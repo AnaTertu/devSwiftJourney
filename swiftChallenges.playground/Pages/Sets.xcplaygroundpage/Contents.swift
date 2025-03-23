@@ -10,7 +10,8 @@ set1.insert(1)
 
 print(set1)
 
-var letters = Set<Character>() // inicializa
+var letters = Set<Character>()// inicializa vazio
+letters.count
 
 letters.insert("a")
 letters.insert("b")
@@ -23,9 +24,10 @@ letters = ["a", "b", "c", "a"].reduce(into: Set<Character>()) { result, char in
 letters = []
 
 var favoriteCharacters: Set<Character> = ["a", "e", "i", "o", "u"]
+// metodos e propriedades
 favoriteCharacters.insert("A")
-favoriteCharacters.remove("e") 
+favoriteCharacters.remove("e")
 
-favoriteCharacters
+favoriteCharacters.sorted() //lista ordenada
 
 var nemSet: Set = ["a", "b", "c"] 
