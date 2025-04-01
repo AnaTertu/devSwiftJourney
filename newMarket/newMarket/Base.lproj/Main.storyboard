@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="newMarket" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="efW-Su-KHu">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-mail or username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vth-eH-63e">
+                                <rect key="frame" x="32" y="397" width="329" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="pmF-TK-5ne"/>
+                                </constraints>
+                                <color key="textColor" name="TIC-Black"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="emailSet:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="WY9-sW-TIf"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="krU-DA-1Dl">
+                                <rect key="frame" x="32" y="461" width="329" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="MdV-fP-D2z"/>
+                                </constraints>
+                                <color key="textColor" name="TIC-Black"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="passwordSet:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="eP6-Iz-FS0"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6yU-EG-gCQ">
+                                <rect key="frame" x="32" y="617.33333333333337" width="329" height="56"/>
+                                <color key="backgroundColor" name="TIC-Green"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="eIA-aZ-fGR"/>
+                                </constraints>
+                                <color key="tintColor" name="TIC-White"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Login"/>
+                                <connections>
+                                    <action selector="buttonSet:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WEg-Oc-KCa"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TL-mh-Ywa">
+                                <rect key="frame" x="222" y="525" width="139" height="28.333333333333371"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Forgot my password">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="0.0"/>
+                                </buttonConfiguration>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mf3-3N-oO1">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="365"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DuV-Pf-cOY">
+                                        <rect key="frame" x="104.66666666666669" y="70" width="184" height="184"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="184" id="Gcv-oX-YXW"/>
+                                            <constraint firstAttribute="width" constant="184" id="csC-HT-72W"/>
+                                            <constraint firstAttribute="width" secondItem="DuV-Pf-cOY" secondAttribute="height" multiplier="1:1" id="z7R-FU-pWr"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pC3-8s-20o">
+                                        <rect key="frame" x="122.00000000000001" y="286" width="149.33333333333337" height="31"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="32"/>
+                                        <color key="textColor" name="TIC-White"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Sign in to continue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bx4-d2-Cmm">
+                                        <rect key="frame" x="113.33333333333333" y="325" width="166.33333333333337" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <color key="textColor" name="TIC-White"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="TIC-Green"/>
+                                <constraints>
+                                    <constraint firstItem="Bx4-d2-Cmm" firstAttribute="centerX" secondItem="mf3-3N-oO1" secondAttribute="centerX" id="5bP-MK-LnD"/>
+                                    <constraint firstItem="DuV-Pf-cOY" firstAttribute="top" secondItem="mf3-3N-oO1" secondAttribute="top" constant="70" id="SHY-gD-X4Z"/>
+                                    <constraint firstItem="pC3-8s-20o" firstAttribute="centerX" secondItem="mf3-3N-oO1" secondAttribute="centerX" id="Uy3-KX-k0a"/>
+                                    <constraint firstAttribute="bottom" secondItem="Bx4-d2-Cmm" secondAttribute="bottom" constant="16" id="VwC-vg-nhf"/>
+                                    <constraint firstAttribute="height" constant="365" id="fhC-Mg-pOJ"/>
+                                    <constraint firstItem="Bx4-d2-Cmm" firstAttribute="top" secondItem="pC3-8s-20o" secondAttribute="bottom" constant="8" id="kGM-XV-kZx"/>
+                                    <constraint firstItem="DuV-Pf-cOY" firstAttribute="centerX" secondItem="mf3-3N-oO1" secondAttribute="centerX" id="vRZ-f5-LFB"/>
+                                    <constraint firstItem="pC3-8s-20o" firstAttribute="top" secondItem="DuV-Pf-cOY" secondAttribute="bottom" constant="32" id="wle-nG-VHh"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="t1H-hK-OPz"/>
+                        <color key="backgroundColor" name="TIC-Gray"/>
+                        <constraints>
+                            <constraint firstItem="vth-eH-63e" firstAttribute="leading" secondItem="t1H-hK-OPz" secondAttribute="leading" constant="32" id="5D0-hV-5IP"/>
+                            <constraint firstItem="t1H-hK-OPz" firstAttribute="trailing" secondItem="krU-DA-1Dl" secondAttribute="trailing" constant="32" id="Erc-MN-RoZ"/>
+                            <constraint firstItem="0TL-mh-Ywa" firstAttribute="top" secondItem="krU-DA-1Dl" secondAttribute="bottom" constant="16" id="FZe-gl-S5T"/>
+                            <constraint firstItem="t1H-hK-OPz" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0TL-mh-Ywa" secondAttribute="trailing" id="KGC-5V-TwK"/>
+                            <constraint firstItem="6yU-EG-gCQ" firstAttribute="top" secondItem="0TL-mh-Ywa" secondAttribute="bottom" constant="64" id="Nty-nL-mIY"/>
+                            <constraint firstItem="vth-eH-63e" firstAttribute="top" secondItem="mf3-3N-oO1" secondAttribute="bottom" constant="32" id="O0i-Ws-lem"/>
+                            <constraint firstItem="0TL-mh-Ywa" firstAttribute="leading" secondItem="t1H-hK-OPz" secondAttribute="leading" constant="222" id="SXI-e4-oP5"/>
+                            <constraint firstItem="mf3-3N-oO1" firstAttribute="leading" secondItem="t1H-hK-OPz" secondAttribute="leading" id="duI-4e-Q93"/>
+                            <constraint firstItem="mf3-3N-oO1" firstAttribute="top" secondItem="efW-Su-KHu" secondAttribute="top" id="fcu-rB-Hpj"/>
+                            <constraint firstItem="t1H-hK-OPz" firstAttribute="trailing" secondItem="vth-eH-63e" secondAttribute="trailing" constant="32" id="ixI-dT-mwf"/>
+                            <constraint firstItem="krU-DA-1Dl" firstAttribute="top" secondItem="vth-eH-63e" secondAttribute="bottom" constant="16" id="k3e-FG-vUE"/>
+                            <constraint firstItem="t1H-hK-OPz" firstAttribute="trailing" secondItem="6yU-EG-gCQ" secondAttribute="trailing" constant="32" id="oc8-DS-yRY"/>
+                            <constraint firstItem="t1H-hK-OPz" firstAttribute="trailing" secondItem="mf3-3N-oO1" secondAttribute="trailing" id="xgE-gU-8Z7"/>
+                            <constraint firstItem="6yU-EG-gCQ" firstAttribute="leading" secondItem="t1H-hK-OPz" secondAttribute="leading" constant="32" id="xtN-Vm-ARA"/>
+                            <constraint firstItem="krU-DA-1Dl" firstAttribute="leading" secondItem="t1H-hK-OPz" secondAttribute="leading" constant="32" id="xxH-PB-Hv7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="button" destination="6yU-EG-gCQ" id="na2-Dm-naL"/>
+                        <outlet property="emailTextField" destination="vth-eH-63e" id="BzN-lN-pvz"/>
+                        <outlet property="image" destination="DuV-Pf-cOY" id="Qmh-m0-F3j"/>
+                        <outlet property="imageView" destination="mf3-3N-oO1" id="u6d-e8-Jmv"/>
+                        <outlet property="passwordTextField" destination="krU-DA-1Dl" id="KVc-nm-gRM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="18" y="-2"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="TIC-Black">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TIC-Gray">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TIC-Green">
+            <color red="0.15686274509803921" green="0.71372549019607845" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TIC-White">
+            <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
