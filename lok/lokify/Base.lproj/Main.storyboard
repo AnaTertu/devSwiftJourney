@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="IwD-yz-y2h">
+    <device id="retina6_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Shift-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="lokify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="440" height="956"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u3r-BE-QL3">
+                                <rect key="frame" x="136" y="296" width="168" height="168"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="u3r-BE-QL3" secondAttribute="height" multiplier="1:1" id="0th-Le-Djr"/>
+                                    <constraint firstAttribute="width" constant="168" id="Jsu-a3-hA2"/>
+                                    <constraint firstAttribute="height" constant="168" id="iU3-au-OhN"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Good Morning, " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nn2-uG-07V">
+                                <rect key="frame" x="104" y="108" width="185" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="azb-S5-vFF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Esreva seu nome" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bxx-61-GYd">
+                                <rect key="frame" x="16" y="524" width="408" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="kLD-rt-iIv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="51" translatesAutoresizingMaskIntoConstraints="NO" id="TW1-Jw-3EC">
+                                <rect key="frame" x="42" y="598" width="356" height="40"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Trt-pt-AGI">
+                                        <rect key="frame" x="0.0" y="0.0" width="152.66666666666666" height="40"/>
+                                        <color key="backgroundColor" systemColor="systemIndigoColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="ODD-WP-hUc"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Change name">
+                                            <color key="baseForegroundColor" systemColor="secondarySystemGroupedBackgroundColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="changeNameButtom:" destination="BYZ-38-t0r" eventType="touchUpInside" id="G6t-da-3NS"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lDr-NG-TGc">
+                                        <rect key="frame" x="203.66666666666663" y="0.0" width="152.33333333333337" height="40"/>
+                                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="0rH-yy-FrQ"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Cahnge shift">
+                                            <color key="baseForegroundColor" systemColor="secondarySystemBackgroundColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="ChangeShiftButtom:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9UQ-W0-90f"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JqE-CO-dfs">
+                                <rect key="frame" x="171.66666666666666" y="698" width="96.999999999999972" height="54"/>
+                                <color key="backgroundColor" name="dayText"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="WbJ-gV-cYE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AcademyEngravedLetPlain" family="Academy Engraved LET" pointSize="20"/>
+                                <color key="tintColor" systemColor="groupTableViewBackgroundColor"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="New screen">
+                                    <color key="titleColor" systemColor="groupTableViewBackgroundColor"/>
+                                    <color key="titleShadowColor" systemColor="groupTableViewBackgroundColor"/>
+                                </state>
+                                <connections>
+                                    <segue destination="3Oj-24-gu5" kind="show" identifier="toDetailsShift" id="1ai-r0-3bP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="TW1-Jw-3EC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EM6-Er-vZd"/>
+                            <constraint firstItem="u3r-BE-QL3" firstAttribute="top" secondItem="Nn2-uG-07V" secondAttribute="bottom" constant="30" id="Euu-dS-Oeg"/>
+                            <constraint firstItem="TW1-Jw-3EC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="42" id="N24-o6-IrK"/>
+                            <constraint firstItem="Nn2-uG-07V" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="70" id="Pjm-j5-Wr5"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="TW1-Jw-3EC" secondAttribute="trailing" constant="42" id="Rls-X7-4Wn"/>
+                            <constraint firstItem="u3r-BE-QL3" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="U1h-Na-5yP"/>
+                            <constraint firstItem="Bxx-61-GYd" firstAttribute="top" secondItem="u3r-BE-QL3" secondAttribute="bottom" constant="60" id="Wrl-aN-wE0"/>
+                            <constraint firstItem="Bxx-61-GYd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="iGZ-2R-V19"/>
+                            <constraint firstItem="Bxx-61-GYd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="l0n-lZ-fNJ"/>
+                            <constraint firstItem="JqE-CO-dfs" firstAttribute="top" secondItem="TW1-Jw-3EC" secondAttribute="bottom" constant="60" id="qz9-8A-bLF"/>
+                            <constraint firstItem="JqE-CO-dfs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rUG-N1-7Io"/>
+                            <constraint firstItem="Nn2-uG-07V" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="u8X-he-B0C"/>
+                            <constraint firstAttribute="trailing" secondItem="Bxx-61-GYd" secondAttribute="trailing" constant="16" id="xoJ-Ce-dVg"/>
+                            <constraint firstItem="TW1-Jw-3EC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="140" id="yMu-3s-r8g"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Shift" id="gys-Na-xOz"/>
+                    <connections>
+                        <outlet property="image" destination="u3r-BE-QL3" id="pnO-4A-bgH"/>
+                        <outlet property="label" destination="Nn2-uG-07V" id="LR4-Su-ejn"/>
+                        <outlet property="textField" destination="Bxx-61-GYd" id="7bN-3A-UJf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1958.1818181818182" y="3.1380753138075317"/>
+        </scene>
+        <!--Details Shift View Controller-->
+        <scene sceneID="Pzf-Tq-TYw">
+            <objects>
+                <viewController id="3Oj-24-gu5" customClass="DetailsShiftViewController" customModule="lokify" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="B2a-c0-YFN">
+                        <rect key="frame" x="0.0" y="0.0" width="440" height="956"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iLn-ei-XfR">
+                                <rect key="frame" x="0.0" y="168" width="440" height="671"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Ikl-l2-CFi"/>
+                        <color key="backgroundColor" red="0.080802996134020644" green="0.069676233526541231" blue="0.073382021567027139" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="iLn-ei-XfR" firstAttribute="leading" secondItem="Ikl-l2-CFi" secondAttribute="leading" id="0Ai-pp-PJA"/>
+                            <constraint firstItem="iLn-ei-XfR" firstAttribute="top" secondItem="Ikl-l2-CFi" secondAttribute="top" id="4Z6-wc-0Fm"/>
+                            <constraint firstItem="Ikl-l2-CFi" firstAttribute="trailing" secondItem="iLn-ei-XfR" secondAttribute="trailing" id="BdT-Kk-jxN"/>
+                            <constraint firstItem="Ikl-l2-CFi" firstAttribute="bottom" secondItem="iLn-ei-XfR" secondAttribute="bottom" id="COm-Dg-Hcg"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="F68-tx-FH5"/>
+                    <connections>
+                        <outlet property="image" destination="iLn-ei-XfR" id="DQZ-NE-HEf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B6U-dG-Vt1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2840.4545454545455" y="2.510460251046025"/>
+        </scene>
+        <!--Shift-->
+        <scene sceneID="QA1-q0-6da">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="aPx-F1-G0a" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Shift" image="sun.max.fill" catalog="system" id="cCT-YI-SY7"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="8Cq-zB-6T8">
+                        <rect key="frame" x="0.0" y="124" width="440" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="JsJ-gw-LZa"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IAO-zl-1hj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1030.909090909091" y="3.1380753138075317"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Qdv-Rd-16B">
+            <objects>
+                <viewController id="IDl-Uv-aQR" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lf2-7P-fsy">
+                        <rect key="frame" x="0.0" y="0.0" width="440" height="956"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="JHI-ZP-bjQ"/>
+                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" systemItem="contacts" id="y9n-gq-zOp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pLg-2h-Ssr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1031" y="723"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="gSB-xB-7EA">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="IwD-yz-y2h" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7QU-vY-FGg">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="nightText"/>
+                        <color key="tintColor" systemColor="labelColor"/>
+                        <color key="selectedImageTintColor" systemColor="systemOrangeColor"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="aPx-F1-G0a" kind="relationship" relationship="viewControllers" id="Sl1-9S-QPw"/>
+                        <segue destination="IDl-Uv-aQR" kind="relationship" relationship="viewControllers" id="Zxp-iP-Iqa"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aHi-0m-7Wi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139.09090909090909" y="3.1380753138075317"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="sun.max.fill" catalog="system" width="128" height="125"/>
+        <namedColor name="dayText">
+            <color red="0.13333333333333333" green="0.24705882352941178" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="nightText">
+            <color red="1" green="0.80784313725490198" blue="0.98039215686274506" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <systemColor name="groupTableViewBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="secondarySystemBackgroundColor">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="secondarySystemGroupedBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
