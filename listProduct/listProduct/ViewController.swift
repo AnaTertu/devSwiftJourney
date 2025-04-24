@@ -7,9 +7,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.leftBarButtonItem = editButtonItem 
+        self.navigationItem.leftBarButtonItem = editButtonItem
         self.tableView.dataSource = self
         self.tableView.delegate = self
+    }
+    
+    //sobrescrever comportamento do button
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: true)
+        tableView.setEditing(editing, animated: true) 
     }
 }
 
