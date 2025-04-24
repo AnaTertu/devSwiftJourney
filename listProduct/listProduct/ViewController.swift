@@ -14,17 +14,32 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    
+    //func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+      //  return true
+    //}
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let content = appleDevices.getDevice(from: indexPath)
         content.isSelected.toggle()
         tableView.reloadData()
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+                                
+        let contextItem = UIContextualAction(style: .destructive, title: "Delete") { contextualAction, view, boolValue in
+            self.appleDevices.removeDevice(from: indexPath)
+            self.tableView.reloadData()
+    }
+        
+    let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
+        
+    return swipeActions
 
+    }
+        
 }
+
+
 
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

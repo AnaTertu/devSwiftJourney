@@ -55,9 +55,9 @@ class ViewController: UIViewController {
         }
     }
 }
-
+                            //protocolo
 extension ViewController: UITextFieldDelegate {
-    
+            //metodo 
     func textFieldDidBeginEditing(_ textField: UITextField) {
         textField.backgroundColor = .yellow
         textField.textColor = .red
