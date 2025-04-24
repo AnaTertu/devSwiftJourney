@@ -18,6 +18,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         setLayout()
+        
+        textField.delegate = self
     }
     
     func setLayout(){
@@ -51,6 +53,14 @@ class ViewController: UIViewController {
             detailsShiftViewController.view.backgroundColor = self.view.backgroundColor
             // hierarquica
         }
+    }
+}
+
+extension ViewController: UITextFieldDelegate {
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.backgroundColor = .yellow
+        textField.textColor = .red
     }
 }
 
