@@ -7,6 +7,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.leftBarButtonItem = editButtonItem 
         self.tableView.dataSource = self
         self.tableView.delegate = self
     }
@@ -14,9 +15,9 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate {
     
-    //func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-      //  return true
-    //}
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let content = appleDevices.getDevice(from: indexPath)
