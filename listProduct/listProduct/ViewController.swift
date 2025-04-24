@@ -15,7 +15,14 @@ class ViewController: UIViewController {
     //sobrescrever comportamento do button
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: true)
-        tableView.setEditing(editing, animated: true) 
+        tableView.setEditing(editing, animated: true)
+    }
+    
+    @IBAction func didTapAdd(_ sender: Any) {
+        let newDevice = AppleDevice(name: "Ipad", description: "Apple Ipad", systemImageName: "ipad")
+        appleDevices.allDevices(newDevice)
+        
+        tableView.reloadData()
     }
 }
 
