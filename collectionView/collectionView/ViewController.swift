@@ -11,7 +11,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    private let categories: [String] = ["Animals", "Food", "Travel", "Nature", "Sports", "Animals", "Food", "Travel", "Nature", "Sports", "Animals", "Food", "Travel", "Nature", "Sports"]
+    private let categories: [String] = ["Animals", "Food", "Travel", "Nature", "Sports", "Animals", "Food", "Travel", "Nature", "Sports", "Animals", "Food", "Travel", "Nature", "Sports", "Animals", "Food", "Travel", "Nature", "Sports"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,8 +29,9 @@ extension ViewController: UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "defaultCategoryCell", for: indexPath) as! CategoryCollectionViewCell
         
-        cell.background.backgroundColor = UIColor.systemBlue
+        cell.background.backgroundColor = UIColor.randomColor()
         cell.title.text = categories[indexPath.row]
+        cell.layer.cornerRadius = 16
         
         return cell
     }
