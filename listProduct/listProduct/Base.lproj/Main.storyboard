@@ -59,7 +59,13 @@
                             <constraint firstItem="F4u-4u-hr4" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="iQt-SV-dSW"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="W2y-MO-P8o"/>
+                    <navigationItem key="navigationItem" id="W2y-MO-P8o">
+                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="FXl-gN-w4s">
+                            <connections>
+                                <action selector="didTapAdd:" destination="BYZ-38-t0r" id="Daj-Cu-P3X"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="F4u-4u-hr4" id="3f4-u6-t0d"/>
                     </connections>

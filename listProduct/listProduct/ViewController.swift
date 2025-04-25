@@ -43,9 +43,10 @@ extension ViewController: UITableViewDelegate {
         let contextItem = UIContextualAction(style: .destructive, title: "Delete") { contextualAction, view, boolValue in
             self.appleDevices.removeDevice(from: indexPath)
             self.tableView.reloadData()
+            
     }
         
-    let swipeActions = UISwipeActionsConfiguration(actions: [contextItem])
+    let swipeActions = UISwipeActionsConfiguration(actions: [contextItem ])
         
     return swipeActions
 
