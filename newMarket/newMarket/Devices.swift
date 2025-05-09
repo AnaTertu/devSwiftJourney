@@ -1,23 +1,41 @@
 import UIKit
 
 class AppleDevice {
+    let product: String
+    let quant: String
     let name: String
-    let description: String
-    let systemImageName: String
+    var description: String
     var isSelected: Bool
+    var label: Int?
     
-    init(name: String, description: String, systemImageName: String, isSelected: Bool = false) {
+    init(product: String, quant: String, name: String, description: String, isSelected: Bool = false, label: Int?) {
+        self.product = product
+        self.quant = quant
         self.name = name
         self.description = description
-        self.systemImageName = systemImageName
         self.isSelected = isSelected
+        self.label = label
+    }
+}
+
+extension AppleDevice: Identifiable {
+    var id: Int {
+        label = 0
+        return label ?? 0
+    }
+    
+    func incrementDevice() {
+        
+        if let label = label {
+            self.label = label + 1
+        }
     }
 }
 
 class Devices {
     var allDevices: [AppleDevice] = [
-        AppleDevice(name: "iPhone 12 mini", description: "6.1-inch Liquid Retina HD display", systemImageName: "iphone"),
-        AppleDevice(name: "iPhone", description: "Liquid Retina HD", systemImageName: "iphone"),
+        AppleDevice(product: "PRODUCT", quant: "QUANT.", name: "Product name", description: "Product descriptionbrand", label: 0),
+        AppleDevice(product: "PRODUCT", quant: "QUANT.",name: "Product name", description: "Product descriptionbrand", label: 0),
     ]
     
     func allDevices(_ device: AppleDevice) {
@@ -31,5 +49,13 @@ class Devices {
     func getDevice(from indexPath: IndexPath) -> AppleDevice {
         allDevices[indexPath.row]
     }
+    
+    func updateDevice(_ device: AppleDevice, at indexPath: IndexPath) {
+        allDevices[indexPath.row] = device
+    }
+    
+    func selectDevice(at indexPath: IndexPath) {
+        allDevices[indexPath.row].isSelected.toggle()
+    }
+    
 }
-
