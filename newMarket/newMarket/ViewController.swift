@@ -22,23 +22,6 @@ class ViewController: UIViewController {
     func imageSet() {
         image.image = UIImage(named: "grocery")
     }
-    
-    /*
-     
-     func imageSet() {
-         guard let groceryImage = UIImage(named: "grocery") else {
-             fatalError("Image named 'grocery' not found.")
-         }
-         image.image = groceryImage
-     }
-     
-    func imageSet() {
-        if let groceryImage = UIImage(named: "grocery") {
-            image.image = groceryImage
-        } else {
-            print("Error: Image named 'grocery' not found.")
-        }
-    }*/
 
     @IBAction func emailSet(_ sender: Any) {
         emailTextField.layer.shadowRadius = 20
@@ -50,6 +33,13 @@ class ViewController: UIViewController {
     
     @IBAction func buttonSet(_ sender: Any) {
         button.layer.cornerRadius = 28
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "identifierSeueTableView" {
+            let itensTableViewController = segue.destination as! ItensTableViewController
+            itensTableViewController.tabBarItem.title = "Itens"
+        }
     }
     
 

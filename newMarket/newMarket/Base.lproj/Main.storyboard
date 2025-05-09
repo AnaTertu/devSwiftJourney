@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LfZ-ws-N1t">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -51,6 +52,7 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Login"/>
                                 <connections>
                                     <action selector="buttonSet:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WEg-Oc-KCa"/>
+                                    <segue destination="TcW-aR-gtX" kind="show" identifier="identifierSeueTableView" id="16q-wf-rfj"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TL-mh-Ywa">
@@ -117,6 +119,7 @@
                             <constraint firstItem="krU-DA-1Dl" firstAttribute="leading" secondItem="t1H-hK-OPz" secondAttribute="leading" constant="32" id="xxH-PB-Hv7"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Ub2-fH-Hfy"/>
                     <connections>
                         <outlet property="button" destination="6yU-EG-gCQ" id="na2-Dm-naL"/>
                         <outlet property="emailTextField" destination="vth-eH-63e" id="BzN-lN-pvz"/>
@@ -127,7 +130,117 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="18" y="-2"/>
+            <point key="canvasLocation" x="944.27480916030527" y="-2.1126760563380285"/>
+        </scene>
+        <!--Itens Table View Controller-->
+        <scene sceneID="sVo-3s-cvV">
+            <objects>
+                <viewController id="TcW-aR-gtX" customClass="ItensTableViewController" customModule="newMarket" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="E32-VX-Prc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="yDe-Ce-wzT">
+                                <rect key="frame" x="16" y="186" width="361" height="598"/>
+                                <color key="backgroundColor" name="TIC-Gray1"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Se6-MA-7NV" detailTextLabel="kCm-95-4W3" style="IBUITableViewCellStyleValue1" id="l2L-nk-eUL">
+                                        <rect key="frame" x="20" y="55.333332061767578" width="321" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="l2L-nk-eUL" id="PT0-u1-oOF">
+                                            <rect key="frame" x="0.0" y="0.0" width="321" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="PRODUCT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Se6-MA-7NV">
+                                                    <rect key="frame" x="20" y="13" width="74.333333333333329" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <color key="textColor" name="TIC-Green"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="QUANT." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kCm-95-4W3">
+                                                    <rect key="frame" x="243" y="13" width="58" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <color key="textColor" name="TIC-Green"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellIdentifier" textLabel="9GJ-qO-IQN" detailTextLabel="8rw-G0-Rjg" style="IBUITableViewCellStyleSubtitle" id="kNX-Qt-C8F">
+                                        <rect key="frame" x="20" y="99" width="321" height="56.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kNX-Qt-C8F" id="sOr-jt-bGb">
+                                            <rect key="frame" x="0.0" y="0.0" width="321" height="56.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Product name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="9GJ-qO-IQN">
+                                                    <rect key="frame" x="19.999999999999993" y="7.9999999999999982" width="111.33333333333333" height="20.333333333333332"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                    <color key="textColor" name="TIC-Black"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Product descriptionbrand" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8rw-G0-Rjg">
+                                                    <rect key="frame" x="20" y="31.333333333333332" width="155" height="15.666666666666666"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" name="TIC-Gray2"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jmv-3j-UE2">
+                                <rect key="frame" x="293" y="303" width="80" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="EjL-3y-3Gw"/>
+                                    <constraint firstAttribute="width" constant="80" id="dli-mQ-KOq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" name="TIC-Black"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="0ou-aQ-Nrs"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="yDe-Ce-wzT" firstAttribute="top" secondItem="0ou-aQ-Nrs" secondAttribute="top" constant="24" id="21F-bG-G2O"/>
+                            <constraint firstItem="0ou-aQ-Nrs" firstAttribute="trailing" secondItem="yDe-Ce-wzT" secondAttribute="trailing" constant="16" id="46W-Lf-lw8"/>
+                            <constraint firstItem="0ou-aQ-Nrs" firstAttribute="trailing" secondItem="jmv-3j-UE2" secondAttribute="trailing" constant="20" id="JgQ-Rn-dhw"/>
+                            <constraint firstItem="0ou-aQ-Nrs" firstAttribute="bottom" secondItem="yDe-Ce-wzT" secondAttribute="bottom" id="NHd-9p-HYp"/>
+                            <constraint firstItem="yDe-Ce-wzT" firstAttribute="leading" secondItem="0ou-aQ-Nrs" secondAttribute="leading" constant="16" id="yiP-SK-3G3"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="NTS-Ji-iei"/>
+                    <connections>
+                        <outlet property="tableView" destination="yDe-Ce-wzT" id="dAq-XC-vle"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0KH-4h-msT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1739.6946564885495" y="-2.1126760563380285"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gF1-gk-tHP">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="LfZ-ws-N1t" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sg6-7A-o7O">
+                        <rect key="frame" x="0.0" y="118" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="DpR-zy-J6X"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="18d-cW-L4A" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="17.557251908396946" y="-2.1126760563380285"/>
         </scene>
     </scenes>
     <resources>
@@ -137,11 +250,20 @@
         <namedColor name="TIC-Gray">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="TIC-Gray1">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TIC-Gray2">
+            <color red="0.42352941176470588" green="0.42352941176470588" blue="0.4392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="TIC-Green">
             <color red="0.15686274509803921" green="0.71372549019607845" blue="0.61960784313725492" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="TIC-White">
             <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>
