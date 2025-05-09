@@ -194,8 +194,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jmv-3j-UE2">
-                                <rect key="frame" x="293" y="303" width="80" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jmv-3j-UE2">
+                                <rect key="frame" x="293" y="292" width="80" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="56" id="EjL-3y-3Gw"/>
                                     <constraint firstAttribute="width" constant="80" id="dli-mQ-KOq"/>
@@ -212,6 +212,7 @@
                             <constraint firstItem="0ou-aQ-Nrs" firstAttribute="trailing" secondItem="yDe-Ce-wzT" secondAttribute="trailing" constant="16" id="46W-Lf-lw8"/>
                             <constraint firstItem="0ou-aQ-Nrs" firstAttribute="trailing" secondItem="jmv-3j-UE2" secondAttribute="trailing" constant="20" id="JgQ-Rn-dhw"/>
                             <constraint firstItem="0ou-aQ-Nrs" firstAttribute="bottom" secondItem="yDe-Ce-wzT" secondAttribute="bottom" id="NHd-9p-HYp"/>
+                            <constraint firstItem="jmv-3j-UE2" firstAttribute="top" secondItem="0ou-aQ-Nrs" secondAttribute="top" constant="130" id="lfn-uY-tvh"/>
                             <constraint firstItem="yDe-Ce-wzT" firstAttribute="leading" secondItem="0ou-aQ-Nrs" secondAttribute="leading" constant="16" id="yiP-SK-3G3"/>
                         </constraints>
                     </view>
