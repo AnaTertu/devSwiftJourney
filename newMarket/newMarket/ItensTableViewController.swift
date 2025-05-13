@@ -5,7 +5,7 @@ class ItensTableViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     let appleDevices = Devices()
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem = editButtonItem
@@ -17,10 +17,15 @@ class ItensTableViewController: UIViewController {
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated : true)
         tableView.setEditing(editing, animated: true)
+        
     }
     
-    @IBAction func didTapAdd(_ sender: Any) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        if segue.identifier == "identifierSeueModal" {
+            let newProductModalViewController = segue.destination as! NewProductModalViewController
+            newProductModalViewController.tabBarItem.title = "modal"
+        }
     }
     
     
@@ -34,18 +39,16 @@ extension ItensTableViewController: UITableViewDelegate {
         content.isSelected.toggle()
         
         tableView.reloadData()
-        //tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-       
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {        
+        
         let deleteAction = UIContextualAction(style: .destructive, title: "Deletar") { (action, view, completionHandler) in
             
-            // self.appleDevices.allDevices.remove(at: indexPath.row)
             self.appleDevices.removeDevice(from: indexPath)
             tableView.deleteRows(at: [indexPath], with: .fade)
             completionHandler(true)
@@ -82,6 +85,14 @@ extension ItensTableViewController: UITableViewDataSource {
        
         _ = appleDevices.getDevice(from: indexPath)
 
+       
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier:  "cell_identifier", for: indexPath)
+        
        
         return cell
     }

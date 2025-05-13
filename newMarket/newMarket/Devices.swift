@@ -1,16 +1,12 @@
 import UIKit
 
 class AppleDevice {
-    let product: String
-    let quant: String
-    let name: String
+    var name: String
     var description: String
     var isSelected: Bool
     var label: Int?
     
-    init(product: String, quant: String, name: String, description: String, isSelected: Bool = false, label: Int?) {
-        self.product = product
-        self.quant = quant
+    init(name: String, description: String, isSelected: Bool = false, label: Int?) {
         self.name = name
         self.description = description
         self.isSelected = isSelected
@@ -34,8 +30,8 @@ extension AppleDevice: Identifiable {
 
 class Devices {
     var allDevices: [AppleDevice] = [
-        AppleDevice(product: "PRODUCT", quant: "QUANT.", name: "Product name", description: "Product descriptionbrand", label: 0),
-        AppleDevice(product: "PRODUCT", quant: "QUANT.",name: "Product name", description: "Product descriptionbrand", label: 0),
+        AppleDevice(name: "Product name", description: "Product description brand", label: 0),
+        AppleDevice(name: "Product name", description: "Product descriptionbrand", label: 0),
     ]
     
     func allDevices(_ device: AppleDevice) {
