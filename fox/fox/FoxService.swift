@@ -1,30 +1,26 @@
 import Foundation
 
 class FoxService {
+        
+    static let url = URL(string: "https://randomfox.ca/floof")
     
-    static let url = URL(string: "https ://randomfox.ca/floof")
-        //"https ://picsum.photos/300"
-    //  "https ://randomfox.ca/floof"
-   //"https ://dog.ceo/api/breeds/image/random")
-    
-    //public static func getRandomFox(completion: @escaping ( FoxModel? , Error?) -> Void) {
-    public static func getRandomFox(completion: @escaping ( FoxModel?) -> Void) {
+    public static func getRandomFox(completion: @escaping (FoxModel?) -> Void) {
         
         guard let url else {
-            return //completion(nil, NSError(domain: "Invalid URL", code: 100, userInfo: nil))
+            return
         }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             
             guard let data else {
-                return //completion(nil, NSError(domain: "Invalid URL", code: 100, userInfo: nil))
+                return
             }
             
             do {
                 let result = try JSONDecoder().decode(FoxModel.self, from: data)
                 completion(result)
             } catch {
-                //completion(nil )//, error )
+                
                 print("Erro ao decodificar JSON: \(error.localizedDescription)")
             }
         }.resume()
@@ -38,8 +34,7 @@ class FoxService {
         }
         
         var request = URLRequest(url: url)
-            request.cachePolicy = .reloadIgnoringLocalCacheData
-
+        request.cachePolicy = .reloadIgnoringLocalCacheData
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             
@@ -68,6 +63,14 @@ class FoxService {
             completion(data)
             
         }.resume()
-    }
-
+     }
 }
+
+/*
+ "https ://picsum.photos/300"
+ "https ://randomfox.ca/floof"
+ "https ://dog.ceo/api/breeds/image/random")
+ https: //www.thedogapi.com/
+ 
+ 
+*/

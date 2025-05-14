@@ -29,7 +29,6 @@ class ViewController: UIViewController {
             }
         }
         
-        
         FactService.getRandomFact { cat, error in guard let cat = cat else { return }
             
             DispatchQueue.main.async {
