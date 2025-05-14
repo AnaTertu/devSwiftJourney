@@ -53,17 +53,6 @@ class FoxService {
             
         }.resume()
     }
-    
-    public static func getImage(url: URL, completion: @escaping (Data?) -> Void) {
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            
-            guard let data else { return }
-            
-            completion(data)
-            
-        }.resume()
-     }
 }
 
 /*
