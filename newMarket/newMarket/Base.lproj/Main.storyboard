@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -132,7 +131,7 @@
             </objects>
             <point key="canvasLocation" x="944.27480916030527" y="-2.1126760563380285"/>
         </scene>
-        <!--Itens Table View Controller-->
+        <!--Shop List-->
         <scene sceneID="sVo-3s-cvV">
             <objects>
                 <viewController id="TcW-aR-gtX" customClass="ItensTableViewController" customModule="newMarket" customModuleProvider="target" sceneMemberID="viewController">
@@ -140,15 +139,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="yDe-Ce-wzT">
-                                <rect key="frame" x="16" y="186" width="361" height="598"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="yDe-Ce-wzT">
+                                <rect key="frame" x="0.0" y="186" width="393" height="666"/>
                                 <color key="backgroundColor" name="TIC-Gray1"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cellIdentifier" rowHeight="48" id="kNX-Qt-C8F">
-                                        <rect key="frame" x="20" y="55.333332061767578" width="321" height="48"/>
+                                        <rect key="frame" x="20" y="55.333332061767578" width="353" height="48"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="kNX-Qt-C8F" id="sOr-jt-bGb">
-                                            <rect key="frame" x="0.0" y="0.0" width="321" height="48"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="353" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="name" text="Product name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5N-Jj-5JU" userLabel="name">
@@ -165,7 +164,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRE-3k-zTr" userLabel="label">
-                                                    <rect key="frame" x="293" y="9.9999999999999982" width="8" height="20.333333333333329"/>
+                                                    <rect key="frame" x="325" y="9.9999999999999982" width="8" height="20.333333333333329"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <color key="textColor" name="TIC-Black"/>
                                                     <nil key="highlightedColor"/>
@@ -197,20 +196,21 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="0ou-aQ-Nrs"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="TIC-Green"/>
                         <constraints>
                             <constraint firstItem="yDe-Ce-wzT" firstAttribute="top" secondItem="0ou-aQ-Nrs" secondAttribute="top" constant="24" id="21F-bG-G2O"/>
-                            <constraint firstItem="0ou-aQ-Nrs" firstAttribute="trailing" secondItem="yDe-Ce-wzT" secondAttribute="trailing" constant="16" id="46W-Lf-lw8"/>
+                            <constraint firstItem="0ou-aQ-Nrs" firstAttribute="trailing" secondItem="yDe-Ce-wzT" secondAttribute="trailing" id="46W-Lf-lw8"/>
                             <constraint firstItem="gJq-vE-LhM" firstAttribute="top" secondItem="0ou-aQ-Nrs" secondAttribute="top" constant="40" id="6yA-3T-xkc"/>
                             <constraint firstItem="gJq-vE-LhM" firstAttribute="leading" secondItem="1G0-86-arT" secondAttribute="trailing" constant="145" id="8vr-O9-o4w"/>
                             <constraint firstItem="0ou-aQ-Nrs" firstAttribute="bottom" secondItem="yDe-Ce-wzT" secondAttribute="bottom" id="NHd-9p-HYp"/>
                             <constraint firstItem="0ou-aQ-Nrs" firstAttribute="trailing" secondItem="gJq-vE-LhM" secondAttribute="trailing" constant="50" id="vdU-xo-UQ9"/>
                             <constraint firstItem="1G0-86-arT" firstAttribute="top" secondItem="0ou-aQ-Nrs" secondAttribute="top" constant="40" id="xSn-wI-Lvt"/>
-                            <constraint firstItem="yDe-Ce-wzT" firstAttribute="leading" secondItem="0ou-aQ-Nrs" secondAttribute="leading" constant="16" id="yiP-SK-3G3"/>
+                            <constraint firstItem="yDe-Ce-wzT" firstAttribute="leading" secondItem="0ou-aQ-Nrs" secondAttribute="leading" id="yiP-SK-3G3"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="always" style="editor" id="NTS-Ji-iei">
+                    <navigationItem key="navigationItem" title="Shop List" leftItemsSupplementBackButton="YES" largeTitleDisplayMode="always" style="editor" id="NTS-Ji-iei" colorLabel="IBBuiltInLabel-Gray">
                         <barButtonItem key="rightBarButtonItem" title="Add" style="plain" id="CrE-9x-TgL">
+                            <color key="tintColor" name="TIC-White"/>
                             <connections>
                                 <segue destination="ecj-A3-ij1" kind="presentation" identifier="identifierSeueModal" id="fwH-oF-aed"/>
                             </connections>
@@ -346,8 +346,5 @@
         <namedColor name="TIC-White">
             <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>
