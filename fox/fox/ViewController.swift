@@ -11,6 +11,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let greeting = UserService.shared.getGreeting() {
+            self.label.text = greeting
+        }
+        
         FoxService.getRandomFox { fox in guard let fox else { return }
             
             print("URL da imagem.")
@@ -39,6 +43,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func saveButtonClicked(_ sender: Any) {
+        
+        UserService.shared.change(greeting: textField.text)
         self.dataLabel.text = textField.text
     }
 }

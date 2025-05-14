@@ -1,20 +1,24 @@
 import Foundation
 
 class UserService {
+    
+    public static let shared = UserService()
+    
     private static let greetigkey: String = "greeting"
     
     var greeting: String
     
-    init(greeting: String) {
-        self.greeting = greeting
+    private init() {
+        greeting = ""
     }
     
-    public func change(greeting: String) {
+    public func change(greeting: String?) {
+        guard let greeting = greeting else { return }
         self.greeting = greeting
         UserDefaults.standard.set(self.greeting, forKey: UserService.greetigkey)
     }
     
-    public func getGreeting() -> String {
-        return UserDefaults.standard.string(forKey: UserService.greetigkey) ?? "Hello"
+    public func getGreeting() -> String? {
+        return UserDefaults.standard.string(forKey: UserService.greetigkey)
     }
 }
