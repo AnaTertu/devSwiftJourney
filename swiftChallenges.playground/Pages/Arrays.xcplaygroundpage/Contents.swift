@@ -54,4 +54,3 @@ for intem in shoppingList {
 for (index, item) in shoppingList.enumerated() {
     print("Item \(index + 1): \(item)")
 }
-

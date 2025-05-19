@@ -2,7 +2,7 @@ import Foundation
 
 class FoxService {
         
-    static let url = URL(string: "https://randomfox.ca/floof")
+    static let url = URL(string: "https://www.thedogapi.com/")
     
     public static func getRandomFox(completion: @escaping (FoxModel?) -> Void) {
         
