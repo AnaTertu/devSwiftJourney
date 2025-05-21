@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2J9-XK-nDb">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="mcm-ha-cLB">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
@@ -12,70 +12,82 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="guessTheFlag" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" userInteractionEnabled="NO" contentMode="scaleToFill" id="8bC-Xf-vdC" colorLabel="IBBuiltInLabel-Gray">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6vK-fb-VlG">
-                                <rect key="frame" x="96" y="162" width="200" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="osc-hn-xW0">
+                                <rect key="frame" x="85.666666666666742" y="533" width="224" height="114"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="Brasil"/>
+                                <buttonConfiguration key="configuration" style="plain" image="France"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cl2-IH-PVS"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="am2-VE-VZc">
-                                <rect key="frame" x="96" y="298" width="200" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MHi-At-mcE">
+                                <rect key="frame" x="84.666666666666686" y="369" width="224" height="114"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="Brasil"/>
+                                <buttonConfiguration key="configuration" style="plain" image="Estonia"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vyy-tL-abM"/>
+                                </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MTc-AE-Jyx">
-                                <rect key="frame" x="96" y="422" width="200" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zyH-ZF-sHR">
+                                <rect key="frame" x="84.666666666666686" y="205" width="224" height="114"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="Brasil"/>
+                                <connections>
+                                    <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iTo-mK-5tP"/>
+                                </connections>
                             </button>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY" colorLabel="IBBuiltInLabel-Gray" propertyAccessControl="none"/>
-                        <color key="backgroundColor" systemColor="systemGray3Color"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="osc-hn-xW0" firstAttribute="top" secondItem="MHi-At-mcE" secondAttribute="bottom" constant="50" id="BOb-HZ-kPo"/>
+                            <constraint firstItem="MHi-At-mcE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="a4W-7d-zYK"/>
+                            <constraint firstItem="MHi-At-mcE" firstAttribute="top" secondItem="zyH-ZF-sHR" secondAttribute="bottom" constant="50" id="gM9-Ag-2Jg"/>
+                            <constraint firstItem="osc-hn-xW0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mYg-hI-WvL"/>
+                            <constraint firstItem="MHi-At-mcE" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="vck-zX-jXG"/>
+                            <constraint firstItem="zyH-ZF-sHR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xlB-Fk-v7d"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Mg0-aq-OHy">
-                        <connections>
-                            <outlet property="titleView" destination="8bC-Xf-vdC" id="0qr-aQ-LZ2"/>
-                        </connections>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="E3C-fC-STX"/>
                     <connections>
-                        <outlet property="button1" destination="6vK-fb-VlG" id="KkG-RO-adx"/>
-                        <outlet property="button2" destination="am2-VE-VZc" id="H6v-ZN-1du"/>
-                        <outlet property="button3" destination="MTc-AE-Jyx" id="ycR-cB-LHN"/>
+                        <outlet property="button1" destination="zyH-ZF-sHR" id="FuB-lM-PAT"/>
+                        <outlet property="button2" destination="MHi-At-mcE" id="8nQ-LJ-HvD"/>
+                        <outlet property="button3" destination="osc-hn-xW0" id="yWu-BP-UEm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1028.2442748091603" y="4.9295774647887329"/>
+            <point key="canvasLocation" x="1028.2442748091603" y="3.5211267605633805"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="9BH-UN-bjd">
+        <scene sceneID="f3A-Xd-kvT">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2J9-XK-nDb" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mcm-ha-cLB" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eeV-BG-VC3">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="d3G-en-dIm">
                         <rect key="frame" x="0.0" y="118" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="9b2-w9-Eo4"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="Vz2-JO-shk"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rJC-Vv-EQd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lgV-Cx-lNR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="101.5267175572519" y="4.9295774647887329"/>
+            <point key="canvasLocation" x="101.5267175572519" y="3.5211267605633805"/>
         </scene>
     </scenes>
     <resources>
         <image name="Brasil" width="200" height="100"/>
-        <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <image name="Estonia" width="200" height="100"/>
+        <image name="France" width="200" height="100"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

@@ -7,24 +7,24 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		A1635D022DDE09160075292D /* guessTheFlag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = guessTheFlag.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1635D3A2DDE76D30075292D /* guessTheFlag.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = guessTheFlag.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		A1635D142DDE09190075292D /* Exceptions for "guessTheFlag" folder in "guessTheFlag" target */ = {
+		A1635D4C2DDE76D50075292D /* Exceptions for "guessTheFlag" folder in "guessTheFlag" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = A1635D012DDE09160075292D /* guessTheFlag */;
+			target = A1635D392DDE76D30075292D /* guessTheFlag */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		A1635D042DDE09160075292D /* guessTheFlag */ = {
+		A1635D3C2DDE76D30075292D /* guessTheFlag */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				A1635D142DDE09190075292D /* Exceptions for "guessTheFlag" folder in "guessTheFlag" target */,
+				A1635D4C2DDE76D50075292D /* Exceptions for "guessTheFlag" folder in "guessTheFlag" target */,
 			);
 			path = guessTheFlag;
 			sourceTree = "<group>";
@@ -32,7 +32,7 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A1635CFF2DDE09160075292D /* Frameworks */ = {
+		A1635D372DDE76D30075292D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,18 +42,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A1635CF92DDE09160075292D = {
+		A1635D312DDE76D30075292D = {
 			isa = PBXGroup;
 			children = (
-				A1635D042DDE09160075292D /* guessTheFlag */,
-				A1635D032DDE09160075292D /* Products */,
+				A1635D3C2DDE76D30075292D /* guessTheFlag */,
+				A1635D3B2DDE76D30075292D /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		A1635D032DDE09160075292D /* Products */ = {
+		A1635D3B2DDE76D30075292D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A1635D022DDE09160075292D /* guessTheFlag.app */,
+				A1635D3A2DDE76D30075292D /* guessTheFlag.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,64 +61,64 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A1635D012DDE09160075292D /* guessTheFlag */ = {
+		A1635D392DDE76D30075292D /* guessTheFlag */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A1635D152DDE09190075292D /* Build configuration list for PBXNativeTarget "guessTheFlag" */;
+			buildConfigurationList = A1635D4D2DDE76D50075292D /* Build configuration list for PBXNativeTarget "guessTheFlag" */;
 			buildPhases = (
-				A1635CFE2DDE09160075292D /* Sources */,
-				A1635CFF2DDE09160075292D /* Frameworks */,
-				A1635D002DDE09160075292D /* Resources */,
+				A1635D362DDE76D30075292D /* Sources */,
+				A1635D372DDE76D30075292D /* Frameworks */,
+				A1635D382DDE76D30075292D /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				A1635D042DDE09160075292D /* guessTheFlag */,
+				A1635D3C2DDE76D30075292D /* guessTheFlag */,
 			);
 			name = guessTheFlag;
 			packageProductDependencies = (
 			);
 			productName = guessTheFlag;
-			productReference = A1635D022DDE09160075292D /* guessTheFlag.app */;
+			productReference = A1635D3A2DDE76D30075292D /* guessTheFlag.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A1635CFA2DDE09160075292D /* Project object */ = {
+		A1635D322DDE76D30075292D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1630;
 				LastUpgradeCheck = 1630;
 				TargetAttributes = {
-					A1635D012DDE09160075292D = {
+					A1635D392DDE76D30075292D = {
 						CreatedOnToolsVersion = 16.3;
 					};
 				};
 			};
-			buildConfigurationList = A1635CFD2DDE09160075292D /* Build configuration list for PBXProject "guessTheFlag" */;
+			buildConfigurationList = A1635D352DDE76D30075292D /* Build configuration list for PBXProject "guessTheFlag" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = A1635CF92DDE09160075292D;
+			mainGroup = A1635D312DDE76D30075292D;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = A1635D032DDE09160075292D /* Products */;
+			productRefGroup = A1635D3B2DDE76D30075292D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A1635D012DDE09160075292D /* guessTheFlag */,
+				A1635D392DDE76D30075292D /* guessTheFlag */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A1635D002DDE09160075292D /* Resources */ = {
+		A1635D382DDE76D30075292D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -128,7 +128,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A1635CFE2DDE09160075292D /* Sources */ = {
+		A1635D362DDE76D30075292D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -138,7 +138,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		A1635D162DDE09190075292D /* Debug */ = {
+		A1635D4E2DDE76D50075292D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -148,7 +148,6 @@
 				DEVELOPMENT_TEAM = 286UCCQ5L5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = guessTheFlag/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -167,7 +166,7 @@
 			};
 			name = Debug;
 		};
-		A1635D172DDE09190075292D /* Release */ = {
+		A1635D4F2DDE76D50075292D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -177,7 +176,6 @@
 				DEVELOPMENT_TEAM = 286UCCQ5L5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = guessTheFlag/Info.plist;
-				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -196,7 +194,7 @@
 			};
 			name = Release;
 		};
-		A1635D182DDE09190075292D /* Debug */ = {
+		A1635D502DDE76D50075292D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -260,7 +258,7 @@
 			};
 			name = Debug;
 		};
-		A1635D192DDE09190075292D /* Release */ = {
+		A1635D512DDE76D50075292D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -320,25 +318,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A1635CFD2DDE09160075292D /* Build configuration list for PBXProject "guessTheFlag" */ = {
+		A1635D352DDE76D30075292D /* Build configuration list for PBXProject "guessTheFlag" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A1635D182DDE09190075292D /* Debug */,
-				A1635D192DDE09190075292D /* Release */,
+				A1635D502DDE76D50075292D /* Debug */,
+				A1635D512DDE76D50075292D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A1635D152DDE09190075292D /* Build configuration list for PBXNativeTarget "guessTheFlag" */ = {
+		A1635D4D2DDE76D50075292D /* Build configuration list for PBXNativeTarget "guessTheFlag" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A1635D162DDE09190075292D /* Debug */,
-				A1635D172DDE09190075292D /* Release */,
+				A1635D4E2DDE76D50075292D /* Debug */,
+				A1635D4F2DDE76D50075292D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = A1635CFA2DDE09160075292D /* Project object */;
+	rootObject = A1635D322DDE76D30075292D /* Project object */;
 }
