@@ -12,8 +12,10 @@ class ViewController: UITableViewController {
     var pictures = [String]()
 
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        
+        title = "Storm Viewer"
+        navigationController?.navigationBar.prefersLargeTitles = true
         
         let fm = FileManager.default // irá procurar arquivo
         let path = Bundle.main.resourcePath! //onde posso encontrar todas as imagens que adicionei ao meu aplicativo
