@@ -20,11 +20,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         //countries.append(contentsOf: ["Brasil", "Estonia", "France", "Germany", "Ireland", "Italy", "Monaco",  "Nigeria", "Spain", "Uk", "Ukraine", "Usa"])
-        countries += ["Brasil", "Estonia", "France", "Germany", "Ireland", "Italy", "Monaco",  "Nigeria", "Spain", "Uk", "Ukraine", "Usa"]
+        countries += ["Brasil", "Estonia", "France", "Germany", "Ireland", "Italy", "Monaco",  "Nigeria", "Spain", "UK", "Ukraine", "USA"]
         
-        button1.layer.borderWidth = 1
-        button2.layer.borderWidth = 1
-        button3.layer.borderWidth = 1
+        button1.layer.borderWidth = 2
+        button2.layer.borderWidth = 2
+        button3.layer.borderWidth = 2
         
         button1.layer.borderColor = UIColor.orange.cgColor
         button2.layer.borderColor = UIColor.orange.cgColor
