@@ -1,7 +1,7 @@
-import WebKit
 import UIKit
+import WebKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, WKNavigationDelegate {
     
     var webView: WKWebView!
                 // visualização de carregamento
@@ -15,27 +15,34 @@ class ViewController: UIViewController {
         
         super.viewDidLoad()
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Open", style: .plain, target: self, action: #selector(openTapped))
+        
         let url = URL(string: "https://github.com/AnaTertu")!
         webView.load(URLRequest(url: url))
         webView.allowsBackForwardNavigationGestures = true
     }
-                // Visualização Aparecerá
-    override func viewWillAppear(_ animated: Bool) {
-        /* super.viewWillAppear(animated)
-        let url = URL(string: "https: //www.google.com.br")!
-        webView.load(URLRequest(url: url)) */
+    
+    @objc func openTapped() {
+        let ac = UIAlertController(title: "Open page…", message: nil, preferredStyle: .actionSheet)
+        ac.addAction(UIAlertAction(title: "anatertu.github.io", style: .default, handler: openPage))
+        ac.addAction(UIAlertAction(title: "github.com/AnaTertu", style: .default, handler: openPage))
+        ac.addAction(UIAlertAction(title: "github.com/AnaTertu/devSwiftJourney", style: .default, handler: openPage))
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        ac.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
+        present(ac, animated: true)
     }
     
-    /* func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        print("Carregou")
-    } */
-                
-    func viewDidAppear() {} // Vizualização Apareceu
-    
-    func viewDidDisappear() {}  // Vizualização Desapareceu
+    func openPage(action: UIAlertAction) {
+        guard let actionTitle = action.title else { return }
+        guard let url = URL(string: "https://" + actionTitle) else { return }
+       // let url = URL(string: "https://" + action.title!)!
+        webView.load(URLRequest(url: url))
+    }
+            
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        title = webView.title
+    }
+      
 
 }
 
-extension ViewController : WKNavigationDelegate {
-    
-}
