@@ -29,6 +29,8 @@ class ViewController: UIViewController, WKNavigationDelegate {
         
         navigationController?.isToolbarHidden = false
         
+        webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
+        
         let url = URL(string: "https://github.com/AnaTertu")!
         webView.load(URLRequest(url: url))
         webView.allowsBackForwardNavigationGestures = true
@@ -56,12 +58,12 @@ class ViewController: UIViewController, WKNavigationDelegate {
         title = webView.title
     }
     
-    /*override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         
         if keyPath == "estimatedProgress" {
             progressView.progress = Float(webView.estimatedProgress)
         }
-    }*/
+    }
       
 
 }
