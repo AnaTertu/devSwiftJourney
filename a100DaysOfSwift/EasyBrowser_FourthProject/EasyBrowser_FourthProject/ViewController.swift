@@ -81,16 +81,9 @@ class ViewController: UIViewController, WKNavigationDelegate {
             decisionHandler(.cancel)
         }
         /*
-        if navigationAction.navigationType == .linkActivated {
-            
-            if let url = navigationAction.request.url,
-               UIApplication.shared.canOpenURL(url) {
-                
-                UIApplication.shared.open(url)
-                decisionHandler(.cancel)
-            } else {
-                
-            }
+         Se os usuários tentarem visitar um URL que não é permitido, mostre um alerta dizendo que ele está bloqueado.
+         Tente criar dois novos itens na barra de ferramentas com os títulos Voltar e Avançar.
+         Você deve fazê-los usar webView.goBack e webView.goForward.
         }*/
     }
       
