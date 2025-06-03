@@ -5,7 +5,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     var webView: WKWebView!
     var progressView: UIProgressView!
-    var websites = [ "anatertu.github.io", "github.com", "github.com/AnaTertu/devSwiftJourney", "hackingwithswift.com"]
+    var websites = [ "anatertu.github.io", "github.com/AnaTertu/devSwiftJourney", "hackingwithswift.com"]
                 // visualização de carregamento
     override func loadView() {
         webView = WKWebView()
@@ -23,10 +23,14 @@ class ViewController: UIViewController, WKNavigationDelegate {
         progressView.sizeToFit()
         let progressButton = UIBarButtonItem(customView: progressView)
         
+        
+        let back = UIBarButtonItem(title: "Voltar", style: .plain, target: self, action: #selector(goBack))
+        let forward = UIBarButtonItem(title: "Avançar", style: .plain, target: self, action: #selector(goForward))
+                
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let refresh = UIBarButtonItem(barButtonSystemItem: .refresh, target: webView, action: #selector(webView.reload))
         
-        toolbarItems = [progressButton, spacer, refresh]
+        toolbarItems = [progressButton, back, forward, spacer, refresh]
         navigationController?.isToolbarHidden = false
         
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
@@ -45,6 +49,18 @@ class ViewController: UIViewController, WKNavigationDelegate {
         ac.popoverPresentationController?.barButtonItem = navigationItem.rightBarButtonItem
         
         present(ac, animated: true)
+    }
+    
+    @objc func goBack() {
+        if webView.canGoBack {
+            webView.goBack()
+        }
+    }
+
+    @objc func goForward() {
+        if webView.canGoForward {
+            webView.goForward()
+        }
     }
     
     func openPage(action: UIAlertAction) {
@@ -67,26 +83,27 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         
-        let url = navigationAction.request.url
+        guard let url = navigationAction.request.url else {
+           decisionHandler(.cancel)
+           return
+        }
+               
+        //let url = navigationAction.request.url
         
-        if let host = url?.host {
+        if let host = url.host {
             for website in websites {
                 if host.contains(website) {
                     decisionHandler(.allow)
                     return
                 }
             }
+            let alert = UIAlertController(title: "Bloqueado", message: "Este site não está na lista permitida.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            present(alert, animated: true)
+            
             decisionHandler(.cancel)
         } else {
             decisionHandler(.cancel)
         }
-        /*
-         Se os usuários tentarem visitar um URL que não é permitido, mostre um alerta dizendo que ele está bloqueado.
-         Tente criar dois novos itens na barra de ferramentas com os títulos Voltar e Avançar.
-         Você deve fazê-los usar webView.goBack e webView.goForward.
-        }*/
     }
-      
-
 }
-
