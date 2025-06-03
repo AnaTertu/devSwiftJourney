@@ -1,19 +1,31 @@
-//
-//  ViewController.swift
-//  wordScramble_Project5
-//
-//  Created by ana on 02/06/25.
-//
-
 import UIKit
 
 class ViewController: UITableViewController {
+    
+    var allWords = [String]()
+    var usedWords = [String]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
+            if let startWords = try? String(contentsOf: startWordsURL) {
+                allWords = startWords.components(separatedBy: "\n")
+            }
+        }
+        
+        if allWords.isEmpty {
+            allWords = ["nnnnnnnn"]
+        }
+        
+        startGame()
     }
 
-
+    func startGame() {
+        title = allWords.randomElement()
+        usedWords.removeAll(keepingCapacity: true)
+        tableView.reloadData()
+    }
+    
 }
 
