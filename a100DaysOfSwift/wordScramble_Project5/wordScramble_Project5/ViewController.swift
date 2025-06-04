@@ -58,18 +58,45 @@ class ViewController: UITableViewController {
     
     func submit(_ answer: String) {
         
+        guard answer.count > 1 else {
+                let ac = UIAlertController(title: "Palavra muito curta | Very short word", message: "Digite uma palavra com pelo menos 2 letras.  Enter a word with at least 2 letters.", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .default))
+                present(ac, animated: true)
+                return
+            }
+        
         let lowerAnswer = answer.lowercased()
+        
+        let errorTitle: String
+        let errorMessage: String
+        
         
         if isPossible(word: lowerAnswer) {
             if isOriginal(word: lowerAnswer) {
                 if isReal(word: lowerAnswer) {
                     usedWords.insert(answer, at: 0)
-                    
+
                     let indexPath = IndexPath(row: 0, section: 0)
                     tableView.insertRows(at: [indexPath], with: .automatic)
+
+                    return
+                } else {
+                    errorTitle = "Palavra não reconhecida | Word not recognised"
+                    errorMessage = "Você não pode simplesmente inventá-las, sabia! | You can't just make them up, you know!"
                 }
+            } else {
+                errorTitle = "Palavra já usada | Word used already"
+                errorMessage = "Seja mais original! | Be more original!"
             }
+        } else {
+            guard let title = title?.lowercased() else { return }
+            errorTitle = "Palavra impossíve | Word not possible"
+            errorMessage = "Você não consegue soletrar essa palavra de *\(title)* | You can't spell that word from *\(title)*"
         }
+
+        let ac = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
     }
     
     func isPossible(word: String) -> Bool {
