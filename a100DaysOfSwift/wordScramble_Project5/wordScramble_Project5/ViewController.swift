@@ -59,13 +59,23 @@ class ViewController: UITableViewController {
     func submit(_ answer: String) {
         
         guard answer.count > 1 else {
-                let ac = UIAlertController(title: "Palavra muito curta | Very short word", message: "Digite uma palavra com pelo menos 2 letras.  Enter a word with at least 2 letters.", preferredStyle: .alert)
-                ac.addAction(UIAlertAction(title: "OK", style: .default))
-                present(ac, animated: true)
-                return
-            }
+            let ac = UIAlertController(title: "Palavra muito curta | Very short word", message: "Digite uma palavra com pelo menos 2 letras.  Enter a word with at least 2 letters.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+            return
+        }
         
+        guard let baseWord = title?.lowercased() else { return }
         let lowerAnswer = answer.lowercased()
+        
+        guard lowerAnswer != baseWord else {
+            let ac = UIAlertController(title: "Palavra inválida", message: "Você não pode usar a palavra base!", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+            return
+        }
+
+        
         
         let errorTitle: String
         let errorMessage: String
