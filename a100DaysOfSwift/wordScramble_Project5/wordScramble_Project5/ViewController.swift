@@ -54,13 +54,31 @@ class ViewController: UITableViewController {
     }
     
     func submit(_ answer: String) {
-        if answer.lowercased() == title?.lowercased() {
-            startGame()
-        } else {
-            let title = "Oops! Incorrect"
-            let message = "The word was \(self.title ?? "unknown")"
-            let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let lowerAnswer = answer.lowercased()
+        
+        if isPossible(word: lowerAnswer) {
+            if isOriginal(word: lowerAnswer) {
+                if isReal(word: lowerAnswer) {
+                    usedWords.insert(answer, at: 0)
+                    
+                    let indexPath = IndexPath(row: 0, section: 0)
+                    tableView.insertRows(at: [indexPath], with: .automatic)
+                }
+            }
         }
+    }
+    
+    func isPossible(word: String) -> Bool {
+        return true
+    }
+    
+    func isOriginal(word: String) -> Bool {
+        return true
+    }
+    
+    func isReal(word: String) -> Bool {
+        return true
     }
     
 }
