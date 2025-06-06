@@ -10,6 +10,14 @@ class ViewController: UITableViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(promptForAnswer))
         
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Reiniciar", style: .plain, target: self, action: #selector(restartGame))
+        
+        if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
+           if let startWords = try? String(contentsOf: startWordsURL, encoding: .utf8) {
+               allWords = startWords.components(separatedBy: "\n")
+           }
+       }
+        
         if let startWordsURL = Bundle.main.url(forResource: "start", withExtension: "txt") {
             if let startWords = try? String(contentsOf: startWordsURL, encoding: .utf8) {
                 allWords = startWords.components(separatedBy: "\n")
@@ -56,6 +64,16 @@ class ViewController: UITableViewController {
         present(ac, animated: true)
     }
     
+    @objc func restartGame() {
+        startGame()
+    }
+    
+    func showErrorMessage(title: String, message: String) {
+        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
+    }
+    
     func submit(_ answer: String) {
         
         guard answer.count > 1 else {
@@ -77,8 +95,8 @@ class ViewController: UITableViewController {
 
         
         
-        let errorTitle: String
-        let errorMessage: String
+        // let errorTitle: String
+        // let errorMessage: String
         
         
         if isPossible(word: lowerAnswer) {
@@ -91,22 +109,30 @@ class ViewController: UITableViewController {
 
                     return
                 } else {
-                    errorTitle = "Palavra não reconhecida | Word not recognised"
-                    errorMessage = "Você não pode simplesmente inventá-las, sabia! | You can't just make them up, you know!"
+                    //errorTitle = "Palavra não reconhecida | Word not recognised" ...
+                    //errorMessage = "Você não pode simplesmente inventá-las, sabia! | You can't just make them up, you know!" ...
+                    showErrorMessage(
+                        title: "Palavra não reconhecida | Word not recognised",
+                        message: "Você não pode simplesmente inventá-las, sabia! | You can't just make them up, you know!"
+                    )
                 }
             } else {
-                errorTitle = "Palavra já usada | Word used already"
-                errorMessage = "Seja mais original! | Be more original!"
+                showErrorMessage(
+                    title: "Palavra já usada | Word used already",
+                    message: "Seja mais original! | Be more original!"
+                )
             }
         } else {
             guard let title = title?.lowercased() else { return }
-            errorTitle = "Palavra impossíve | Word not possible"
-            errorMessage = "Você não consegue soletrar essa palavra de *\(title)* | You can't spell that word from *\(title)*"
+                showErrorMessage(
+                    title: "Palavra impossível | Word not possible",
+                    message: "Você não consegue soletrar essa palavra de *\(title)* | You can't spell that word from *\(title)*"
+                )
         }
-
+/*
         let ac = UIAlertController(title: errorTitle, message: errorMessage, preferredStyle: .alert)
         ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
+        present(ac, animated: true)*/
     }
     
     func isPossible(word: String) -> Bool {
@@ -126,7 +152,7 @@ class ViewController: UITableViewController {
     
     func isOriginal(word: String) -> Bool {
         
-        return !usedWords.contains(word)
+        return !usedWords.contains { $0.lowercased() == word.lowercased() }
     }
     
     func isReal(word: String) -> Bool {
