@@ -22,13 +22,13 @@ class ViewController: UIViewController {
         //countries.append(contentsOf: ["Brasil", "Estonia", "France", "Germany", "Ireland", "Italy", "Monaco",  "Nigeria", "Spain", "Uk", "Ukraine", "Usa"])
         countries += ["Brasil", "Estonia", "France", "Germany", "Ireland", "Italy", "Monaco",  "Nigeria", "Spain", "UK", "Ukraine", "USA"]
         
-        button1.layer.borderWidth = 2
-        button2.layer.borderWidth = 2
-        button3.layer.borderWidth = 2
+        button1.layer.borderWidth = 6
+        button2.layer.borderWidth = 6
+        button3.layer.borderWidth = 6
         
-        button1.layer.borderColor = UIColor.orange.cgColor
-        button2.layer.borderColor = UIColor.orange.cgColor
-        button3.layer.borderColor = UIColor.orange.cgColor
+        button1.layer.borderColor = UIColor.darkGray.cgColor
+        button2.layer.borderColor = UIColor.darkGray.cgColor
+        button3.layer.borderColor = UIColor.darkGray.cgColor
         
         askQuestion()
     }

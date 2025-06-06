@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -16,24 +15,36 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" tag="2" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="osc-hn-xW0">
-                                <rect key="frame" x="85.666666666666742" y="533" width="224" height="114"/>
+                            <button opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="osc-hn-xW0">
+                                <rect key="frame" x="84.666666666666686" y="430" width="224" height="114"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="osc-hn-xW0" secondAttribute="height" multiplier="112:57" id="fut-CC-TaD"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="France"/>
+                                <buttonConfiguration key="configuration" style="plain" image="Spain"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cl2-IH-PVS"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MHi-At-mcE">
-                                <rect key="frame" x="84.666666666666686" y="369" width="224" height="114"/>
+                            <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MHi-At-mcE">
+                                <rect key="frame" x="85.666666666666686" y="306" width="222" height="114"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="MHi-At-mcE" secondAttribute="height" multiplier="37:19" id="IKp-iu-FcK"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="Estonia"/>
+                                <buttonConfiguration key="configuration" style="plain" image="Germany"/>
                                 <connections>
                                     <action selector="buttonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vyy-tL-abM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zyH-ZF-sHR">
-                                <rect key="frame" x="84.666666666666686" y="205" width="224" height="114"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zyH-ZF-sHR">
+                                <rect key="frame" x="84.666666666666686" y="182" width="224" height="114"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="zyH-ZF-sHR" secondAttribute="height" multiplier="112:57" id="NpC-WL-X0Y"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="Brasil"/>
                                 <connections>
@@ -42,14 +53,22 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="osc-hn-xW0" firstAttribute="top" secondItem="MHi-At-mcE" secondAttribute="bottom" constant="50" id="BOb-HZ-kPo"/>
+                            <constraint firstItem="zyH-ZF-sHR" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="8Nz-YI-5Nd"/>
+                            <constraint firstItem="MHi-At-mcE" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="8u5-Mk-lmf"/>
+                            <constraint firstItem="osc-hn-xW0" firstAttribute="top" secondItem="MHi-At-mcE" secondAttribute="bottom" constant="10" id="BOb-HZ-kPo"/>
+                            <constraint firstItem="osc-hn-xW0" firstAttribute="leading" secondItem="MHi-At-mcE" secondAttribute="trailing" constant="-223" id="QeH-Kg-yhQ"/>
+                            <constraint firstItem="osc-hn-xW0" firstAttribute="height" secondItem="MHi-At-mcE" secondAttribute="height" id="TYl-w8-aEG"/>
+                            <constraint firstItem="zyH-ZF-sHR" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="XWL-7L-fE5"/>
                             <constraint firstItem="MHi-At-mcE" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="a4W-7d-zYK"/>
-                            <constraint firstItem="MHi-At-mcE" firstAttribute="top" secondItem="zyH-ZF-sHR" secondAttribute="bottom" constant="50" id="gM9-Ag-2Jg"/>
-                            <constraint firstItem="osc-hn-xW0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mYg-hI-WvL"/>
-                            <constraint firstItem="MHi-At-mcE" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="vck-zX-jXG"/>
+                            <constraint firstItem="MHi-At-mcE" firstAttribute="top" secondItem="zyH-ZF-sHR" secondAttribute="bottom" constant="10" id="gM9-Ag-2Jg"/>
+                            <constraint firstItem="osc-hn-xW0" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="pxM-ic-atx"/>
+                            <constraint firstItem="osc-hn-xW0" firstAttribute="width" secondItem="MHi-At-mcE" secondAttribute="width" multiplier="1.00901" id="q9Z-v7-E8r"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="osc-hn-xW0" secondAttribute="bottom" constant="20" id="rdT-P7-wrL"/>
+                            <constraint firstItem="MHi-At-mcE" firstAttribute="width" secondItem="zyH-ZF-sHR" secondAttribute="width" multiplier="0.991071" id="x6D-wg-VDx"/>
                             <constraint firstItem="zyH-ZF-sHR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xlB-Fk-v7d"/>
+                            <constraint firstItem="MHi-At-mcE" firstAttribute="height" secondItem="zyH-ZF-sHR" secondAttribute="height" id="zrE-JC-pBq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="E3C-fC-STX"/>
@@ -84,10 +103,7 @@
     </scenes>
     <resources>
         <image name="Brasil" width="200" height="100"/>
-        <image name="Estonia" width="200" height="100"/>
-        <image name="France" width="200" height="100"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="Germany" width="200" height="100"/>
+        <image name="Spain" width="200" height="100"/>
     </resources>
 </document>
