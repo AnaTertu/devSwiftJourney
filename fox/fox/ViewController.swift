@@ -20,19 +20,19 @@ class ViewController: UIViewController {
         let label2 = UILabel()
         label2.translatesAutoresizingMaskIntoConstraints = false
         label2.backgroundColor = .blue
-        label2.text = "Blue..........."
+        label2.text = "Blue"
         label2.sizeToFit()
         
         let label3 = UILabel()
         label3.translatesAutoresizingMaskIntoConstraints = false
         label3.backgroundColor = .green
-        label3.text = "Green......."
+        label3.text = "Green"
         label3.sizeToFit()
         
         let label4 = UILabel()
         label4.translatesAutoresizingMaskIntoConstraints = false
         label4.backgroundColor = .yellow
-        label4.text = "Yellow...."
+        label4.text = "Yellow"
         label4.sizeToFit()
         
         let label5 = UILabel()
@@ -46,6 +46,22 @@ class ViewController: UIViewController {
         view.addSubview(label3)
         view.addSubview(label4)
         view.addSubview(label5)
+        
+        //let viewDictionary: [String: Any] = ["label1": label1, "label2": label2, "label3": label3, "label4": label4, "label5": label5]
+        
+        NSLayoutConstraint.activate([
+            label1.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            label2.topAnchor.constraint(equalTo: label1.bottomAnchor, constant: 10),
+            label3.topAnchor.constraint(equalTo: label2.bottomAnchor, constant: 10),
+            label4.topAnchor.constraint(equalTo: label3.bottomAnchor),
+            label5.topAnchor.constraint(equalTo: label4.bottomAnchor),
+        
+            label1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            label1.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            label2.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            label2.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+        
         
         if let greeting = UserService.shared.getGreeting() {
             self.label.text = greeting
