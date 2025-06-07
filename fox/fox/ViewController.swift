@@ -41,27 +41,79 @@ class ViewController: UIViewController {
         label5.text = "Orange"
         label5.sizeToFit()
         
+        let label6 = UILabel()
+        label6.translatesAutoresizingMaskIntoConstraints = false
+        label6.backgroundColor = .red
+        label6.text = "Red"
+        label6.sizeToFit()
+        
+        let label7 = UILabel()
+        label7.translatesAutoresizingMaskIntoConstraints = false
+        label7.backgroundColor = .blue
+        label7.text = "Blue"
+        label7.sizeToFit()
+        
+        let label8 = UILabel()
+        label8.translatesAutoresizingMaskIntoConstraints = false
+        label8.backgroundColor = .green
+        label8.text = "Green"
+        label8.sizeToFit()
+        
+        let label9 = UILabel()
+        label9.translatesAutoresizingMaskIntoConstraints = false
+        label9.backgroundColor = .yellow
+        label9.text = "Yellow"
+        label9.sizeToFit()
+        
+        let label0 = UILabel()
+        label0.translatesAutoresizingMaskIntoConstraints = false
+        label0.backgroundColor = .orange
+        label0.text = "Orange"
+        label0.sizeToFit()
+        
         view.addSubview(label1)
         view.addSubview(label2)
         view.addSubview(label3)
         view.addSubview(label4)
         view.addSubview(label5)
+        view.addSubview(label6)
+        view.addSubview(label7)
+        view.addSubview(label8)
+        view.addSubview(label9)
+        view.addSubview(label0)
         
-        //let viewDictionary: [String: Any] = ["label1": label1, "label2": label2, "label3": label3, "label4": label4, "label5": label5]
+        let viewsDictionary: [String: Any] = ["label1": label1, "label2": label2, "label3": label3, "label4" : label4, "label5": label5]
         
-        NSLayoutConstraint.activate([
-            label1.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            label2.topAnchor.constraint(equalTo: label1.bottomAnchor, constant: 10),
-            label3.topAnchor.constraint(equalTo: label2.bottomAnchor, constant: 10),
-            label4.topAnchor.constraint(equalTo: label3.bottomAnchor),
-            label5.topAnchor.constraint(equalTo: label4.bottomAnchor),
+        for label in viewsDictionary.keys {
+            view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "H:|[\(label)]|", options: [], metrics: nil, views: viewsDictionary))
+            
+            
+            view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "V:|[label1]-[label2]-[label3]-[label4]-[label5]", options: [], metrics: nil, views: viewsDictionary))
+        }
+/*
+         for _ in viewsDictionary.keys {
+             view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "V:|[label1]-[label2]-[label3]-[label4]-[label5]", options: [], metrics: nil, views: viewsDictionary))
+
+         }
+         
+        view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "H:|[label1]|", options: [], metrics: nil, views: viewsDictionary))
+        view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "H:|[label2]|", options: [], metrics: nil, views: viewsDictionary))
+        view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "H:|[label3]|", options: [], metrics: nil, views: viewsDictionary))
+        view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "H:|[label4]|", options: [], metrics: nil, views: viewsDictionary))
+        view.addConstraints( NSLayoutConstraint.constraints(withVisualFormat: "H:|[label5]|", options: [], metrics: nil, views: viewsDictionary))
+        */
+         NSLayoutConstraint.activate([
+            label6.topAnchor.constraint(equalTo: label5.bottomAnchor, constant: 20),
+            label7.topAnchor.constraint(equalTo: label6.bottomAnchor, constant: 10),
+            label8.topAnchor.constraint(equalTo: label7.bottomAnchor, constant: 10),
+            label9.topAnchor.constraint(equalTo: label8.bottomAnchor),
+            label0.topAnchor.constraint(equalTo: label9.bottomAnchor),
         
-            label1.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-            label1.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
-            label2.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            label2.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            label6.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            label6.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            label7.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60),
+            label7.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60),
         ])
-        
         
         if let greeting = UserService.shared.getGreeting() {
             self.label.text = greeting
