@@ -24,8 +24,22 @@ class ViewController: UIViewController {
         labelCat.textAlignment = .center
         labelCat.font = UIFont.systemFont(ofSize: 18)
         
+        //adjustLayoutForOrientation()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         adjustLayoutForOrientation()
     }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+
+        coordinator.animate(alongsideTransition: { _ in
+            self.adjustLayoutForOrientation()
+        })
+    }
+
     
     func setupLabels() {
         let textsAndColors: [(String, UIColor)] = [
@@ -243,16 +257,22 @@ class ViewController: UIViewController {
         }
     
     func adjustLayoutForOrientation() {
-        guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else { return }
-        
+        guard let orientation = UIApplication.shared.connectedScenes
+                .compactMap({ $0 as? UIWindowScene })
+                .first?.interfaceOrientation else {
+            return
+        }
+
         let isLandscape = orientation.isLandscape
-        
+
         image.isHidden = isLandscape
         
+        // Oculta somente as labels coloridas
         for coloredLabel in labels {
             coloredLabel.isHidden = isLandscape
         }
     }
+
 
 
     
