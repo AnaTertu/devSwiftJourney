@@ -8,149 +8,234 @@ class ViewController: UIViewController {
     @IBOutlet weak var dataLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
     
+    var labels: [UILabel] = []
+   
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupLabels()
+        setupLabelConstraints()
+        fetchGreeting()
+        fetchFoxImage()
+        fetchRandomFact()
+        
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18)
+    }
     
-        let _label = UILabel()
-        var labels: [UILabel] = []
-       
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            
-            setupLabels()
-            setupLabelConstraints()
-            fetchGreeting()
-            fetchFoxImage()
-            fetchRandomFact()
-        }
+    func setupLabels() {
+        let textsAndColors: [(String, UIColor)] = [
+            ("Red", .red),
+            ("Blue", .blue),
+            ("Green", .green),
+            ("Yellow", .yellow),
+            ("Orange", .orange),
+            ("Purple", .purple),
+            ("Brown", .brown),
+            ("Cyan", .cyan),
+            ("Magenta", .magenta)
+        ]
         
-        func setupLabels() {
-            let textsAndColors: [(String, UIColor)] = [
-                ("Red", .red),
-                ("Blue", .blue),
-                ("Green", .green),
-                ("Yellow", .yellow),
-                ("Orange", .orange),
-                ("Purple", .purple),
-                ("Brown", .brown),
-                ("Cyan", .cyan),
-                ("Magenta", .magenta)
-            ]
-            
-            for (text, color) in textsAndColors {
-                let labelA = createLabel(text: text, backgroundColor: color)
-                labels.append(labelA)
-                view.addSubview(labelA)
-            }
-            
-        }
-        
-        func setupLabelConstraints() {
-            
-            let label1 = labels[0]
-            let label2 = labels[1]
-            let label3 = labels[2]
-            let label4 = labels[3]
-            let label5 = labels[4]
-            let label6 = labels[5]
-            let label7 = labels[6]
-            let label8 = labels[7]
-            let label9 = labels[8]
-
-            let views: [String: UIView] = [
-                "label1": label1, "label2": label2,
-                "label3": label3, "label4": label4,
-                "label5": label5
-            ]
-            
-            for key in views.keys {
-                view.addConstraints(NSLayoutConstraint.constraints(
-                    withVisualFormat: "H:|[\(key)]|",
-                    options: [], metrics: nil, views: views
-                ))
-            }
-            
-            view.addConstraints(NSLayoutConstraint.constraints(
-                withVisualFormat: "V:|[label1]-[label2]-[label3]-[label4]-[label5]",
-                options: [], metrics: nil, views: views
-            ))
-            
-            NSLayoutConstraint.activate([
-                label6.topAnchor.constraint(equalTo: label5.bottomAnchor, constant: 20),
-                label7.topAnchor.constraint(equalTo: label6.bottomAnchor, constant: 10),
-                label8.topAnchor.constraint(equalTo: label7.bottomAnchor, constant: 10),
-                label9.topAnchor.constraint(equalTo: label8.bottomAnchor),
-               // label0.topAnchor.constraint(equalTo: label9.bottomAnchor),
-
-                label6.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
-                label6.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
-                label7.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60),
-                label7.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60),
-            ])
-            
-            /* / Aplica constraints horizontais para todos os labels: ocupando toda a largura
-            for label in labels {
-                NSLayoutConstraint.activate([
-                    label.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                    label.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-                ])
-            }
-            
-            // Empilha os labels verticalmente com espaçamento
-            for i in 0..<labels.count {
-                if i == 0 {
-                    labels[i].topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-                } else {
-                    labels[i].topAnchor.constraint(equalTo: labels[1-i].bottomAnchor, constant: 8).isActive = true
-                }
-            }*/
-        }
-
-        func fetchGreeting() {
-            if let greeting = UserService.shared.getGreeting() {
-                self._label.text = greeting
-            }
-        }
-        
-        func fetchFoxImage() {
-            FoxService.getRandomFox { fox in
-                guard let fox else { return }
-                FoxService.getImage(urlString: fox.image) { data in
-                    guard let data else {
-                        print("Falha ao carregar dados da imagem")
-                        return
-                    }
-                    
-                    DispatchQueue.main.async {
-                        self.image.image = UIImage(data: data)
-                    }
-                }
-                
-            }
-        }
-        
-        func fetchRandomFact() {
-            FactService.getRandomFact { cat, error in
-                guard let cat = cat else { return }
-                DispatchQueue.main.async {
-                    self._label.text = cat.data.first
-                }
-            }
-        }
-        
-        func createLabel(text: String, backgroundColor: UIColor) -> UILabel {
-            let label = UILabel()
-            label.translatesAutoresizingMaskIntoConstraints = false
-            label.backgroundColor = backgroundColor
-            label.text = text
-            label.sizeToFit()
-            return label
-        }
-        
-        @IBAction func saveButtonClicked(_ sender: Any) {
-            UserService.shared.change(greeting: textField.text)
-            self.dataLabel.text = textField.text
+        for (text, color) in textsAndColors {
+            let labelA = createLabel(text: text, backgroundColor: color)
+            labels.append(labelA)
+            view.addSubview(labelA)
         }
         
     }
+    
+    func setupLabelConstraints() {
+        
+        let label1 = labels[0]
+        let label2 = labels[1]
+        let label3 = labels[2]
+        let label4 = labels[3]
+        let label5 = labels[4]
+        let label6 = labels[5]
+        let label7 = labels[6]
+        let label8 = labels[7]
+        let label9 = labels[8]
+
+        let views: [String: UIView] = [
+            "label1": label1, "label2": label2,
+            "label3": label3, "label4": label4,
+            "label5": label5
+        ]
+        
+        for key in views.keys {
+            view.addConstraints(NSLayoutConstraint.constraints(
+                withVisualFormat: "H:|[\(key)]|",
+                options: [], metrics: nil, views: views
+            ))
+        }
+        
+        view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|[label1]-[label2]-[label3]-[label4]-[label5]",
+            options: [], metrics: nil, views: views
+        ))
+        
+        NSLayoutConstraint.activate([
+            label6.topAnchor.constraint(equalTo: label5.bottomAnchor, constant: 20),
+            label7.topAnchor.constraint(equalTo: label6.bottomAnchor, constant: 10),
+            label8.topAnchor.constraint(equalTo: label7.bottomAnchor, constant: 10),
+            label9.topAnchor.constraint(equalTo: label8.bottomAnchor),
+           // label0.topAnchor.constraint(equalTo: label9.bottomAnchor),
+
+            label6.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
+            label6.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
+            label7.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60),
+            label7.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60),
+        ])
+        
+        /* / Aplica constraints horizontais para todos os labels: ocupando toda a largura
+        for label in labels {
+            NSLayoutConstraint.activate([
+                label.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                label.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            ])
+        }
+        
+        // Empilha os labels verticalmente com espaçamento
+        for i in 0..<labels.count {
+            if i == 0 {
+                labels[i].topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+            } else {
+                labels[i].topAnchor.constraint(equalTo: labels[1-i].bottomAnchor, constant: 8).isActive = true
+            }
+        }*/
+    }
+
+    func fetchGreeting() {
+        if let greeting = UserService.shared.getGreeting() {
+            DispatchQueue.main.async {
+                self.label.text = greeting
+            }
+        }
+    }
+    
+    func fetchFoxImage() {
+        
+        FoxService.getRandomFox { fox in
+            guard let fox = fox else {
+                print("❌ Não foi possível obter a URL da imagem da raposa.")
+                return
+            }
+            
+            print("📸 URL recebida: \(fox.image)")
+            
+            FoxService.getImage(urlString: fox.image) { data in
+
+                guard let data = data, let image = UIImage(data: data) else {
+                    print("Falha ao converter dados em imagem.")
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.image.image = image
+                    print("✅ Imagem exibida com sucesso.")
+                }
+            }
+
+            
+        }
+    }
+    
+    func fetchRandomFact() {
+        FactService.getRandomFact { cat, error in
+            guard let cat = cat else { return }
+            DispatchQueue.main.async {
+                self.label.text = cat.data.first
+            }
+        }
+    }
+    
+    func createLabel(text: String, backgroundColor: UIColor) -> UILabel {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = backgroundColor
+        label.text = text
+        label.sizeToFit()
+        return label
+    }
+    
+    @IBAction func saveButtonClicked(_ sender: Any) {
+        guard let greeting = textField.text, !greeting.isEmpty else {
+                print("Texto vazio não pode ser salvo.")
+                return
+            }
+            UserService.shared.change(greeting: greeting)
+            dataLabel.text = greeting
+        /*
+        UserService.shared.change(greeting: textField.text)
+        self.dataLabel.text = textField.text
+         */
+    }
+    
+    @IBAction func refreshFoxImage(_ sender: Any) {
+        fetchFoxImage()
+    }
+    
+    @IBAction func loadFoxImageTapped(_ sender: Any) {
+        
+        loadFoxImageDirectly()
+    }
+    
+    func loadFoxImageDirectly() {
+        guard let url = URL(string: "https://randomfox.ca/floof") else {
+                print("❌ URL da API inválida")
+                return
+            }
+
+        var request = URLRequest(url: url)
+        request.setValue(
+            "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148",
+            forHTTPHeaderField: "User-Agent"
+        )
+        
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    print("❌ Erro ao buscar JSON da raposa: \(error.localizedDescription)")
+                    return
+                }
+
+                guard let data = data else {
+                    print("❌ Dados JSON ausentes")
+                    return
+                }
+
+                do {
+                    // Decodifica a resposta JSON
+                    let fox = try JSONDecoder().decode(FoxModel.self, from: data)
+                    print("📸 URL da imagem recebida: \(fox.image)")
+
+                    // Baixa a imagem
+                    guard let imageURL = URL(string: fox.image) else { return }
+
+                    URLSession.shared.dataTask(with: imageURL) { data, _, error in
+                        if let error = error {
+                            print("❌ Erro ao baixar imagem: \(error.localizedDescription)")
+                            return
+                        }
+
+                        guard let data = data, let image = UIImage(data: data) else {
+                            print("❌ Dados da imagem inválidos")
+                            return
+                        }
+
+                        DispatchQueue.main.async {
+                            self.image.image = image
+                        }
+
+                    }.resume()
+
+                } catch {
+                    print("❌ Erro ao decodificar JSON: \(error)")
+                }
+            }.resume()
+        }
+    
+}
        /*
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -468,11 +553,4 @@ class ViewController: UIViewController {
         }
         
     }
-    
-    @IBAction func saveButtonClicked(_ sender: Any) {
-        
-        UserService.shared.change(greeting: textField.text)
-        self.dataLabel.text = textField.text
-    }
-}
 */
