@@ -2,7 +2,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var labelCat: UILabel!
     @IBOutlet weak var image: UIImageView!
 
     @IBOutlet weak var dataLabel: UILabel!
@@ -19,10 +19,12 @@ class ViewController: UIViewController {
         fetchFoxImage()
         fetchRandomFact()
         
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 18)
+        labelCat.numberOfLines = 0
+        labelCat.lineBreakMode = .byWordWrapping
+        labelCat.textAlignment = .center
+        labelCat.font = UIFont.systemFont(ofSize: 18)
+        
+        adjustLayoutForOrientation()
     }
     
     func setupLabels() {
@@ -58,24 +60,27 @@ class ViewController: UIViewController {
         let label8 = labels[7]
         let label9 = labels[8]
 
-        let views: [String: UIView] = [
+        let viewsLabels: [String: UIView] = [
             "label1": label1, "label2": label2,
             "label3": label3, "label4": label4,
             "label5": label5
         ]
         
-        for key in views.keys {
+        for key in viewsLabels.keys {
             view.addConstraints(NSLayoutConstraint.constraints(
                 withVisualFormat: "H:|[\(key)]|",
-                options: [], metrics: nil, views: views
+                options: [], metrics: nil, views: viewsLabels
             ))
         }
         
-        view.addConstraints(NSLayoutConstraint.constraints(
-            withVisualFormat: "V:|[label1]-[label2]-[label3]-[label4]-[label5]",
-            options: [], metrics: nil, views: views
-        ))
+        let metrics = ["labelHeight": 25]
         
+        
+         view.addConstraints(NSLayoutConstraint.constraints(
+            withVisualFormat:  "V:|[label1(labelHeight@90)]-[label2(label1)]-[label3(label1)]-[label4(label1)]-[label5(label1)]-(>=10)-|",
+            options: [], metrics: metrics, views: viewsLabels
+        ))
+        // maior prioridade todos são default @1000 - menor prioridade @1 - todas são levadas em consideração << @999 >>
         NSLayoutConstraint.activate([
             label6.topAnchor.constraint(equalTo: label5.bottomAnchor, constant: 20),
             label7.topAnchor.constraint(equalTo: label6.bottomAnchor, constant: 10),
@@ -110,7 +115,7 @@ class ViewController: UIViewController {
     func fetchGreeting() {
         if let greeting = UserService.shared.getGreeting() {
             DispatchQueue.main.async {
-                self.label.text = greeting
+                self.labelCat.text = greeting
             }
         }
     }
@@ -145,7 +150,7 @@ class ViewController: UIViewController {
         FactService.getRandomFact { cat, error in
             guard let cat = cat else { return }
             DispatchQueue.main.async {
-                self.label.text = cat.data.first
+                self.labelCat.text = cat.data.first
             }
         }
     }
@@ -236,6 +241,20 @@ class ViewController: UIViewController {
                 }
             }.resume()
         }
+    
+    func adjustLayoutForOrientation() {
+        guard let orientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation else { return }
+        
+        let isLandscape = orientation.isLandscape
+        
+        image.isHidden = isLandscape
+        
+        for coloredLabel in labels {
+            coloredLabel.isHidden = isLandscape
+        }
+    }
+
+
     
 }
        /*
