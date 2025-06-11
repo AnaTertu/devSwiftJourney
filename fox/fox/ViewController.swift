@@ -177,10 +177,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func loadFoxImageTapped(_ sender: Any) {
-        
         loadFoxImageDirectly()
     }
     
+    @IBAction func newFactor(_ sender: Any) {
+        fetchRandomFact()
+    }
     func loadFoxImageDirectly() {
         guard let url = URL(string: "https://randomfox.ca/floof") else {
                 print("❌ URL da API inválida")
