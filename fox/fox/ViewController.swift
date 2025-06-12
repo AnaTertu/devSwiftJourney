@@ -31,6 +31,9 @@ class ViewController: UIViewController {
         labelCat.textAlignment = .center
         labelCat.font = UIFont.systemFont(ofSize: 18)
         
+        textField.widthAnchor.constraint(equalTo: dataLabel.widthAnchor).isActive = true
+        textField.heightAnchor.constraint(equalToConstant: 39).isActive = true
+        
         //adjustLayoutForOrientation()
         
         // Modo escuro / claro detection via nova API (iOS 17+)
@@ -117,7 +120,12 @@ class ViewController: UIViewController {
             ("Purple", .purple),
             ("Brown", .brown),
             ("Cyan", .cyan),
-            ("Magenta", .magenta)
+            ("Magenta", .magenta),
+            ("White", .white),
+            ("Black", .black),
+            ("DarkGray", .darkGray),
+            ("Gray", .gray),
+            ("LightGray", .lightGray)
         ]
         
         for (text, color) in textsAndColors {
@@ -130,16 +138,24 @@ class ViewController: UIViewController {
     
     func setupLabelConstraints() {
         
-        let label1 = labels[0]
-        let label2 = labels[1]
-        let label3 = labels[2]
-        let label4 = labels[3]
-        let label5 = labels[4]
-        let label6 = labels[5]
-        let label7 = labels[6]
-        let label8 = labels[7]
-        let label9 = labels[8]
-
+        let label0 = labels[0]
+        let label1 = labels[1]
+        let label2 = labels[2]
+        let label3 = labels[3]
+        let label4 = labels[4]
+        let label5 = labels[5]
+        let label6 = labels[6]
+        let label7 = labels[7]
+        let label8 = labels[8]
+        let label9 = labels[9]
+        let label10 = labels[10]
+        let label11 = labels[11]
+        let label12 = labels[12]
+        let label13 = labels[13]
+        
+        
+        label0.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
+        
         let viewsLabels: [String: UIView] = [
             "label1": label1, "label2": label2,
             "label3": label3, "label4": label4,
@@ -160,19 +176,35 @@ class ViewController: UIViewController {
             withVisualFormat:  "V:|[label1(labelHeight@90)]-[label2(label1)]-[label3(label1)]-[label4(label1)]-[label5(label1)]-(>=10)-|",
             options: [], metrics: metrics, views: viewsLabels
         ))
+        
         // maior prioridade todos são default @1000 - menor prioridade @1 - todas são levadas em consideração << @999 >>
         NSLayoutConstraint.activate([
+            label0.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            label0.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            
             label6.topAnchor.constraint(equalTo: label5.bottomAnchor, constant: 20),
             label7.topAnchor.constraint(equalTo: label6.bottomAnchor, constant: 10),
             label8.topAnchor.constraint(equalTo: label7.bottomAnchor, constant: 10),
             label9.topAnchor.constraint(equalTo: label8.bottomAnchor),
-           // label0.topAnchor.constraint(equalTo: label9.bottomAnchor),
+            label10.topAnchor.constraint(equalTo: label9.bottomAnchor),
 
             label6.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 40),
             label6.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -40),
             label7.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60),
             label7.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60),
         ])
+        
+        var previous: UILabel?
+
+        for label in [label10, label11, label12, label13] {
+            label.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+            label.heightAnchor.constraint(equalToConstant: 88).isActive = true
+
+            if let previous = previous {
+                label.topAnchor.constraint(equalTo: previous.bottomAnchor, constant: 10).isActive = true
+            }
+            previous = label
+        }
         
         /* / Aplica constraints horizontais para todos os labels: ocupando toda a largura
         for label in labels {
