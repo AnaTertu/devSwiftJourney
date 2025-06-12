@@ -1,6 +1,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+//, UITraitChangeObservable {
     
     @IBOutlet weak var labelCat: UILabel!
     @IBOutlet weak var image: UIImageView!
@@ -9,9 +10,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var textField: UITextField!
     
     var labels: [UILabel] = []
+    
+    override func loadView() {
+           super.loadView()
+           print("📦 loadView — a view está sendo carregada manualmente (caso você customize).")
+    }
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("🔵 viewDidLoad - ideal para configurar a interfacce e carregar dados iniciais.")
         
         setupLabels()
         setupLabelConstraints()
@@ -25,21 +32,80 @@ class ViewController: UIViewController {
         labelCat.font = UIFont.systemFont(ofSize: 18)
         
         //adjustLayoutForOrientation()
+        
+        // Modo escuro / claro detection via nova API (iOS 17+)
+       if #available(iOS 17.0, *) {
+           // Registra mudança de traits (modo claro/escuro, size class etc.)
+           registerForTraitChanges([UITraitUserInterfaceStyle.self]) { [weak self] (_: ViewController, previousTraitCollection) in
+               self?.traitDidChange(previousTraitCollection)
+           }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+      print("🟢 viewWillAppear - chamado antes da view aparecer.")
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        print("📐 viewWillLayoutSubviews - antes do Auto Layout ajustar as views")
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        print("📏 viewDidLayoutSubviews - depois do Auto Layout ajustar as views.")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        print("✅ viewDidAppear - a view apareceu na tela.")
         adjustLayoutForOrientation()
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+        print("🔄 viewWillTransition - mudança de orientação detectada.")
 
         coordinator.animate(alongsideTransition: { _ in
             self.adjustLayoutForOrientation()
         })
     }
-
+    
+    private func traitDidChange(_ previousTraitCollection: UITraitCollection?) {
+        print("🌗 Mudança de trait detectada — ex: modo claro/escuro mudou.")
+           
+        if traitCollection.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle {
+           print("➡️ Modo claro/escuro foi alterado.")
+        }
+    }
+    
+    /*
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if #available(iOS 17.0, *) {
+            // Ignora - tratado via UITraitChangeObservable
+        } else {
+            print("🌗 traiCollectionDidChange - (iOS <17) modo claro/escuro ou outra trait mudou")
+        }
+    }
+    */
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        print("🟠 viewWillDisappear - antes da view sumir.")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print(("🔴 viewDidDisappear - depois que a viu sumiu."))
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        print("⚠️ didReceiveMemoryWarning - app com pouca memória.")
+    }
     
     func setupLabels() {
         let textsAndColors: [(String, UIColor)] = [
@@ -272,10 +338,6 @@ class ViewController: UIViewController {
             coloredLabel.isHidden = isLandscape
         }
     }
-
-
-
-    
 }
        /*
         override func viewDidLoad() {
