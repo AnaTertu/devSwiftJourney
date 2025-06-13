@@ -1,5 +1,5 @@
 import Foundation
 
-struct FoxModel : Decodable {
+struct FoxModel: Decodable {
     let image: String
 }
