@@ -11,9 +11,6 @@ class TableViewController: UITableViewController {
         
         let urlString: String = "https://www.hackingwithswift.com/samples/petitions-1.json"
         
-        /*if let url = URL(string: urlString) {
-            if let data = try? Data(contentsOf: url) {
-                parse(json: data)*/
         if let url = URL(string: urlString) {
             URLSession.shared.dataTask(with: url) { data, response, error in
                 if let data = data {
@@ -53,8 +50,8 @@ class TableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        //let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
         
         //cell.textLabel?.text = petitions[indexPath.row]
         

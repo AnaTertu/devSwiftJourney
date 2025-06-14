@@ -3,14 +3,16 @@ import UIKit
 class ViewController: UIViewController {
     //, UITraitChangeObservable {
     
-    @IBOutlet weak var labelCat: UILabel!
-    @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var labelCat: UILabel! //
+    @IBOutlet weak var image: UIImageView! //
     
-    @IBOutlet weak var dataLabel: UILabel!
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var dataLabel: UILabel! //
+    @IBOutlet weak var textField: UITextField! //
     
-    @IBOutlet var showButton: UIButton!
+    @IBOutlet var showButton: UIButton! //
     //let showButton = UIButton(type: .system)
+    
+    
     
     override func loadView() {
         super.loadView()
