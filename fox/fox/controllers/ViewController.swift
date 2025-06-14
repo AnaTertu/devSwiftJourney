@@ -9,6 +9,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var dataLabel: UILabel!
     @IBOutlet weak var textField: UITextField!
     
+    @IBOutlet var showButton: UIButton!
+    //let showButton = UIButton(type: .system)
+    
     override func loadView() {
         super.loadView()
         print("📦 loadView — a view está sendo carregada manualmente (caso você customize).")
@@ -41,6 +44,27 @@ class ViewController: UIViewController {
                 self?.traitDidChange(previousTraitCollection)
             }
         }
+        
+        // Configuração do botão
+        //showButton.setTitle("Abrir nova tela", for: .normal)
+        //showButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+        //showButton.translatesAutoresizingMaskIntoConstraints = false
+        //showButton.addTarget(self, action: #selector(showNewScreen), for: .touchUpInside)
+        view.addSubview(showButton)
+        
+        /*/ Layout
+                NSLayoutConstraint.activate([
+                    showButton.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 40),
+                    showButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+                ])
+         */
+
+    }
+    
+    @IBAction func showNewScreen(_ sender: UIButton) {
+    //@objc func showNewScreen(_ sender: UIButton) {
+        let secondVC = SecondViewController()
+        navigationController?.pushViewController(secondVC, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -258,12 +282,14 @@ class ViewController: UIViewController {
         }.resume()
     }
     
-    @IBAction func vireButton(_ sender: Any) {
+    @IBAction func modalButton(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         //let modalVC = LabelModalViewController()
         if let modalVC = storyboard.instantiateViewController(withIdentifier: "LabelModalViewController") as? LabelModalViewController {
             modalVC.modalPresentationStyle = .formSheet // ou .pageSheet, .fullScreen
             present(modalVC, animated: true)
+        }  else {
+            print("❌ Não foi possível encontrar a LabelModalViewController no storyboard.")
         }
     }
     //Ao clicar no botão "vireButton", o modal será exibido com todas as labels geradas dinamicamente pela LabelService.
