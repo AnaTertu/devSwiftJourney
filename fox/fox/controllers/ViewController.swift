@@ -1,18 +1,15 @@
 import UIKit
 
 class ViewController: UIViewController {
-    //, UITraitChangeObservable {
     
-    @IBOutlet weak var labelCat: UILabel! //
-    @IBOutlet weak var image: UIImageView! //
-    
-    @IBOutlet weak var dataLabel: UILabel! //
-    @IBOutlet weak var textField: UITextField! //
-    
-    @IBOutlet var showButton: UIButton! //
-    //let showButton = UIButton(type: .system)
-    
-    
+    let image = UIImageView()
+    let labelCat = UILabel()
+    let dataLabel = UILabel()
+    let textField = UITextField()
+    let showButton = UIButton(type: .system)
+    let graveButton = UIButton(type: .system)
+    let modalButton = UIButton(type: .system)
+    let newFactorBotton = UIButton(type: .system)
     
     override func loadView() {
         super.loadView()
@@ -23,9 +20,16 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         print("🔵 viewDidLoad - ideal para configurar a interfacce e carregar dados iniciais.")
         
+        view.backgroundColor = .systemBackground
+        
+        setupViews()
+        setupStackView()
+        setupConstraints()
+        setupButtonAction()
+    
         //setupLabels()
         //setupLabelConstraints()
-        fetchGreeting()
+        
         fetchFoxImage()
         fetchRandomFact()
         
@@ -34,10 +38,8 @@ class ViewController: UIViewController {
         labelCat.textAlignment = .center
         labelCat.font = UIFont.systemFont(ofSize: 18)
         
-        textField.widthAnchor.constraint(equalTo: dataLabel.widthAnchor).isActive = true
-        textField.heightAnchor.constraint(equalToConstant: 39).isActive = true
-        
-        //adjustLayoutForOrientation()
+        //textField.widthAnchor.constraint(equalTo: dataLabel.widthAnchor).isActive = true
+        //textField.heightAnchor.constraint(equalToConstant: 39).isActive = true
         
         // Modo escuro / claro detection via nova API (iOS 17+)
         if #available(iOS 17.0, *) {
@@ -47,26 +49,144 @@ class ViewController: UIViewController {
             }
         }
         
-        // Configuração do botão
-        //showButton.setTitle("Abrir nova tela", for: .normal)
-        //showButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
-        //showButton.translatesAutoresizingMaskIntoConstraints = false
-        //showButton.addTarget(self, action: #selector(showNewScreen), for: .touchUpInside)
-        view.addSubview(showButton)
         
-        /*/ Layout
-                NSLayoutConstraint.activate([
-                    showButton.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 40),
-                    showButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-                ])
-         */
 
     }
+   
+    //PART TWO
+    func setupViews() {
+        image.contentMode = .scaleAspectFit
+        image.clipsToBounds = true
+        image.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(image)
+        
+        labelCat.numberOfLines = 0
+        labelCat.textAlignment = .center
+        labelCat.font = UIFont.systemFont(ofSize: 18)
+        labelCat.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(labelCat)
+        
+        
+        dataLabel.textAlignment = .center
+        //dataLabel.translatesAutoresizingMaskIntoConstraints = false
+        dataLabel.backgroundColor = .systemBlue
+        view.addSubview(dataLabel)
+        
+        textField.borderStyle = .roundedRect
+        //textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.placeholder = "Qual nome do seu pet?"
+        view.addSubview(textField)
+        /*
+        Estado          Significado
+        .normal         Estado padrão (sem interação)
+        .highlighted    Quando está sendo tocado
+        .disabled       Quando está desabilitado
+        .selected       Quando está selecionado (como toggle)
+        */
+        
+        newFactorBotton.setTitle("Novo Fato", for: .normal)
+        newFactorBotton.tintColor = .systemBlue
+        newFactorBotton.titleLabel?.textAlignment = .center
+        newFactorBotton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        view.addSubview(newFactorBotton)
+        
+        graveButton.setTitle("Grave", for: .normal)
+        graveButton.tintColor = .systemBlue
+        graveButton.titleLabel?.textAlignment = .center
+        graveButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        view.addSubview(graveButton)
+        
+        showButton.setTitle("Próxima página", for: .normal)
+        showButton.setImage(UIImage(systemName: "plus.circle"), for: .normal)
+        showButton.tintColor = .white
+        showButton.titleLabel?.font = UIFont(name: "HelveticaNeue-Bold", size: 18)
+        //showButton.translatesAutoresizingMaskIntoConstraints = false
+        showButton.backgroundColor = .systemBlue
+        showButton.titleLabel?.textAlignment = .center
+        showButton.layer.cornerRadius = 5
+        view.addSubview(showButton)
+        
+        modalButton.setTitle("Modal", for: .normal)
+        modalButton.setImage(UIImage(systemName: "info.circle"), for: .normal)
+        modalButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        modalButton.tintColor = .systemBlue
+        modalButton.titleLabel?.textAlignment = .center
+        view.addSubview(modalButton)
+         
+    }
+
+    func setupStackView() {
+        // horizontal stack para textField + dataLabel
+        
+        let inputStackNew = UIStackView(arrangedSubviews: [newFactorBotton, showButton, modalButton])
+        inputStackNew.axis = .horizontal
+        inputStackNew.spacing = 5
+        inputStackNew.distribution = .fillProportionally
+        
+        let inputStack = UIStackView(arrangedSubviews: [textField, graveButton, dataLabel])
+        inputStack.axis = .horizontal
+        inputStack.spacing = 16
+        inputStack.distribution = .fillEqually
+
+        // vertical stack principal
+        let mainStack = UIStackView(arrangedSubviews: [inputStackNew, inputStack])
+        mainStack.axis = .vertical
+        mainStack.spacing = 10
+        mainStack.alignment = .center
+        mainStack.translatesAutoresizingMaskIntoConstraints = false
+
+        view.addSubview(mainStack)
+
+        NSLayoutConstraint.activate([
+            mainStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            mainStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            mainStack.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40)
+        ])
+    }
+
+    func setupConstraints() {
+        let safe = view.safeAreaLayoutGuide
+        
+        NSLayoutConstraint.activate([
+            
+            image.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            image.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            image.widthAnchor.constraint(equalToConstant: 200),
+            image.heightAnchor.constraint(equalTo: image.widthAnchor, multiplier: 1.0),
+            
+            // 🦊 Image constraints
+            //image.topAnchor.constraint(greaterThanOrEqualTo: safe.topAnchor, constant: 107),//
+            //image.bottomAnchor.constraint(lessThanOrEqualTo: safe.bottomAnchor, constant: -470),
+            image.leadingAnchor.constraint(greaterThanOrEqualTo: safe.leadingAnchor, constant: 130),
+            image.trailingAnchor.constraint(greaterThanOrEqualTo: safe.trailingAnchor, constant: -143),
+              //image.widthAnchor.constraint(greaterThanOrEqualToConstant: 115),
+            image.centerXAnchor.constraint(equalTo: view.centerXAnchor),//
+            
+              //image.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: 20),
+              //image.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -20),
+
+            // Mantém a proporção da imagem original (altura proporcional à largura)
+            image.heightAnchor.constraint(equalTo: image.widthAnchor, multiplier: 0.75),
+
+            // 🐱 LabelCat constraints
+            labelCat.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 20),
+            labelCat.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: 38),
+            labelCat.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -47),
+            labelCat.heightAnchor.constraint(greaterThanOrEqualToConstant: 132),
+
+        ])
+    }
     
-    @IBAction func showNewScreen(_ sender: UIButton) {
-    //@objc func showNewScreen(_ sender: UIButton) {
-        let secondVC = SecondViewController()
-        navigationController?.pushViewController(secondVC, animated: true)
+    // PART THREE
+    func setupButtonAction() {
+        
+        newFactorBotton.addTarget(self, action: #selector(newFactorClicked), for: .touchUpInside)
+        
+        graveButton.addTarget(self, action: #selector(saveButtonClicked), for: .touchUpInside)
+
+        showButton.addTarget(self, action: #selector(showNewScreen), for: .touchUpInside)
+        
+        modalButton.addTarget(self, action: #selector(modalButtonTapped), for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,18 +227,6 @@ class ViewController: UIViewController {
         }
     }
     
-    /*
-     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-     super.traitCollectionDidChange(previousTraitCollection)
-     
-     if #available(iOS 17.0, *) {
-     // Ignora - tratado via UITraitChangeObservable
-     } else {
-     print("🌗 traiCollectionDidChange - (iOS <17) modo claro/escuro ou outra trait mudou")
-     }
-     }
-     */
-    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         print("🟠 viewWillDisappear - antes da view sumir.")
@@ -134,60 +242,6 @@ class ViewController: UIViewController {
         print("⚠️ didReceiveMemoryWarning - app com pouca memória.")
     }
     
-  
-    
-    /* / Aplica constraints horizontais para todos os labels: ocupando toda a largura
-     for label in labels {
-     NSLayoutConstraint.activate([
-     label.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-     label.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-     ])
-     }
-     
-     // Empilha os labels verticalmente com espaçamento
-     for i in 0..<labels.count {
-     if i == 0 {
-     labels[i].topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-     } else {
-     labels[i].topAnchor.constraint(equalTo: labels[1-i].bottomAnchor, constant: 8).isActive = true
-     }
-     }
-     }*/
-    
-    func fetchGreeting() {
-        if let greeting = UserService.shared.getGreeting() {
-            DispatchQueue.main.async {
-                self.labelCat.text = greeting
-            }
-        }
-    }
-    
-    func fetchFoxImage() {
-        
-        FoxService.getRandomFox { fox in
-            guard let fox = fox else {
-                print("❌ Não foi possível obter a URL da imagem da raposa.")
-                return
-            }
-            
-            print("📸 URL recebida: \(fox.image)")
-            
-            FoxService.getImage(urlString: fox.image) { data in
-                
-                guard let data = data, let image = UIImage(data: data) else {
-                    print("Falha ao converter dados em imagem.")
-                    return
-                }
-                DispatchQueue.main.async {
-                    self.image.image = image
-                    print("✅ Imagem exibida com sucesso.")
-                }
-            }
-            
-            
-        }
-    }
-    
     func fetchRandomFact() {
         FactService.getRandomFact { cat, error in
             guard let cat = cat else { return }
@@ -195,6 +249,78 @@ class ViewController: UIViewController {
                 self.labelCat.text = cat.data.first
             }
         }
+    }
+    
+    
+    // PART FOUR
+    func fetchFoxImage() {
+        
+        FoxService.getRandomFox { fox in
+            guard let fox = fox else {
+                print("❌ Não foi possível obter a URL da imagem da raposa.")
+                DispatchQueue.main.async {
+                    self.setDefaultImage()
+                }
+                return
+            }
+            
+            print("📸 URL recebida: \(fox.image)")
+            
+            FoxService.getImage(urlString: fox.image) { data in
+                DispatchQueue.main.async {
+                    guard let data = data, let downloadedImage = UIImage(data: data) else {
+                    print("❌ Falha ao converter dados em imagem.")
+                    self.setDefaultImage()
+                    return
+                }
+                    
+                    self.image.image = downloadedImage
+                    // Remove constraints de altura antigas (se houver)
+                    self.image.constraints
+                        .filter { $0.firstAttribute == .height }
+                        .forEach { $0.isActive = false }
+
+                    // Adiciona nova constraint com proporção da imagem
+                    let aspectRatio = downloadedImage.size.height / downloadedImage.size.width
+                    let newHeightConstraint = self.image.heightAnchor.constraint(equalTo: self.image.widthAnchor, multiplier: aspectRatio)
+                    newHeightConstraint.priority = .defaultHigh
+                    newHeightConstraint.isActive = true
+
+                    // Atualiza layout
+                    self.view.layoutIfNeeded()
+                    print("✅ Imagem exibida com sucesso com aspectRatio \(aspectRatio).")
+                }
+            }
+   
+        }
+    }
+    
+    func setDefaultImage() {
+        guard let defaultImage = UIImage(named: "defaultFox") else {
+            print("⚠️ Imagem padrão 'defaultFox' não encontrada no Assets.xcassets.")
+            return
+        }
+
+        // Aplica imagem padrão
+        image.image = defaultImage
+
+        // Remove constraints de altura anteriores da UIImageView
+        image.constraints
+            .filter { $0.firstAttribute == .height }
+            .forEach { $0.isActive = false }
+
+        // Calcula o aspect ratio da imagem padrão
+        let aspectRatio = defaultImage.size.height / defaultImage.size.width
+
+        // Cria nova constraint de altura proporcional à largura
+        let heightConstraint = image.heightAnchor.constraint(equalTo: image.widthAnchor, multiplier: aspectRatio)
+        heightConstraint.priority = .defaultHigh
+        heightConstraint.isActive = true
+
+        // Atualiza o layout imediatamente
+        view.layoutIfNeeded()
+
+        print("📎 Imagem padrão aplicada com aspectRatio: \(aspectRatio)")
     }
     
     func chameLabelModal() {
@@ -206,6 +332,12 @@ class ViewController: UIViewController {
         present(alertController, animated: true)
     }
     
+    // PART FIVE
+    @IBAction func showNewScreen(_ sender: UIButton) {
+        let secondVC = SecondViewController()
+        navigationController?.pushViewController(secondVC, animated: true)
+    }
+    
     @IBAction func saveButtonClicked(_ sender: Any) {
         guard let greeting = textField.text, !greeting.isEmpty else {
             print("Texto vazio não pode ser salvo.")
@@ -213,10 +345,6 @@ class ViewController: UIViewController {
         }
         UserService.shared.change(greeting: greeting)
         dataLabel.text = greeting
-        /*
-         UserService.shared.change(greeting: textField.text)
-         self.dataLabel.text = textField.text
-         */
     }
     
     @IBAction func refreshFoxImage(_ sender: Any) {
@@ -227,11 +355,13 @@ class ViewController: UIViewController {
         loadFoxImageDirectly()
     }
     
-    @IBAction func newFactor(_ sender: Any) {
+    @objc func newFactorClicked() {
         fetchRandomFact()
     }
+    
     func loadFoxImageDirectly() {
         guard let url = URL(string: "https://randomfox.ca/floof") else {
+            self.image.image = UIImage(named: "defaultFox") // imagem padrão
             print("❌ URL da API inválida")
             return
         }
@@ -283,8 +413,8 @@ class ViewController: UIViewController {
             }
         }.resume()
     }
-    
-    @IBAction func modalButton(_ sender: Any) {
+  
+    @objc func modalButtonTapped() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         //let modalVC = LabelModalViewController()
         if let modalVC = storyboard.instantiateViewController(withIdentifier: "LabelModalViewController") as? LabelModalViewController {
@@ -309,6 +439,434 @@ class ViewController: UIViewController {
     }
 }
          /*
+          
+          
+          /*
+           /*
+               func setupStackView() {
+                   let stackView = UIStackView(arrangedSubviews: [textField, dataLabel, showButton])
+                   stackView.axis = .vertical
+                   stackView.spacing = 16
+                   stackView.alignment = .fill
+                   stackView.distribution = .equalSpacing
+                   stackView.translatesAutoresizingMaskIntoConstraints = false
+                   
+                   view.addSubview(stackView)
+
+                   // Constraints para posicionar o stackView no final da tela
+                   NSLayoutConstraint.activate([
+                       stackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+                       stackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+                       stackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -40)
+                   ])
+               }
+               */
+           
+           
+           /* / ✍️ TextField constraints
+           textField.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: 20),
+           textField.bottomAnchor.constraint(equalTo: safe.bottomAnchor, constant: -20),
+           textField.widthAnchor.constraint(equalToConstant: 170),
+           textField.heightAnchor.constraint(equalToConstant: 39),
+
+           // 📅 DataLabel constraints
+           dataLabel.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -23),
+           dataLabel.bottomAnchor.constraint(equalTo: safe.bottomAnchor, constant: -20),
+           dataLabel.widthAnchor.constraint(equalToConstant: 170),
+           dataLabel.heightAnchor.constraint(equalToConstant: 39),
+
+           // 📘 Show Button
+           showButton.bottomAnchor.constraint(equalTo: safe.bottomAnchor, constant: -77),
+           showButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+           showButton.widthAnchor.constraint(equalToConstant: 160),
+           showButton.heightAnchor.constraint(equalToConstant: 35)
+            */
+           */
+          
+          class ViewController: UIViewController {
+              //, UITraitChangeObservable {
+              
+             /* @IBOutlet weak var labelCat: UILabel! //
+              @IBOutlet weak var image: UIImageView! //
+              
+              @IBOutlet weak var dataLabel: UILabel! //
+              @IBOutlet weak var textField: UITextField! //
+              
+              @IBOutlet var showButton: UIButton! //
+              //let showButton = UIButton(type: .system)
+              */
+              let image = UIImageView()
+              let labelCat = UILabel()
+              let dataLabel = UILabel()
+              let textField = UITextField()
+              let showButton = UIButton(type: .system)
+              
+              override func loadView() {
+                  super.loadView()
+                  print("📦 loadView — a view está sendo carregada manualmente (caso você customize).")
+              }
+              
+              override func viewDidLoad() {
+                  super.viewDidLoad()
+                  print("🔵 viewDidLoad - ideal para configurar a interfacce e carregar dados iniciais.")
+                  
+                  view.backgroundColor = .systemBackground
+                  
+                  setupViews()
+                  setupConstraints()
+                  setupButtonAction()
+                  
+                  //setupLabels()
+                  //setupLabelConstraints()
+                  
+                  fetchGreeting()
+                  fetchFoxImage()
+                  fetchRandomFact()
+                  
+                  labelCat.numberOfLines = 0
+                  labelCat.lineBreakMode = .byWordWrapping
+                  labelCat.textAlignment = .center
+                  labelCat.font = UIFont.systemFont(ofSize: 18)
+                  
+                  textField.widthAnchor.constraint(equalTo: dataLabel.widthAnchor).isActive = true
+                  textField.heightAnchor.constraint(equalToConstant: 39).isActive = true
+                  
+                  //adjustLayoutForOrientation()
+                  
+                  // Modo escuro / claro detection via nova API (iOS 17+)
+                  if #available(iOS 17.0, *) {
+                      // Registra mudança de traits (modo claro/escuro, size class etc.)
+                      registerForTraitChanges([UITraitUserInterfaceStyle.self]) { [weak self] (_: ViewController, previousTraitCollection) in
+                          self?.traitDidChange(previousTraitCollection)
+                      }
+                  }
+                  
+                  // Configuração do botão
+                  //showButton.setTitle("Abrir nova tela", for: .normal)
+                  //showButton.titleLabel?.font = UIFont.systemFont(ofSize: 20, weight: .medium)
+                  //showButton.translatesAutoresizingMaskIntoConstraints = false
+                  //showButton.addTarget(self, action: #selector(showNewScreen), for: .touchUpInside)
+                  view.addSubview(showButton)
+                  
+                  /*/ Layout
+                          NSLayoutConstraint.activate([
+                              showButton.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 40),
+                              showButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+                          ])
+                   */
+
+              }
+              
+              func setupViews() {
+                  image.contentMode = .scaleAspectFit
+                  image.translatesAutoresizingMaskIntoConstraints = false
+                  view.addSubview(image)
+                  
+                  labelCat.numberOfLines = 0
+                  labelCat.textAlignment = .center
+                  labelCat.font = UIFont.systemFont(ofSize: 18)
+                  labelCat.translatesAutoresizingMaskIntoConstraints = false
+                  view.addSubview(labelCat)
+                  
+                  dataLabel.textAlignment = .right
+                  dataLabel.translatesAutoresizingMaskIntoConstraints = false
+                  view.addSubview(dataLabel)
+                  
+                  textField.borderStyle = .roundedRect
+                  textField.translatesAutoresizingMaskIntoConstraints = false
+                  view.addSubview(textField)
+                  
+                  showButton.setTitle("Próxima página", for: .normal)
+                  showButton.setImage(UIImage(systemName: "plus.circle"), for: .normal)
+                  showButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+                  showButton.translatesAutoresizingMaskIntoConstraints = false
+                  showButton.addSubview(showButton)
+              }
+              
+              func setupConstraints() {
+                  let safe = view.safeAreaLayoutGuide
+                  
+                  NSLayoutConstraint.activate([
+                      // 🦊 Image constraints
+                      image.topAnchor.constraint(greaterThanOrEqualTo: safe.topAnchor, constant: 107),
+                      image.bottomAnchor.constraint(lessThanOrEqualTo: safe.bottomAnchor, constant: -470),
+                      image.leadingAnchor.constraint(greaterThanOrEqualTo: safe.leadingAnchor, constant: 130),
+                      image.trailingAnchor.constraint(greaterThanOrEqualTo: safe.trailingAnchor, constant: -143),
+                      image.widthAnchor.constraint(greaterThanOrEqualToConstant: 115),
+                      image.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+
+                      // 🐱 LabelCat constraints
+                      labelCat.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 20),
+                      labelCat.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: 38),
+                      labelCat.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -47),
+                      labelCat.heightAnchor.constraint(greaterThanOrEqualToConstant: 132),
+
+                      // ✍️ TextField constraints
+                      textField.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: 20),
+                      textField.bottomAnchor.constraint(equalTo: safe.bottomAnchor, constant: -20),
+                      textField.widthAnchor.constraint(equalToConstant: 170),
+                      textField.heightAnchor.constraint(equalToConstant: 39),
+
+                      // 📅 DataLabel constraints
+                      dataLabel.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -23),
+                      dataLabel.bottomAnchor.constraint(equalTo: safe.bottomAnchor, constant: -20),
+                      dataLabel.widthAnchor.constraint(equalToConstant: 170),
+                      dataLabel.heightAnchor.constraint(equalToConstant: 39),
+
+                      // 📘 Show Button
+                      showButton.bottomAnchor.constraint(equalTo: safe.bottomAnchor, constant: -77),
+                      showButton.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+                  ])
+              }
+              
+              func setupButtonAction() {
+                  showButton.addTarget(self, action: #selector(showNewScreen), for: .touchUpInside)
+              }
+              
+              @IBAction func showNewScreen(_ sender: UIButton) {
+              //@objc func showNewScreen(_ sender: UIButton) {
+                  let secondVC = SecondViewController()
+                  navigationController?.pushViewController(secondVC, animated: true)
+              }
+              
+              override func viewWillAppear(_ animated: Bool) {
+                  super.viewWillAppear(animated)
+                  print("🟢 viewWillAppear - chamado antes da view aparecer.")
+              }
+              
+              override func viewWillLayoutSubviews() {
+                  super.viewWillLayoutSubviews()
+                  print("📐 viewWillLayoutSubviews - antes do Auto Layout ajustar as views")
+              }
+              
+              override func viewDidLayoutSubviews() {
+                  super.viewDidLayoutSubviews()
+                  print("📏 viewDidLayoutSubviews - depois do Auto Layout ajustar as views.")
+              }
+              
+              override func viewDidAppear(_ animated: Bool) {
+                  super.viewDidAppear(animated)
+                  print("✅ viewDidAppear - a view apareceu na tela.")
+                  adjustLayoutForOrientation()
+              }
+              
+              override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+                  super.viewWillTransition(to: size, with: coordinator)
+                  print("🔄 viewWillTransition - mudança de orientação detectada.")
+                  
+                  coordinator.animate(alongsideTransition: { _ in
+                      self.adjustLayoutForOrientation()
+                  })
+              }
+              
+              private func traitDidChange(_ previousTraitCollection: UITraitCollection?) {
+                  print("🌗 Mudança de trait detectada — ex: modo claro/escuro mudou.")
+                  
+                  if traitCollection.userInterfaceStyle != previousTraitCollection?.userInterfaceStyle {
+                      print("➡️ Modo claro/escuro foi alterado.")
+                  }
+              }
+              
+              /*
+               override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+               super.traitCollectionDidChange(previousTraitCollection)
+               
+               if #available(iOS 17.0, *) {
+               // Ignora - tratado via UITraitChangeObservable
+               } else {
+               print("🌗 traiCollectionDidChange - (iOS <17) modo claro/escuro ou outra trait mudou")
+               }
+               }
+               */
+              
+              override func viewWillDisappear(_ animated: Bool) {
+                  super.viewWillDisappear(animated)
+                  print("🟠 viewWillDisappear - antes da view sumir.")
+              }
+              
+              override func viewDidDisappear(_ animated: Bool) {
+                  super.viewDidDisappear(animated)
+                  print(("🔴 viewDidDisappear - depois que a viu sumiu."))
+              }
+              
+              override func didReceiveMemoryWarning() {
+                  super.didReceiveMemoryWarning()
+                  print("⚠️ didReceiveMemoryWarning - app com pouca memória.")
+              }
+              
+            
+              
+              /* / Aplica constraints horizontais para todos os labels: ocupando toda a largura
+               for label in labels {
+               NSLayoutConstraint.activate([
+               label.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+               label.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+               ])
+               }
+               
+               // Empilha os labels verticalmente com espaçamento
+               for i in 0..<labels.count {
+               if i == 0 {
+               labels[i].topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+               } else {
+               labels[i].topAnchor.constraint(equalTo: labels[1-i].bottomAnchor, constant: 8).isActive = true
+               }
+               }
+               }*/
+              
+              func fetchGreeting() {
+                  if let greeting = UserService.shared.getGreeting() {
+                      DispatchQueue.main.async {
+                          self.labelCat.text = greeting
+                      }
+                  }
+              }
+              
+              func fetchFoxImage() {
+                  
+                  FoxService.getRandomFox { fox in
+                      guard let fox = fox else {
+                          print("❌ Não foi possível obter a URL da imagem da raposa.")
+                          return
+                      }
+                      
+                      print("📸 URL recebida: \(fox.image)")
+                      
+                      FoxService.getImage(urlString: fox.image) { data in
+                          
+                          guard let data = data, let image = UIImage(data: data) else {
+                              print("Falha ao converter dados em imagem.")
+                              return
+                          }
+                          DispatchQueue.main.async {
+                              self.image.image = image
+                              print("✅ Imagem exibida com sucesso.")
+                          }
+                      }
+             
+                  }
+              }
+              
+              func fetchRandomFact() {
+                  FactService.getRandomFact { cat, error in
+                      guard let cat = cat else { return }
+                      DispatchQueue.main.async {
+                          self.labelCat.text = cat.data.first
+                      }
+                  }
+              }
+              
+              func chameLabelModal() {
+                  let alertController = UIAlertController(title: "Opa!", message: "Você está no modal de um alert!", preferredStyle: .alert)
+                  let action = UIAlertAction(title: "OK", style: .default) { _ in
+                      print("O usuário clicou no OK.")
+                  }
+                  alertController.addAction(action)
+                  present(alertController, animated: true)
+              }
+              
+              @IBAction func saveButtonClicked(_ sender: Any) {
+                  guard let greeting = textField.text, !greeting.isEmpty else {
+                      print("Texto vazio não pode ser salvo.")
+                      return
+                  }
+                  UserService.shared.change(greeting: greeting)
+                  dataLabel.text = greeting
+                  /*
+                   UserService.shared.change(greeting: textField.text)
+                   self.dataLabel.text = textField.text
+                   */
+              }
+              
+              @IBAction func refreshFoxImage(_ sender: Any) {
+                  fetchFoxImage()
+              }
+              
+              @IBAction func loadFoxImageTapped(_ sender: Any) {
+                  loadFoxImageDirectly()
+              }
+              
+              @IBAction func newFactor(_ sender: Any) {
+                  fetchRandomFact()
+              }
+              func loadFoxImageDirectly() {
+                  guard let url = URL(string: "https://randomfox.ca/floof") else {
+                      print("❌ URL da API inválida")
+                      return
+                  }
+                  
+                  var request = URLRequest(url: url)
+                  request.setValue(
+                      "Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148",
+                      forHTTPHeaderField: "User-Agent"
+                  )
+                  
+                  URLSession.shared.dataTask(with: request) { data, response, error in
+                      if let error = error {
+                          print("❌ Erro ao buscar JSON da raposa: \(error.localizedDescription)")
+                          return
+                      }
+                      
+                      guard let data = data else {
+                          print("❌ Dados JSON ausentes")
+                          return
+                      }
+                      
+                      do {
+                          // Decodifica a resposta JSON
+                          let fox = try JSONDecoder().decode(FoxModel.self, from: data)
+                          print("📸 URL da imagem recebida: \(fox.image)")
+                          
+                          // Baixa a imagem
+                          guard let imageURL = URL(string: fox.image) else { return }
+                          
+                          URLSession.shared.dataTask(with: imageURL) { data, _, error in
+                              if let error = error {
+                                  print("❌ Erro ao baixar imagem: \(error.localizedDescription)")
+                                  return
+                              }
+                              
+                              guard let data = data, let image = UIImage(data: data) else {
+                                  print("❌ Dados da imagem inválidos")
+                                  return
+                              }
+                              
+                              DispatchQueue.main.async {
+                                  self.image.image = image
+                              }
+                              
+                          }.resume()
+                          
+                      } catch {
+                          print("❌ Erro ao decodificar JSON: \(error)")
+                      }
+                  }.resume()
+              }
+              
+              @IBAction func modalButton(_ sender: Any) {
+                  let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                  //let modalVC = LabelModalViewController()
+                  if let modalVC = storyboard.instantiateViewController(withIdentifier: "LabelModalViewController") as? LabelModalViewController {
+                      modalVC.modalPresentationStyle = .formSheet // ou .pageSheet, .fullScreen
+                      present(modalVC, animated: true)
+                  }  else {
+                      print("❌ Não foi possível encontrar a LabelModalViewController no storyboard.")
+                  }
+              }
+              //Ao clicar no botão "vireButton", o modal será exibido com todas as labels geradas dinamicamente pela LabelService.
+              
+              func adjustLayoutForOrientation() {
+                  guard let orientation = UIApplication.shared.connectedScenes
+                      .compactMap({ $0 as? UIWindowScene })
+                      .first?.interfaceOrientation else {
+                      return
+                  }
+                  
+                  let isLandscape = orientation.isLandscape
+                  
+                  image.isHidden = isLandscape
+              }
+          }
          override func viewDidLoad() {
          super.viewDidLoad()
          /*
