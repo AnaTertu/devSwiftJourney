@@ -6,27 +6,64 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Registrar uma célula padrão
-        //tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
         let urlString: String = "https://www.hackingwithswift.com/samples/petitions-1.json"
         
-        if let url = URL(string: urlString) {
-            URLSession.shared.dataTask(with: url) { data, response, error in
-                if let data = data {
-                    parse(json: data)
-            } else {
-                print("❌ Falha ao carregar os dados.")
+        guard !urlString.isEmpty else {
+            print("❌ URL vazia.")
+            return
+        }
+        
+        guard let urlTask = URL(string: urlString) else {
+            print("URL inválida: \(urlString)")
+            return
+        }
+        
+        let url = URLSession.shared.dataTask(with: urlTask) { data, response, error in
+            if let error = error {
+                print("❌ Erro ao carregar os dados: \(error)")
+                return
             }
-            }.resume()
+            
+            guard let data = data else {
+                print("Nenhum dado retornado pelo servidor.")
+                return
+            }
+            self.parse(json: data)
+        }
+        url.resume()
+        /*
+         if let url = URL(string: urlString) {
+             URLSession.shared.dataTask(with: urlTask) { data, response, error in
+                  parse(json: data)
+             } else {
+               print("❌ Falha ao carregar os dados.")
+             }.resume()
+         }
+         */
+        
     }
     
+    func parse(json: Data) {
+        let decoder = JSONDecoder()
+        
+        do {
+            let decodedData = try decoder.decode(PetitionResponse.self, from: json)
+            
+            DispatchQueue.main.async {
+                self.petitions = decodedData.results
+                self.tableView.reloadData()
+            }
+        } catch {
+            print("❌ Erro ao decodificar JSON: \(error.localizedDescription)")
+        }
+    
+       /*
         func parse(json: Data) {
             let decoder = JSONDecoder()
-            
+
             if let jsonPetitions = try? decoder.decode(PetitionResponse.self, from: json) {
                 petitions = jsonPetitions.results
-                //tableView.reloadData()
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -34,15 +71,7 @@ class TableViewController: UITableViewController {
                 print("❌ Erro ao decodificar JSON")
             }
         }
-       /* do {
-            let decoded = try decoder.decode(PetitionResponse.self, from: json)
-            petitions = decoded.results
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        } catch {
-            print("❌ Erro ao decodificar JSON: \(error)")
-        }*/
+        */
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

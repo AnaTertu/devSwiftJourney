@@ -62,16 +62,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" preservesSuperviewLayoutMargins="YES" text="" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O64-TM-ndF">
-                                <rect key="frame" x="38" y="541" width="308" height="132"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="132" id="6XT-QJ-AkQ"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="308" id="uj5-SW-VZM"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fhe-aP-t3r">
                                 <rect key="frame" x="61" y="760" width="76" height="35"/>
                                 <state key="normal" title="Button"/>
@@ -96,9 +86,7 @@
                             <constraint firstItem="fv1-Ct-hPt" firstAttribute="leading" secondItem="fhe-aP-t3r" secondAttribute="trailing" constant="98" id="NUY-Fm-f9D"/>
                             <constraint firstItem="fhe-aP-t3r" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="61" id="OHz-m4-7Et"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fv1-Ct-hPt" secondAttribute="trailing" constant="73" id="RDS-im-G1H"/>
-                            <constraint firstItem="O64-TM-ndF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="38" id="U0n-m1-vNC"/>
                             <constraint firstItem="fhe-aP-t3r" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="11" id="Zu3-aE-ubX"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="O64-TM-ndF" secondAttribute="trailing" constant="47" id="bwe-I5-4wU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="TLR-bd-DTz"/>
@@ -119,7 +107,7 @@
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="yvb-6z-iXh"/>
-                        <segue destination="vfz-8u-eAn" kind="show" id="H4n-gN-gTV"/>
+                        <segue destination="vfz-8u-eAn" kind="show" identifier="MainTabBarController" id="H4n-gN-gTV"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pGF-wL-Ca7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -149,6 +137,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="tgH-5m-ovg"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" restorationIdentifier="NavController" insetsLayoutMarginsFromSafeArea="NO" id="gWj-Xp-rbS">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
