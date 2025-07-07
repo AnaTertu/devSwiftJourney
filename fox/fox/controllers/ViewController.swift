@@ -3,7 +3,7 @@ import UIKit
 class ViewController: UIViewController {
     
     let image = UIImageView()
-    let labelCat = UILabel()
+    let labelFox = UILabel()
     let dataLabel = UILabel()
     let textField = UITextField()
     let showButton = UIButton(type: .system)
@@ -33,10 +33,10 @@ class ViewController: UIViewController {
         fetchFoxImage()
         fetchRandomFact()
         
-        labelCat.numberOfLines = 0
-        labelCat.lineBreakMode = .byWordWrapping
-        labelCat.textAlignment = .center
-        labelCat.font = UIFont.systemFont(ofSize: 18)
+        labelFox.numberOfLines = 0
+        labelFox.lineBreakMode = .byWordWrapping
+        labelFox.textAlignment = .center
+        labelFox.font = UIFont.systemFont(ofSize: 18)
         
         //textField.widthAnchor.constraint(equalTo: dataLabel.widthAnchor).isActive = true
         //textField.heightAnchor.constraint(equalToConstant: 39).isActive = true
@@ -60,16 +60,16 @@ class ViewController: UIViewController {
         image.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(image)
         
-        labelCat.numberOfLines = 0
-        labelCat.textAlignment = .center
-        labelCat.font = UIFont.systemFont(ofSize: 18)
-        labelCat.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(labelCat)
+        labelFox.numberOfLines = 0
+        labelFox.textAlignment = .center
+        labelFox.font = UIFont.systemFont(ofSize: 18)
+        labelFox.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(labelFox)
         
         
         dataLabel.textAlignment = .center
         //dataLabel.translatesAutoresizingMaskIntoConstraints = false
-        dataLabel.backgroundColor = .systemBlue
+        dataLabel.backgroundColor = .lightGray
         view.addSubview(dataLabel)
         
         textField.borderStyle = .roundedRect
@@ -168,11 +168,11 @@ class ViewController: UIViewController {
             // Mantém a proporção da imagem original (altura proporcional à largura)
             image.heightAnchor.constraint(equalTo: image.widthAnchor, multiplier: 0.75),
 
-            // 🐱 LabelCat constraints
-            labelCat.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 20),
-            labelCat.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: 38),
-            labelCat.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -47),
-            labelCat.heightAnchor.constraint(greaterThanOrEqualToConstant: 132),
+            // 🐱 LabelFox constraints
+            labelFox.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 20),
+            labelFox.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: 38),
+            labelFox.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -47),
+            labelFox.heightAnchor.constraint(greaterThanOrEqualToConstant: 132),
 
         ])
     }
@@ -243,10 +243,10 @@ class ViewController: UIViewController {
     }
     
     func fetchRandomFact() {
-        FactService.getRandomFact { cat, error in
-            guard let cat = cat else { return }
+        FactService.getRandomFact { fox, error in
+            guard let fox = fox else { return }
             DispatchQueue.main.async {
-                self.labelCat.text = cat.data.first
+                self.labelFox.text = fox.data.first
             }
         }
     }
