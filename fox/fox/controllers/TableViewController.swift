@@ -7,7 +7,13 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let urlString: String = "https://www.hackingwithswift.com/samples/petitions-1.json"
+        let urlString: String
+        
+        if navigationController?.tabBarItem.tag == 0 {
+            urlString = "https://www.hackingwithswift.com/samples/petitions-1.json"
+        } else {
+            urlString = "https://www.hackingwithswift.com/samples/petitions-2.json"
+        }
         
         guard !urlString.isEmpty else {
             print("❌ URL vazia.")
@@ -22,6 +28,7 @@ class TableViewController: UITableViewController {
         let url = URLSession.shared.dataTask(with: urlTask) { data, response, error in
             if let error = error {
                 print("❌ Erro ao carregar os dados: \(error)")
+                self.showError()
                 return
             }
             
@@ -72,6 +79,12 @@ class TableViewController: UITableViewController {
             }
         }
         */
+    }
+    
+    func showError() {
+        let ac = UIAlertController(title: "Erro", message: "Ocorreu um problema ao carregar o feed; Verifique sua conexão e tente novamente.", preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
