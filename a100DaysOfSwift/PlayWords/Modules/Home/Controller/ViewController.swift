@@ -3,14 +3,14 @@ import UIKit
 class ViewController: UIViewController {
     
     var cluesLabel: UILabel!
-    var ansersLbel: UILabel!
+    var answersLabel: UILabel!
     var currentAnswer: UITextField!
     var scoreLabel: UILabel!
-    var letterButons = [UIButton]()
+    var letterButtons = [UIButton]()
     
     override func loadView() {
         view = UIView()
-        view.backgroundColor = .lightGray
+        view.backgroundColor = .systemGray6
 
         scoreLabel = UILabel()
         scoreLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -20,7 +20,7 @@ class ViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             scoreLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
-            scoreLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor)
+            scoreLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
         ])
     }
     
