@@ -184,6 +184,12 @@ class ViewController: UIViewController {
                 ac.addAction(UIAlertAction(title: "Let's go!", style: .default, handler: levelUp))
                 present(ac, animated: true)
             }
+        } else {
+            let ac = UIAlertController(title: "Palavra incorreta", message: "Tente novamente", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default) { [weak self] _ in
+                self?.clearTapped(UIButton())
+            })
+            present(ac, animated: true)
         }
     }
     
