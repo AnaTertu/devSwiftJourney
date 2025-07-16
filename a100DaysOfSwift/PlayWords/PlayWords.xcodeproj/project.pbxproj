@@ -29,26 +29,6 @@
 		A162C4E72E1F0E1E000836D6 /* PlayWordsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PlayWordsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		A167729C2E25810B00B9B94B /* Exceptions for "App" folder in "PlayWords" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				level2.txt,
-			);
-			target = A162C4CE2E1F0E1C000836D6 /* PlayWords */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		A167729D2E25810B00B9B94B /* Exceptions for "App" folder in "Compile Sources" phase from "PlayWords" target */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = A162C4CB2E1F0E1C000836D6 /* Sources */;
-			membershipExceptions = (
-				level2.txt,
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		A162C4D12E1F0E1C000836D6 /* PlayWords */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -67,10 +47,6 @@
 		};
 		A167726D2E215BCC00B9B94B /* App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				A167729C2E25810B00B9B94B /* Exceptions for "App" folder in "PlayWords" target */,
-				A167729D2E25810B00B9B94B /* Exceptions for "App" folder in "Compile Sources" phase from "PlayWords" target */,
-			);
 			path = App;
 			sourceTree = "<group>";
 		};

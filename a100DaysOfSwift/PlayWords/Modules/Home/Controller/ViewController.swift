@@ -11,7 +11,12 @@ class ViewController: UIViewController {
     var activatedButtons = [UIButton]()
     var solutions = [String]()
     
-    var score = 0
+    var score = 0 {
+        didSet {
+            scoreLabel.text = "Score: \(score)"
+        }
+    }
+    
     var level = 1
     
     override func loadView() {
@@ -37,7 +42,6 @@ class ViewController: UIViewController {
         answersLabel = UILabel()
         answersLabel.translatesAutoresizingMaskIntoConstraints = false
         answersLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-        //answersLabel.textAlignment = .center
         answersLabel.text = "Answers"
         answersLabel.numberOfLines = 0
         answersLabel.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
@@ -110,7 +114,7 @@ class ViewController: UIViewController {
         for row in 0..<4 {
             for column in 0..<5 {
                 let letterButton = UIButton(type: .system)
-                letterButton.titleLabel?.font = UIFont.systemFont(ofSize: 36, weight: .bold)
+                letterButton.titleLabel?.font = UIFont.systemFont(ofSize: 36) //, weight: .bold)
                 letterButton.setTitleColor(.white, for: .normal)
                 letterButton.backgroundColor = .systemIndigo
                 letterButton.layer.cornerRadius = 25
@@ -122,7 +126,7 @@ class ViewController: UIViewController {
                 
                 buttonsView.addSubview(letterButton)
                 letterButtons.append(letterButton)
-                letterButton.addTarget(self, action: #selector(letterTapped), for: .touchUpInside) //(letterTapped(_:)), for: .touchUpInside)
+                letterButton.addTarget(self, action: #selector(letterTapped(_:)), for: .touchUpInside) //(letterTapped), for: .touchUpInside)
             }
         }
     }
@@ -178,8 +182,9 @@ class ViewController: UIViewController {
             
             currentAnswer.text = ""
             score += 1
+            scoreLabel.text = "Score: \(score)"
             
-            if score % 7 == 0 {
+            if score == solutions.count { //% 7 == 0 {
                 let ac = UIAlertController(title: "Bom Trabalho!", message: "Você está pronto para o próximo nível?", preferredStyle: .alert)
                 ac.addAction(UIAlertAction(title: "Let's go!", style: .default, handler: levelUp))
                 present(ac, animated: true)
@@ -194,6 +199,8 @@ class ViewController: UIViewController {
     }
     
     func levelUp(action: UIAlertAction) {
+        
+        score = 0
         level += 1
         
         solutions.removeAll(keepingCapacity: true)
@@ -223,7 +230,7 @@ class ViewController: UIViewController {
             
             if let levelContents = try? String(contentsOf: levelFileURL, encoding: .utf8) {
                 
-                var lines = levelContents.components(separatedBy: "\n")
+                var lines = levelContents.components(separatedBy: .newlines).filter { !$0.trimmingCharacters(in: .whitespaces).isEmpty }
                 lines.shuffle()
                 
                 for (index, line) in lines.enumerated() {
