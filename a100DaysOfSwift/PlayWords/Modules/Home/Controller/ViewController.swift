@@ -31,21 +31,30 @@ class ViewController: UIViewController {
         
         cluesLabel = UILabel()
         cluesLabel.translatesAutoresizingMaskIntoConstraints = false
-        cluesLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        if let customFont = UIFont(name: "Chalkboard SE", size: 30) {
+            cluesLabel.font = customFont
+        } else {
+            cluesLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        }
         cluesLabel.text = "CLUES"
         cluesLabel.numberOfLines = 0
         cluesLabel.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
-        cluesLabel.backgroundColor = .systemGray4
+        cluesLabel.backgroundColor = .systemGray5
         cluesLabel.layer.cornerRadius = 10
         view.addSubview(cluesLabel)
         
         answersLabel = UILabel()
         answersLabel.translatesAutoresizingMaskIntoConstraints = false
-        answersLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        if let customFont = UIFont(name: "Avenir Next", size: 30) {
+            answersLabel.font = customFont
+        } else {
+            answersLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
+        }
         answersLabel.text = "Answers"
         answersLabel.numberOfLines = 0
         answersLabel.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
         answersLabel.backgroundColor = .systemGray3
+        answersLabel.textColor = .blue
         view.addSubview(answersLabel)
         
         currentAnswer = UITextField()
@@ -162,6 +171,15 @@ class ViewController: UIViewController {
         loadLevel()
     }
     
+    func setLineSpacing(label: UILabel, spacing: CGFloat) {
+        guard let labelText = label.text else { return }
+        let attributedString = NSMutableAttributedString(string: labelText)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = spacing
+        attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, attributedString.length))
+        label.attributedText = attributedString
+    }
+    
     @objc func letterTapped(_ sender: UIButton) {
         guard let buttonTitle = sender.titleLabel?.text else { return }
         
@@ -254,7 +272,9 @@ class ViewController: UIViewController {
                 }
                 
                 cluesLabel.text = clueString.trimmingCharacters(in: .whitespacesAndNewlines)
+                setLineSpacing(label: cluesLabel, spacing: 12)
                 answersLabel.text = solutionString.trimmingCharacters(in: .whitespacesAndNewlines)
+                setLineSpacing(label: answersLabel, spacing: 12)
                 
                 letterButtons.shuffle()
                 
