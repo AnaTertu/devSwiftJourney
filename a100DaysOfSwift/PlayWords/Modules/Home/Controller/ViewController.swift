@@ -89,11 +89,11 @@ class ViewController: UIViewController {
             
             cluesLabel.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor),
             cluesLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 100),
-            cluesLabel.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.6, constant: -100),
+            cluesLabel.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.7, constant: -100),
             
             answersLabel.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor),
             answersLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -100),
-            answersLabel.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.4, constant: -100),
+            answersLabel.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.3, constant: -100),
             answersLabel.heightAnchor.constraint(equalTo: cluesLabel.heightAnchor),
             
             currentAnswer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -262,6 +262,7 @@ class ViewController: UIViewController {
                     let clue = parts[1]
                     
                     clueString += "\(index + 1). \(clue)\n"
+                    // t\(solutionWord.count)  letters\n"
                     
                     let solutionWord = answer.replacingOccurrences(of: "|", with: "")
                     solutionString += "\(solutionWord.count)  letters\n"
@@ -275,6 +276,45 @@ class ViewController: UIViewController {
                 setLineSpacing(label: cluesLabel, spacing: 12)
                 answersLabel.text = solutionString.trimmingCharacters(in: .whitespacesAndNewlines)
                 setLineSpacing(label: answersLabel, spacing: 12)
+                
+                /*
+                let paragraphStyle = NSMutableParagraphStyle()
+                paragraphStyle.tabStops = [
+                    NSTextTab(textAlignment: .right, location: 300, options: [:])
+                ]
+                paragraphStyle.defaultTabInterval = 300
+                paragraphStyle.alignment = .left
+                paragraphStyle.lineSpacing = 16
+                
+                let formattedClues = clueString
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+                    .replacingOccurrences(of: "\n", with: "\n")
+                    .replacingOccurrences(of: ": ", with: "\t")
+               
+                let attributedClues = NSAttributedString(
+                    string: formattedClues,
+                    attributes: [
+                        .paragraphStyle: paragraphStyle,
+                        .font: UIFont(name: "Menlo", size: 22) ?? UIFont.systemFont(ofSize: 22),
+                    ]
+                )
+                
+                cluesLabel.attributedText = attributedClues
+                
+                let formattedAnswers = solutionString
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+                
+                let attributedAnswers = NSAttributedString(
+                    string: formattedAnswers,
+                    attributes: [
+                        .paragraphStyle: paragraphStyle,
+                        .font: UIFont(name: "Menlo", size: 22) ?? UIFont.systemFont(ofSize: 22),
+                        .foregroundColor: UIColor.blue
+                    ]
+                )
+                
+                answersLabel.attributedText = attributedAnswers
+                */
                 
                 letterButtons.shuffle()
                 
