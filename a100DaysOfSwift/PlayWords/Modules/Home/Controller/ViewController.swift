@@ -6,6 +6,7 @@ class ViewController: UIViewController {
     var answersLabel: UILabel!
     var currentAnswer: UITextField!
     var scoreLabel: UILabel!
+    var levelLabel: UILabel!
     var letterButtons = [UIButton]()
     
     var activatedButtons = [UIButton]()
@@ -17,7 +18,11 @@ class ViewController: UIViewController {
         }
     }
     
-    var level = 1
+    var level = 1 {
+        didSet {
+            levelLabel.text = "Level: \(level)"
+        }
+    }
     
     override func loadView() {
         view = UIView()
@@ -28,6 +33,12 @@ class ViewController: UIViewController {
         scoreLabel.textAlignment = .right
         scoreLabel.text = "Score: 0"
         view.addSubview(scoreLabel)
+        
+        levelLabel = UILabel()
+        levelLabel.translatesAutoresizingMaskIntoConstraints = false
+        levelLabel.textAlignment = .left
+        levelLabel.text = "Level: 1"
+        view.addSubview(levelLabel)
         
         cluesLabel = UILabel()
         cluesLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -86,6 +97,9 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate([
             scoreLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             scoreLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor),
+            
+            levelLabel.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
+            levelLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             
             cluesLabel.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor),
             cluesLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 100),
@@ -201,6 +215,7 @@ class ViewController: UIViewController {
             currentAnswer.text = ""
             score += 1
             scoreLabel.text = "Score: \(score)"
+            levelLabel.text = "Level: \(level)"
             
             if score == solutions.count { //% 7 == 0 {
                 let ac = UIAlertController(title: "Bom Trabalho!", message: "Você está pronto para o próximo nível?", preferredStyle: .alert)
