@@ -31,12 +31,16 @@ class ViewController: UIViewController {
         scoreLabel = UILabel()
         scoreLabel.translatesAutoresizingMaskIntoConstraints = false
         scoreLabel.textAlignment = .right
-        scoreLabel.text = "Score: 0"
+        scoreLabel.text = "Acertos: 0"
+        scoreLabel.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        scoreLabel.textColor = .systemBlue
         view.addSubview(scoreLabel)
         
         levelLabel = UILabel()
         levelLabel.translatesAutoresizingMaskIntoConstraints = false
         levelLabel.textAlignment = .left
+        levelLabel.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        levelLabel.textColor = .systemBlue
         levelLabel.text = "Level: 1"
         view.addSubview(levelLabel)
         
@@ -214,8 +218,8 @@ class ViewController: UIViewController {
             
             currentAnswer.text = ""
             score += 1
-            scoreLabel.text = "Score: \(score)"
-            levelLabel.text = "Level: \(level)"
+            //scoreLabel.text = "Score: \(score)"
+            //levelLabel.text = "Level: \(level)"
             
             if score == solutions.count { //% 7 == 0 {
                 let ac = UIAlertController(title: "Bom Trabalho!", message: "Você está pronto para o próximo nível?", preferredStyle: .alert)
