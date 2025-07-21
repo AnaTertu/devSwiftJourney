@@ -55,7 +55,6 @@ class ViewController: UIViewController {
         cluesLabel.numberOfLines = 0
         cluesLabel.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
         cluesLabel.backgroundColor = .systemGray5
-        cluesLabel.layer.cornerRadius = 10
         view.addSubview(cluesLabel)
         
         answersLabel = UILabel()
