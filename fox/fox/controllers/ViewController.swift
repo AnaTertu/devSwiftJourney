@@ -26,9 +26,6 @@ class ViewController: UIViewController {
         setupStackView()
         setupConstraints()
         setupButtonAction()
-    
-        //setupLabels()
-        //setupLabelConstraints()
         
         fetchFoxImage()
         fetchRandomFact()
@@ -48,9 +45,6 @@ class ViewController: UIViewController {
                 self?.traitDidChange(previousTraitCollection)
             }
         }
-        
-        
-
     }
    
     //PART TWO
@@ -112,7 +106,6 @@ class ViewController: UIViewController {
         modalButton.tintColor = .systemBlue
         modalButton.titleLabel?.textAlignment = .center
         view.addSubview(modalButton)
-         
     }
 
     func setupStackView() {
@@ -173,7 +166,6 @@ class ViewController: UIViewController {
             labelFox.leadingAnchor.constraint(equalTo: safe.leadingAnchor, constant: 38),
             labelFox.trailingAnchor.constraint(equalTo: safe.trailingAnchor, constant: -47),
             labelFox.heightAnchor.constraint(greaterThanOrEqualToConstant: 132),
-
         ])
     }
     
@@ -291,7 +283,6 @@ class ViewController: UIViewController {
                     print("✅ Imagem exibida com sucesso com aspectRatio \(aspectRatio).")
                 }
             }
-   
         }
     }
     

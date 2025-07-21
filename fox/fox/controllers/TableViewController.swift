@@ -7,6 +7,10 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        fetchJSON()
+    }
+    
+    func fetchJSON() {
         let urlString: String
         
         if navigationController?.tabBarItem.tag == 0 {
@@ -19,36 +23,50 @@ class TableViewController: UITableViewController {
             print("❌ URL vazia.")
             return
         }
-        
-        guard let urlTask = URL(string: urlString) else {
+        /*
+        //"Roda esse código em uma fila paralela, fora da tela principal (Main Thread), porque isso é uma tarefa importante para o usuário e não deve travar a interface."
+        DispatchQueue.global(qos: .userInitiated).async {
+         
+            [weak self] in
+           */
+        guard let url = URL(string: urlString) else {
             print("URL inválida: \(urlString)")
             return
         }
         
-        let url = URLSession.shared.dataTask(with: urlTask) { data, response, error in
+        /*
+                📌 O URLSession.shared.dataTask já é assíncrono!
+             Ele já roda fora da thread principal. Não preciso colocar dentro de DispatchQueue.global
+         */
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error {
                 print("❌ Erro ao carregar os dados: \(error)")
-                self.showError()
+                DispatchQueue.main.async {
+                    self.showError()
+                }
                 return
             }
             
             guard let data = data else {
                 print("Nenhum dado retornado pelo servidor.")
+                DispatchQueue.main.async {
+                    self.showError()
+                }
                 return
             }
             self.parse(json: data)
         }
-        url.resume()
+        task.resume()
+        
         /*
          if let url = URL(string: urlString) {
              URLSession.shared.dataTask(with: urlTask) { data, response, error in
                   parse(json: data)
              } else {
-               print("❌ Falha ao carregar os dados.")
+               print("Falha ao carregar os dados.")
              }.resume()
          }
          */
-        
     }
     
     func parse(json: Data) {
@@ -82,9 +100,11 @@ class TableViewController: UITableViewController {
     }
     
     func showError() {
-        let ac = UIAlertController(title: "Erro", message: "Ocorreu um problema ao carregar o feed; Verifique sua conexão e tente novamente.", preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        present(ac, animated: true)
+        DispatchQueue.main.async { [weak self] in
+            let ac = UIAlertController(title: "Erro", message: "Ocorreu um problema ao carregar o feed; Verifique sua conexão e tente novamente.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            self?.present(ac, animated: true)
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
