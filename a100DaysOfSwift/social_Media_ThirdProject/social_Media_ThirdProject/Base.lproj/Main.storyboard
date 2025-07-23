@@ -10,22 +10,51 @@
     </dependencies>
     <scenes>
         <!--View Controller-->
+        <scene sceneID="9Io-rb-Qfh">
+            <objects>
+                <viewController id="e3z-ui-z0M" customClass="ViewController" customModule="social_Media_ThirdProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QKi-Oq-CwL">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="dxu-sA-Ea4">
+                                <rect key="frame" x="16" y="360" width="360" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.76099112376574418" green="0.68866800643362236" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Agenda"/>
+                                <connections>
+                                    <segue destination="FMF-Ze-nLA" kind="show" id="v1q-iH-jig"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="obP-fu-7mP">
+                                <rect key="frame" x="16" y="240" width="360" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.82929645833971544" green="0.63429393142206836" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Fotos"/>
+                                <connections>
+                                    <segue destination="Tmh-zj-RGe" kind="show" id="xX6-CM-q5A"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="93Z-7C-U4F"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="uRU-mQ-7AW"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XaJ-3f-gTd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-863" y="279"/>
+        </scene>
+        <!--Table View Controller-->
         <scene sceneID="kf1-EE-7eS">
             <objects>
-                <tableViewController id="Tmh-zj-RGe" customClass="ViewController" customModule="social_Media_ThirdProject" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Tmh-zj-RGe" customClass="TableViewController" customModule="social_Media_ThirdProject" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="jBQ-3J-2ZM">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="dxu-sA-Ea4">
-                            <rect key="frame" x="0.0" y="121.66666793823242" width="393" height="144"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Agenda"/>
-                            <connections>
-                                <segue destination="FMF-Ze-nLA" kind="show" id="v1q-iH-jig"/>
-                            </connections>
-                        </button>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Picture" textLabel="Ups-gE-pzj" style="IBUITableViewCellStyleDefault" id="JOZ-be-1xd">
                                 <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
@@ -149,12 +178,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Tmh-zj-RGe" kind="relationship" relationship="rootViewController" id="eWh-rL-OiI"/>
+                        <segue destination="e3z-ui-z0M" kind="relationship" relationship="rootViewController" id="5Hm-ez-Hke"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z1o-3N-WRa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-645.03816793893122" y="8.4507042253521139"/>
+            <point key="canvasLocation" x="-1760" y="279"/>
         </scene>
     </scenes>
     <resources>
