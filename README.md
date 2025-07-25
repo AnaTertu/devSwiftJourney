@@ -17,7 +17,23 @@ em evolução.
 # 📚 devSwiftJourney
 > Minha jornada diária de estudos com Swift — prática, constância e evolução.
 
-Este repositório é o meu **caderno de bordo** na transição para o desenvolvimento iOS. Aqui compartilho anotações, projetos, desafios resolvidos e mini apps desenvolvidos ao longo dos meus estudos diários em **Swift**.
+DevSwiftJourney é o meu **caderno de bordo** um repositório criado como parte do meu processo de transição de carreira e aprendizado prático de conceitos fundamentaipara para o desenvolvimento iOS. Ele representa minha evolução técnica, experimentação com diferentes abordagens e minha dedicação em construir um portfólio com base sólida
+
+Aqui compartilho anotações, projetos, desafios resolvidos e mini apps desenvolvidos ao longo dos meus estudos diários em **Swift**.
+
+O projeto combina UIKit, SwiftUI e arquitetura MVVM com RxSwift (e mock API onde necessário) para reatividade, explorando temas como:
+
+Construção de interfaces com UIKit e SwiftUI
+
+Navegação entre telas e comunicação entre componentes
+
+Listagem de dados com UICollectionView
+
+Consumo simulado de APIs (mock)
+
+Bindings reativos com RxSwift
+
+Organização de código com boas práticas
 
 Baseado principalmente nos cursos:
 
@@ -31,7 +47,7 @@ Baseado principalmente nos cursos:
 
 ### 🔍 O que você vai encontrar por aqui:
 
-| Módulo       | Conteúdo                              | Tecnologias           |
+| Módulo       | Conteúdo                               | Tecnologias           |
 |--------------|----------------------------------------|------------------------|
 | Base         | Variáveis, tipos, funções              | Swift básico           |
 | Fundamentos  | Closures, coleções, structs, enums     | Swift                  |
@@ -50,10 +66,6 @@ Baseado principalmente nos cursos:
 - Compartilhar aprendizados com outros(as) estudantes e desenvolvedores(as)
 
 ---
-
-### 🙋‍♀️ Sobre mim
-
-Sou **Ana Tertuliano**, em transição de carreira para a área de desenvolvimento iOS. Após anos de dedicação em outras áreas e desafios pessoais superados, encontrei no Swift e no desenvolvimento mobile um novo propósito profissional.
 
 ➡️ [Acesse meu perfil no GitHub](https://github.com/AnaTertu) para conhecer outros projetos.
 
