@@ -7,7 +7,9 @@ class CollectionViewController: UICollectionViewController, UIImagePickerControl
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPerson))
+        loadPeople()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPerson))
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -41,6 +43,26 @@ class CollectionViewController: UICollectionViewController, UIImagePickerControl
         present(picker, animated: true)
     }
     
+    func savePeople() {
+        let jsonEncoder = JSONEncoder()
+        
+        if let saveData = try? jsonEncoder.encode(people) {
+            let defaults = UserDefaults.standard
+            defaults.set(saveData, forKey: "people")
+        }
+    }
+    
+    func loadPeople() {
+        let defaults = UserDefaults.standard
+        if let savedData = defaults.object(forKey: "people") as? Data {
+            let jsonDecoder = JSONDecoder()
+            
+            if let savedPeople = try? jsonDecoder.decode([Person].self, from: savedData) {
+                people = savedPeople
+            }
+        }
+    }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.editedImage] as? UIImage else { return }
         
@@ -51,10 +73,10 @@ class CollectionViewController: UICollectionViewController, UIImagePickerControl
             try? jpegData.write(to: imagePath)
         }
         
-        let person = Person(name: "Unknown", image: imageName)
+        let person = Person(name: "Name", image: imageName)
         people.append(person)
+        savePeople()
         collectionView.reloadData()
-        
         dismiss(animated: true)
     }
     
@@ -62,21 +84,124 @@ class CollectionViewController: UICollectionViewController, UIImagePickerControl
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
+    let actionSheet = UIAlertController(title: "O que deseja fazer?", message: nil, preferredStyle: .actionSheet)
+    
+    
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let person = people[indexPath.item]
         
-        let ac = UIAlertController(title: "Rename person", message: nil, preferredStyle: .alert)
-        ac.addTextField()
+        let optionsAlert = UIAlertController(title: "O que deseja fazer?", message: "123", preferredStyle: .alert)
         
-        ac.addAction(UIAlertAction(title: "ok", style: .default) { [weak self, weak ac] _ in
-            guard let newName = ac?.textFields?[0].text else { return }
+        optionsAlert.addAction(UIAlertAction(title: "Renomear", style: .default) { [weak self] _ in
+            let renameAlert = UIAlertController(title: "Digite o novo nome", message: nil, preferredStyle: .alert)
+            renameAlert.addTextField()
+            
+            renameAlert.addAction(UIAlertAction(title: "Ök", style: .default) { [weak self, weak renameAlert] _ in
+                guard let newName = renameAlert?.textFields?[0].text else { return }
+                person.name = newName
+                self?.collectionView.reloadData()
+            })
+            
+            renameAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel))
+            self?.present(renameAlert, animated: true)
+        })
+        
+        optionsAlert.addAction(UIAlertAction(title: "Excluir", style: .destructive) { [weak self] _ in
+            self?.people.remove(at: indexPath.item)
+            self?.savePeople().self
+            self?.collectionView.deleteItems(at: [indexPath])
+        })
+        
+        optionsAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel))
+        
+        present(optionsAlert, animated: true)
+    }
+}
+    /*
+     
+     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+         
+         let person = people[indexPath.item]
+         // Renomear
+         actionSheet.addAction(UIAlertAction(title: "Renomear", style: .default) { [weak self] _ in
+             let renameAlert = UIAlertController(title: "Digite o novo nome", message: nil, preferredStyle: .alert)
+             renameAlert.addTextField()
+             
+             renameAlert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self, weak renameAlert] _ in
+                 guard let newName = renameAlert?.textFields?[0].text else { return }
+                 person.name = newName
+                 self?.collectionView.reloadData()
+             })
+             
+             renameAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel))
+             self?.present(renameAlert, animated: true)
+         })
+         
+         // Excluir
+         actionSheet.addAction(UIAlertAction(title: "Excluir", style: .destructive) { [weak self] _ in
+             self?.people.remove(at: indexPath.item)
+             self?.collectionView.deleteItems(at: [indexPath])
+         })
+         
+         // Cancelar
+         actionSheet.addAction(UIAlertAction(title: "Cancelar", style: .cancel))
+         
+         // Importante: para iPad (evita crash)
+         if let popover = actionSheet.popoverPresentationController {
+             popover.sourceView = collectionView.cellForItem(at: indexPath)
+             popover.sourceRect = collectionView.cellForItem(at: indexPath)?.bounds ?? .zero
+         }
+         
+         present(actionSheet, animated: true)
+         
+     }
+     
+     
+     
+     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let person = people[indexPath.item]
+        
+        let optionsAlert = UIAlertController(title: "Deseja renomear?", message: nil, preferredStyle: .alert)
+        optionsAlert.addTextField()
+        
+        optionsAlert.addAction(UIAlertAction(title: "ok", style: .default) { [weak self, weak optionsAlert] _ in
+            guard let newName = optionsAlert?.textFields?[0].text else { return }
             person.name = newName
             self?.collectionView.reloadData()
         })
         
-        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        present(ac, animated: true)
+        optionsAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(optionsAlert, animated: true)
     }
-}
+    
+    / *
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let person = people[indexPath.item]
+
+        // Primeiro alerta: deseja renomear?
+        let confirm = UIAlertController(title: "Deseja renomear?", message: nil, preferredStyle: .alert)
+        
+        // Ação: Renomear
+        confirm.addAction(UIAlertAction(title: "Renomear", style: .default) { [weak self] _ in
+            // Segundo alerta: campo para editar o nome
+            let renameAlert = UIAlertController(title: "Novo nome", message: nil, preferredStyle: .alert)
+            renameAlert.addTextField()
+
+            renameAlert.addAction(UIAlertAction(title: "OK", style: .default) { [weak self, weak renameAlert] _ in
+                guard let newName = renameAlert?.textFields?[0].text else { return }
+                person.name = newName
+                self?.collectionView.reloadData()
+            })
+
+            renameAlert.addAction(UIAlertAction(title: "Cancelar", style: .cancel))
+            self?.present(renameAlert, animated: true)
+        })
+
+        // Ação: Cancelar
+        confirm.addAction(UIAlertAction(title: "Cancelar", style: .cancel))
+
+        present(confirm, animated: true)
+    }*/

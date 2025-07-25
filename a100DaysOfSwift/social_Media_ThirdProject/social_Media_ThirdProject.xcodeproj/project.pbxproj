@@ -6,12 +6,7 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		A15B3ED22E31825900CC1375 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15B3ED12E31825900CC1375 /* Person.swift */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXFileReference section */
-		A15B3ED12E31825900CC1375 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		A1635D992DDEB5A90075292D /* social_Media_ThirdProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = social_Media_ThirdProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -50,7 +45,6 @@
 		A1635D902DDEB5A90075292D = {
 			isa = PBXGroup;
 			children = (
-				A15B3ED12E31825900CC1375 /* Person.swift */,
 				A1635D9B2DDEB5A90075292D /* social_Media_ThirdProject */,
 				A1635D9A2DDEB5A90075292D /* Products */,
 			);
@@ -138,7 +132,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A15B3ED22E31825900CC1375 /* Person.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

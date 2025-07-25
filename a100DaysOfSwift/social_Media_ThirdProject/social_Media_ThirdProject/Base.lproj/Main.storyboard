@@ -19,21 +19,25 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="dxu-sA-Ea4">
                                 <rect key="frame" x="16" y="360" width="360" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.76099112376574418" green="0.68866800643362236" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.78656241177196251" green="0.77745805913122235" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Galeria"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Galeria">
+                                    <fontDescription key="titleFontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="48"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <segue destination="FMF-Ze-nLA" kind="show" id="v1q-iH-jig"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="obP-fu-7mP">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="Picture" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="obP-fu-7mP">
                                 <rect key="frame" x="16" y="240" width="360" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.82929645833971544" green="0.63429393142206836" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.89055086627502511" green="0.80435872459433999" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Fotos"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Fotos">
+                                    <fontDescription key="titleFontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="48"/>
+                                </buttonConfiguration>
                                 <connections>
-                                    <segue destination="Tmh-zj-RGe" kind="show" id="xX6-CM-q5A"/>
+                                    <segue destination="Tmh-zj-RGe" kind="show" id="mZA-F0-BQg"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -41,6 +45,10 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="uRU-mQ-7AW"/>
+                    <connections>
+                        <outlet property="galery" destination="dxu-sA-Ea4" id="Cuk-QM-j5b"/>
+                        <outlet property="photos" destination="obP-fu-7mP" id="yD6-sJ-UUr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XaJ-3f-gTd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -49,7 +57,7 @@
         <!--Table View Controller-->
         <scene sceneID="kf1-EE-7eS">
             <objects>
-                <tableViewController id="Tmh-zj-RGe" customClass="TableViewController" customModule="social_Media_ThirdProject" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="Picture" id="Tmh-zj-RGe" customClass="TableViewController" customModule="social_Media_ThirdProject" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="jBQ-3J-2ZM">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -91,7 +99,7 @@
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="4Me-ci-BV1">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="scrollViewTexturedBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="h9d-WC-C5z">
                             <size key="itemSize" width="138" height="180"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -191,9 +199,6 @@
         </scene>
     </scenes>
     <resources>
-        <systemColor name="scrollViewTexturedBackgroundColor">
-            <color red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
