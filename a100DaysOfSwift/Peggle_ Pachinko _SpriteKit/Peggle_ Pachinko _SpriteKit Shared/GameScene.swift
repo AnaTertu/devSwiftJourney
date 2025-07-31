@@ -78,14 +78,37 @@ extension GameScene {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
         
+        let trianglePath = CGMutablePath()
+        let size: CGFloat = 64
+        let halfSize = size / 2
+
+        // Define os três pontos do triângulo
+        trianglePath.move(to: CGPoint(x: 0, y: halfSize)) //topo
+        trianglePath.addLine(to: CGPoint(x: -halfSize, y: -halfSize)) // canto inferior esquerdo
+        trianglePath.addLine(to: CGPoint(x: halfSize, y: -halfSize)) // canto inferior direito
+        trianglePath.closeSubpath()
+
+        let triangle = SKShapeNode(path: trianglePath)
+        triangle.fillColor = .green
+        triangle.strokeColor = .clear
+        triangle.physicsBody?.restitution = 9.0
+        triangle.position = location // onde você quiser colocar
+
+        // Física
+        triangle.physicsBody = SKPhysicsBody(polygonFrom: trianglePath)
+
+        addChild(triangle)
+
+        
         let ball = SKSpriteNode(imageNamed: "ballYellow")
         ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
-        ball.physicsBody?.restitution = 0.4
+        ball.physicsBody?.restitution = 1.0
         ball.position = location
         
         addChild(ball)
         
         let box = SKSpriteNode(color: .yellow, size: CGSize(width: 64, height: 64))
+        box.physicsBody?.restitution = 1.0
         box.position = location
         box.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 64, height: 64))
         
