@@ -78,7 +78,7 @@ extension GameScene {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
         
-        let box = SKSpriteNode(color: .red, size: CGSize(width: 64, height: 64))
+        let box = SKSpriteNode(color: .yellow, size: CGSize(width: 64, height: 64))
         box.position = location
         box.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 64, height: 64))
         
@@ -107,7 +107,7 @@ extension GameScene {
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
-            self.makeSpinny(at: t.location(in: self), color: SKColor.red)
+            self.makeSpinny(at: t.location(in: self), color: SKColor.yellow)
         }
     }
     
