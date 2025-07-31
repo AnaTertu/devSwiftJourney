@@ -17,6 +17,7 @@
 			membershipExceptions = (
 				Actions.sks,
 				Assets.xcassets,
+				FireParticles.sks,
 				GameScene.sks,
 				GameScene.swift,
 			);
@@ -26,6 +27,7 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Actions.sks,
+				FireParticles.sks,
 				GameScene.sks,
 				GameScene.swift,
 			);
