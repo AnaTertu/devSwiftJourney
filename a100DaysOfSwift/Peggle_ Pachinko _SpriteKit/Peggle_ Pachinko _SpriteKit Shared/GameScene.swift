@@ -53,6 +53,13 @@ class GameScene: SKScene {
         
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         
+        makeBouncer(at: CGPoint(x: 0, y: -380))
+        makeBouncer(at: CGPoint(x: -400, y: -390))
+        makeBouncer(at: CGPoint(x: 400, y: -390))
+        makeBouncer(at: CGPoint(x: 0, y: 0))
+        makeBouncer(at: CGPoint(x: -512, y: 0))
+        makeBouncer(at: CGPoint(x: 512, y: 0))
+        
         self.setUpScene()
     }
 
@@ -62,6 +69,16 @@ class GameScene: SKScene {
             spinny.strokeColor = color
             self.addChild(spinny)
         }
+    }
+    
+    func makeBouncer(at position: CGPoint) {
+        
+        let bouncer = SKSpriteNode(imageNamed: "bouncer")
+        bouncer.position = position
+        bouncer.physicsBody = SKPhysicsBody(circleOfRadius: bouncer.size.width / 2)
+        bouncer.physicsBody?.isDynamic = false
+        
+        addChild(bouncer)
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -78,41 +95,106 @@ extension GameScene {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
         
-        let trianglePath = CGMutablePath()
-        let size: CGFloat = 64
-        let halfSize = size / 2
-
-        // Define os três pontos do triângulo
-        trianglePath.move(to: CGPoint(x: 0, y: halfSize)) //topo
-        trianglePath.addLine(to: CGPoint(x: -halfSize, y: -halfSize)) // canto inferior esquerdo
-        trianglePath.addLine(to: CGPoint(x: halfSize, y: -halfSize)) // canto inferior direito
-        trianglePath.closeSubpath()
-
-        let triangle = SKShapeNode(path: trianglePath)
-        triangle.fillColor = .green
-        triangle.strokeColor = .clear
-        triangle.physicsBody?.restitution = 9.0
-        triangle.position = location // onde você quiser colocar
-
-        // Física
-        triangle.physicsBody = SKPhysicsBody(polygonFrom: trianglePath)
-
-        addChild(triangle)
-
+        switch touches.count {
+        case 1:
+            addBall(at: location)
+            addCone(at: location)
+        case 2:
+            addTriangle(at: location)
+            addBox(at: location)
+        default:
+            break
         
-        let ball = SKSpriteNode(imageNamed: "ballYellow")
-        ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
-        ball.physicsBody?.restitution = 1.0
-        ball.position = location
+        }
         
-        addChild(ball)
+        func addCone(at location: CGPoint) {
+            let size: CGFloat = 64
+            let path = CGMutablePath()
+            let points = 4
+            let angleIncrement = .pi / CGFloat(points)
+            let radius = size / 2
+            let innerRadius = radius * 0.5
+            var angle: CGFloat = -.pi / 2
+            var firstPoint = true
+            
+            for _ in 0..<points * 2 {
+                let r = (firstPoint ? radius : innerRadius)
+                let x = r * cos(angle)
+                let y = r * sin(angle)
+                
+                if firstPoint {
+                    path.move(to: CGPoint(x: x, y: y))
+                    firstPoint = false
+                } else {
+                    path.addLine(to: CGPoint(x: x, y: y))
+                }
+                
+                angle += angleIncrement
+            }
+            
+            path.closeSubpath()
+            
+            let cone = SKShapeNode(path: path)
+            cone.fillColor = .orange
+            cone.strokeColor = .clear
+            cone.position = location
+            
+            cone.physicsBody = SKPhysicsBody(polygonFrom: path)
+            cone.physicsBody?.restitution = 1.0
+            cone.physicsBody?.friction = 0.2
+            cone.physicsBody?.linearDamping = 0.1
+            
+            addChild(cone)
+        }
         
-        let box = SKSpriteNode(color: .yellow, size: CGSize(width: 64, height: 64))
-        box.physicsBody?.restitution = 1.0
-        box.position = location
-        box.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 64, height: 64))
+        func addTriangle(at location: CGPoint) {
+            
+            let trianglePath = CGMutablePath()
+            let size: CGFloat = 64
+            let halfSize = size / 2
+            
+            // Define os três pontos do triângulo
+            trianglePath.move(to: CGPoint(x: 0, y: halfSize)) //topo
+            trianglePath.addLine(to: CGPoint(x: -halfSize, y: -halfSize)) // canto inferior esquerdo
+            trianglePath.addLine(to: CGPoint(x: halfSize, y: -halfSize)) // canto inferior direito
+            trianglePath.closeSubpath()
+            
+            let triangle = SKShapeNode(path: trianglePath)
+            triangle.fillColor = .green
+            triangle.strokeColor = .clear
+            triangle.physicsBody?.restitution = 1.0
+            triangle.position = location // onde você quiser colocar
+            
+            // Física
+            triangle.physicsBody = SKPhysicsBody(polygonFrom: trianglePath)
+            
+            addChild(triangle)
+        }
+
+        func addBall(at location: CGPoint) {
+            
+            let ballNames = ["ballYellow", "ballBlue", "ballYellow", "ballCyan", "ballYellow", "ballGreen", "ballYellow", "ballGrey", "ballYellow", "ballPurple", "ballYellow", "ballRed"]
+            
+            let randomName = ballNames.randomElement() ?? "ballYellow"
+            
+            let ball = SKSpriteNode(imageNamed: randomName)
+            ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
+            ball.physicsBody?.restitution = 1.0
+            ball.physicsBody?.friction = 0.2
+            ball.physicsBody?.linearDamping = 0.1
+            ball.position = location
+            
+            addChild(ball)
+        }
         
-        addChild(box)
+        func addBox(at location: CGPoint) {
+            let box = SKSpriteNode(color: .systemBlue, size: CGSize(width: 64, height: 64))
+            box.physicsBody?.restitution = 1.0
+            box.position = location
+            box.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 64, height: 64))
+            
+            addChild(box)
+        }
         
         if let label = self.label {
             label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
