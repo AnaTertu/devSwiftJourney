@@ -46,7 +46,9 @@ open a100DaysOfSwift/Peggle_Pachinko_SpriteKit
 | Toque único                  | Toque duplo                       |
 | ---------------------------- | --------------------------------- |
 | ![bola e cone](docs/ball_cone.png) | ![quadrado e triangulo](docs/box-triangle.png) |
-|             ![Animação do jogo](jogo_animado.gif)                |
+
+
+![Animação do jogo](jogo_animado.gif)
 
 
 ---
