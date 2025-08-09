@@ -47,12 +47,11 @@ open a100DaysOfSwift/Peggle_Pachinko_SpriteKit
 | ---------------------------- | --------------------------------- |
 | ![bola e cone](docs/ball_cone.png) | ![quadrado e triangulo](docs/box-triangle.png) |
 
+---
 
 ![Animação do jogo](jogo_animado.gif)
 
-
 ---
-
 ## 🔮 Melhorias Futuras
 
 * Adicionar **sons** de colisão
