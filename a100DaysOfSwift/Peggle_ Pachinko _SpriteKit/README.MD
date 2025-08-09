@@ -49,7 +49,7 @@ open a100DaysOfSwift/Peggle_Pachinko_SpriteKit
 
 ---
 
-![Animação do jogo](jogo_animado.gif)
+![Animação do jogo](docs/jogo_animado.gif)
 
 ---
 ## 🔮 Melhorias Futuras
