@@ -6,9 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A1F643502E468F340034482D /* README.MD in Resources */ = {isa = PBXBuildFile; fileRef = A1F6434F2E468F1E0034482D /* README.MD */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		A15B3F122E381E7700CC1375 /* Peggle_ Pachinko _SpriteKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Peggle_ Pachinko _SpriteKit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A15B3F232E381E7700CC1375 /* Peggle_ Pachinko _SpriteKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Peggle_ Pachinko _SpriteKit.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1F6434F2E468F1E0034482D /* README.MD */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.MD; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -50,6 +55,11 @@
 			path = "Peggle_ Pachinko _SpriteKit iOS";
 			sourceTree = "<group>";
 		};
+		A1F643512E46D4B50034482D /* docs */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = docs;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +83,8 @@
 		A15B3F042E381E7400CC1375 = {
 			isa = PBXGroup;
 			children = (
+				A1F643512E46D4B50034482D /* docs */,
+				A1F6434F2E468F1E0034482D /* README.MD */,
 				A15B3F092E381E7500CC1375 /* Peggle_ Pachinko _SpriteKit Shared */,
 				A15B3F142E381E7700CC1375 /* Peggle_ Pachinko _SpriteKit iOS */,
 				A15B3F132E381E7700CC1375 /* Products */,
@@ -105,6 +117,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				A15B3F142E381E7700CC1375 /* Peggle_ Pachinko _SpriteKit iOS */,
+				A1F643512E46D4B50034482D /* docs */,
 			);
 			name = "Peggle_ Pachinko _SpriteKit iOS";
 			packageProductDependencies = (
@@ -175,6 +188,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1F643502E468F340034482D /* README.MD in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
