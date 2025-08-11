@@ -1,6 +1,6 @@
 import SpriteKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: - Propriedades
     fileprivate var label : SKLabelNode?
@@ -52,6 +52,7 @@ class GameScene: SKScene {
         addChild(background)
         
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        physicsWorld.contactDelegate = self
         
         makeBouncer(at: CGPoint(x: -512, y: 0))
         makeBouncer(at: CGPoint(x: 512, y: 0))
@@ -95,13 +96,18 @@ class GameScene: SKScene {
         if isGood {
             slotBase = SKSpriteNode(imageNamed: "slotBaseGood")
             slotGlow = SKSpriteNode(imageNamed: "slotGlowGood")
+            slotBase.name = "good"
         } else {
             slotBase = SKSpriteNode(imageNamed: "slotBaseBad")
             slotGlow = SKSpriteNode(imageNamed: "slotGlowBad")
+            slotBase.name = "bad"
         }
         
         slotBase.position = position
         slotGlow.position = position
+        
+        slotBase.physicsBody = SKPhysicsBody(rectangleOf: slotBase.size)
+        slotBase.physicsBody?.isDynamic = false
         
         addChild(slotBase)
         addChild(slotGlow)
@@ -193,7 +199,9 @@ extension GameScene {
             triangle.fillColor = .green
             triangle.strokeColor = .clear
             triangle.physicsBody?.restitution = 1.0
+            triangle.physicsBody?.contactTestBitMask = triangle.physicsBody?.collisionBitMask ?? 0
             triangle.position = location // onde você quiser colocar
+            triangle.name = "triangle"
             
             // Física
             triangle.physicsBody = SKPhysicsBody(polygonFrom: trianglePath)
@@ -210,9 +218,11 @@ extension GameScene {
             let ball = SKSpriteNode(imageNamed: randomName)
             ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
             ball.physicsBody?.restitution = 1.0
+            ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
             ball.physicsBody?.friction = 0.2
             ball.physicsBody?.linearDamping = 0.1
             ball.position = location
+            ball.name = "ball"
             
             addChild(ball)
         }
@@ -234,6 +244,26 @@ extension GameScene {
             self.makeSpinny(at: t.location(in: self), color: SKColor.yellow)
         }
     }
+
+    func collision(between ball: SKNode, object: SKNode) {
+        if object.name == "good" {
+            destroy(ball: ball)
+        } else if object.name == "bad" {
+            destroy(ball: ball)
+        }
+    }
+    
+    func destroy(ball: SKNode) {
+        ball.removeFromParent()
+    }
+    
+    func didBegin(_  contact: SKPhysicsContact) {
+        if contact.bodyA.node?.name == "ball" {
+            collision(between: contact.bodyA.node!, object: contact.bodyB.node!)
+        } else if contact.bodyB.node?.name == "ball" {
+            collision(between: contact.bodyB.node!, object: contact.bodyA.node!)
+        }
+    }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
@@ -252,8 +282,6 @@ extension GameScene {
             self.makeSpinny(at: t.location(in: self), color: SKColor.yellow)
         }
     }
-    
-   
 }
 #endif
 
