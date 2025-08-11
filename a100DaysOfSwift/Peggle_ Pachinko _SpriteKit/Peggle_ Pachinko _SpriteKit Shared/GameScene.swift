@@ -5,8 +5,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // MARK: - Propriedades
     fileprivate var label : SKLabelNode?
     fileprivate var spinnyNode : SKShapeNode?
-
     
+    let removableNames = ["ball", "box", "triangle", "cone"]
+
     class func newGameScene() -> GameScene {
         // Load 'GameScene.sks' as an SKScene.
         guard let scene = SKScene(fileNamed: "GameScene") as? GameScene else {
@@ -144,7 +145,7 @@ extension GameScene {
         }
         
         func addCone(at location: CGPoint) {
-            let size: CGFloat = 64
+            let size: CGFloat = 32
             let path = CGMutablePath()
             let points = 4
             let angleIncrement = .pi / CGFloat(points)
@@ -174,9 +175,11 @@ extension GameScene {
             cone.fillColor = .orange
             cone.strokeColor = .clear
             cone.position = location
+            cone.name = "cone"
             
             cone.physicsBody = SKPhysicsBody(polygonFrom: path)
             cone.physicsBody?.restitution = 1.0
+            cone.physicsBody?.contactTestBitMask = cone.physicsBody?.collisionBitMask ?? 0
             cone.physicsBody?.friction = 0.2
             cone.physicsBody?.linearDamping = 0.1
             
@@ -186,7 +189,7 @@ extension GameScene {
         func addTriangle(at location: CGPoint) {
             
             let trianglePath = CGMutablePath()
-            let size: CGFloat = 64
+            let size: CGFloat = 32
             let halfSize = size / 2
             
             // Define os três pontos do triângulo
@@ -198,13 +201,16 @@ extension GameScene {
             let triangle = SKShapeNode(path: trianglePath)
             triangle.fillColor = .green
             triangle.strokeColor = .clear
-            triangle.physicsBody?.restitution = 1.0
-            triangle.physicsBody?.contactTestBitMask = triangle.physicsBody?.collisionBitMask ?? 0
             triangle.position = location // onde você quiser colocar
             triangle.name = "triangle"
             
             // Física
             triangle.physicsBody = SKPhysicsBody(polygonFrom: trianglePath)
+            triangle.physicsBody?.isDynamic = true
+            triangle.physicsBody?.restitution = 1.0
+            triangle.physicsBody?.contactTestBitMask = triangle.physicsBody?.collisionBitMask ?? 0
+            triangle.physicsBody?.friction = 0.2
+            triangle.physicsBody?.linearDamping = 0.1
             
             addChild(triangle)
         }
@@ -228,10 +234,16 @@ extension GameScene {
         }
         
         func addBox(at location: CGPoint) {
-            let box = SKSpriteNode(color: .yellow, size: CGSize(width: 64, height: 64))
-            box.physicsBody?.restitution = 1.0
+            let box = SKSpriteNode(color: .yellow, size: CGSize(width: 32, height: 32))
             box.position = location
-            box.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 64, height: 64))
+            box.name = "box"
+            
+            // Física
+            box.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 32, height: 32))
+            box.physicsBody?.restitution = 1.0
+            box.physicsBody?.contactTestBitMask = box.physicsBody?.collisionBitMask ?? 0
+            box.physicsBody?.friction = 0.2
+            box.physicsBody?.linearDamping = 0.1
             
             addChild(box)
         }
@@ -244,24 +256,48 @@ extension GameScene {
             self.makeSpinny(at: t.location(in: self), color: SKColor.yellow)
         }
     }
+    
+    func didBegin(_  contact: SKPhysicsContact) {
+        guard let nodeA = contact.bodyA.node, let nodeB = contact.bodyB.node else { return }
+        
+        collision(between: nodeA, and: nodeB)
+    }
 
-    func collision(between ball: SKNode, object: SKNode) {
-        if object.name == "good" {
-            destroy(ball: ball)
-        } else if object.name == "bad" {
-            destroy(ball: ball)
+    func collision(between firstNode: SKNode, and secondNode: SKNode) {
+        
+        if firstNode.name == "good" || firstNode.name == "bad" {
+            handleCollision(target: firstNode, object: secondNode)
+        } else if secondNode.name == "good" || secondNode.name == "bad" {
+            handleCollision(target: secondNode, object: firstNode)
         }
     }
     
-    func destroy(ball: SKNode) {
+    func destroyBall(ball: SKNode) {
         ball.removeFromParent()
     }
     
-    func didBegin(_  contact: SKPhysicsContact) {
-        if contact.bodyA.node?.name == "ball" {
-            collision(between: contact.bodyA.node!, object: contact.bodyB.node!)
-        } else if contact.bodyB.node?.name == "ball" {
-            collision(between: contact.bodyB.node!, object: contact.bodyA.node!)
+    func destroyTriangle(triangle: SKNode) {
+        triangle.removeFromParent()
+    }
+    
+    func destroyBox(box: SKNode) {
+        box.removeFromParent()
+    }
+    
+    func destroyCone(cone: SKNode) {
+        cone.removeFromParent()
+    }
+    
+    func handleCollision(target: SKNode, object: SKNode) {
+        switch target.name {
+        case "good":
+            if object.name == "ball" { destroyBall(ball: object) }
+            if object.name == "box" { destroyBox(box: object)}
+        case "bad":
+            if object.name == "triangle" { destroyTriangle(triangle: object) }
+            if object.name == "cone" { destroyCone(cone: object)}
+        default:
+            break
         }
     }
     
