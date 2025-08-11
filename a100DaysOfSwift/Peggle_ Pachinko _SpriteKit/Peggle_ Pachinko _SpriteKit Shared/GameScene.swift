@@ -10,8 +10,8 @@ class GameScene: SKScene {
     class func newGameScene() -> GameScene {
         // Load 'GameScene.sks' as an SKScene.
         guard let scene = SKScene(fileNamed: "GameScene") as? GameScene else {
-            print("Failed to load GameScene.sks")
-            abort()
+          //  print("Failed to load GameScene.sks")
+         abort()
         }
         
         // Set the scale mode to scale to fit the window
@@ -53,12 +53,18 @@ class GameScene: SKScene {
         
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         
-        makeBouncer(at: CGPoint(x: 0, y: -380))
-        makeBouncer(at: CGPoint(x: -400, y: -390))
-        makeBouncer(at: CGPoint(x: 400, y: -390))
-        makeBouncer(at: CGPoint(x: 0, y: 0))
         makeBouncer(at: CGPoint(x: -512, y: 0))
         makeBouncer(at: CGPoint(x: 512, y: 0))
+        makeBouncer(at: CGPoint(x: 0, y: -390))
+        makeBouncer(at: CGPoint(x: 256, y: -390))
+        makeBouncer(at: CGPoint(x: 512, y: -390))
+        makeBouncer(at: CGPoint(x: -256, y: -390))
+        makeBouncer(at: CGPoint(x: -512, y: -390))
+        
+        makeSlot(at: CGPoint(x: 128, y: -380), isGood: true)
+        makeSlot(at: CGPoint(x: 384, y: -380), isGood: false)
+        makeSlot(at: CGPoint(x: -128, y: -380), isGood: false)
+        makeSlot(at: CGPoint(x: -384, y: -380), isGood: true)
         
         self.setUpScene()
     }
@@ -79,6 +85,26 @@ class GameScene: SKScene {
         bouncer.physicsBody?.isDynamic = false
         
         addChild(bouncer)
+    }
+    
+    func makeSlot(at position: CGPoint, isGood: Bool) {
+        
+        var slotBase: SKSpriteNode
+        var slotGlow: SKSpriteNode
+        
+        if isGood {
+            slotBase = SKSpriteNode(imageNamed: "slotBaseGood")
+            slotGlow = SKSpriteNode(imageNamed: "slotGlowGood")
+        } else {
+            slotBase = SKSpriteNode(imageNamed: "slotBaseBad")
+            slotGlow = SKSpriteNode(imageNamed: "slotGlowBad")
+        }
+        
+        slotBase.position = position
+        slotGlow.position = position
+        
+        addChild(slotBase)
+        addChild(slotGlow)
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -235,7 +261,7 @@ extension GameScene {
         if let label = self.label {
             label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut")
         }
-        self.makeSpinny(at: event.location(in: self), color: SKColor.green)
+        self.makeSpinny(at: event.location(in: self), color: SKColor.yellow)
     }
     
     override func mouseDragged(with event: NSEvent) {
