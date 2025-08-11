@@ -105,6 +105,10 @@ class GameScene: SKScene {
         
         addChild(slotBase)
         addChild(slotGlow)
+        
+        let spin = SKAction.rotate(byAngle: .pi, duration: 10)
+        let spinForever = SKAction.repeatForever(spin)
+        slotGlow.run(spinForever)
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -214,7 +218,7 @@ extension GameScene {
         }
         
         func addBox(at location: CGPoint) {
-            let box = SKSpriteNode(color: .systemBlue, size: CGSize(width: 64, height: 64))
+            let box = SKSpriteNode(color: .yellow, size: CGSize(width: 64, height: 64))
             box.physicsBody?.restitution = 1.0
             box.position = location
             box.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 64, height: 64))
@@ -227,13 +231,13 @@ extension GameScene {
         }
         
         for t in touches {
-            self.makeSpinny(at: t.location(in: self), color: SKColor.green)
+            self.makeSpinny(at: t.location(in: self), color: SKColor.yellow)
         }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         for t in touches {
-            self.makeSpinny(at: t.location(in: self), color: SKColor.blue)
+            self.makeSpinny(at: t.location(in: self), color: SKColor.yellow)
         }
     }
     
