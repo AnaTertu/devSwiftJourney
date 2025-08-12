@@ -22,11 +22,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func setUpScene() {
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
+        
+        let labels = ["iwant", "ifTheyLaugh", "iLaugh", "iDeserveIt"]
+        
+        for name in labels {
+            
+            if let labelNode = self.childNode(withName: name) as? SKLabelNode {
+        
+                self.label = self.childNode(withName: name) as? SKLabelNode
+                if let label = self.label {
+                    label.alpha = 0.0
+                    let fadeIn = SKAction.fadeIn(withDuration: 2.0)
+                    let pulse = SKAction.sequence([
+                        SKAction.scale(to: 1.2, duration: 2.0),
+                        SKAction.scale(to: 1.0, duration: 2.0)
+                    ])
+                    let repeatPulse = SKAction.repeatForever(pulse)
+                    
+                    label.run(fadeIn)
+                    label.run(repeatPulse)
+                }
+            
+                labelNode.alpha = 0.0
+                let fadeIn = SKAction.fadeIn(withDuration: 2.0)
+                labelNode.run(fadeIn)
+            }
         }
         
         // Create shape node to use during mouse interaction
@@ -55,6 +75,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsWorld.contactDelegate = self
         
+        makeSlot(at: CGPoint(x: 128, y: -380), isGood: true)
+        makeSlot(at: CGPoint(x: 384, y: -380), isGood: false)
+        makeSlot(at: CGPoint(x: -128, y: -380), isGood: false)
+        makeSlot(at: CGPoint(x: -384, y: -380), isGood: true)
+        
         makeBouncer(at: CGPoint(x: -512, y: 0))
         makeBouncer(at: CGPoint(x: 512, y: 0))
         makeBouncer(at: CGPoint(x: 0, y: -390))
@@ -62,11 +87,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         makeBouncer(at: CGPoint(x: 512, y: -390))
         makeBouncer(at: CGPoint(x: -256, y: -390))
         makeBouncer(at: CGPoint(x: -512, y: -390))
-        
-        makeSlot(at: CGPoint(x: 128, y: -380), isGood: true)
-        makeSlot(at: CGPoint(x: 384, y: -380), isGood: false)
-        makeSlot(at: CGPoint(x: -128, y: -380), isGood: false)
-        makeSlot(at: CGPoint(x: -384, y: -380), isGood: true)
         
         self.setUpScene()
     }
