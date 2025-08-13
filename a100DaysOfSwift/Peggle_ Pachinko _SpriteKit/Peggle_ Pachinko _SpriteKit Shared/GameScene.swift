@@ -6,6 +6,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     fileprivate var label : SKLabelNode?
     fileprivate var spinnyNode : SKShapeNode?
     
+    var scoreLabel: SKLabelNode!
+    
+    var score = 0 {
+        didSet {
+            scoreLabel.text = "Score: \(score)"
+        }
+    }
+    
+    var clickLabel: SKLabelNode!
+    
+    var click = 0 {
+        didSet {
+            clickLabel.text = "Clicks: \(click)"
+        }
+    }
+    
+    var editLabel: SKLabelNode!
+    
+    var editingMode: Bool = false {
+        didSet {
+            if editingMode {
+                editLabel.text = "Jogue"
+            } else {
+                editLabel.text = "Edite"
+            }
+        }
+    }
+    
     let removableNames = ["ball", "box", "triangle", "cone"]
 
     class func newGameScene() -> GameScene {
@@ -32,10 +60,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.label = self.childNode(withName: name) as? SKLabelNode
                 if let label = self.label {
                     label.alpha = 0.0
-                    let fadeIn = SKAction.fadeIn(withDuration: 2.0)
+                    let fadeIn = SKAction.fadeIn(withDuration: 3.0)
                     let pulse = SKAction.sequence([
-                        SKAction.scale(to: 1.2, duration: 2.0),
-                        SKAction.scale(to: 1.0, duration: 2.0)
+                        SKAction.scale(to: 1.2, duration: 3.0),
+                        SKAction.scale(to: 1.0, duration: 3.0)
                     ])
                     let repeatPulse = SKAction.repeatForever(pulse)
                     
@@ -71,6 +99,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         background.size = self.size
         
         addChild(background)
+        
+        scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
+        scoreLabel.text = "Score: 0"
+        scoreLabel.horizontalAlignmentMode = .right
+        scoreLabel.position = CGPoint(x: 490, y: 360)
+        addChild(scoreLabel)
+        
+        clickLabel = SKLabelNode(fontNamed: "Chalkduster")
+        clickLabel.text = "Click: 0"
+        clickLabel.horizontalAlignmentMode = .left
+        clickLabel.position = CGPoint(x: -490, y: 360)
+        addChild(clickLabel)
         
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsWorld.contactDelegate = self
@@ -156,9 +196,11 @@ extension GameScene {
         case 1:
             addBall(at: location)
             addCone(at: location)
+            click += 1
         case 2:
             addTriangle(at: location)
             addBox(at: location)
+            click += 1
         default:
             break
         
@@ -313,9 +355,11 @@ extension GameScene {
         case "good":
             if object.name == "ball" { destroyBall(ball: object) }
             if object.name == "box" { destroyBox(box: object)}
+            score += 1
         case "bad":
             if object.name == "triangle" { destroyTriangle(triangle: object) }
             if object.name == "cone" { destroyCone(cone: object)}
+            score += 1
         default:
             break
         }
