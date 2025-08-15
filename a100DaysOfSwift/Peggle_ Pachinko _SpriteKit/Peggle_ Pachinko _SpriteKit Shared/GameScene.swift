@@ -63,7 +63,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     let fadeIn = SKAction.fadeIn(withDuration: 3.0)
                     let pulse = SKAction.sequence([
                         SKAction.scale(to: 1.2, duration: 3.0),
-                        SKAction.scale(to: 1.0, duration: 3.0)
+                        SKAction.scale(to: 1.0, duration: 3.0),
+                        SKAction.scale(to: 0.0, duration: 0.0)
                     ])
                     let repeatPulse = SKAction.repeatForever(pulse)
                     
@@ -73,6 +74,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
                 labelNode.alpha = 0.0
                 let fadeIn = SKAction.fadeIn(withDuration: 2.0)
+                labelNode.fontColor = labelNode.fontColor?.withAlphaComponent(0.5)
                 labelNode.run(fadeIn)
             }
         }
