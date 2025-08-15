@@ -103,13 +103,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel = SKLabelNode(fontNamed: "Chalkduster")
         scoreLabel.text = "Score: 0"
         scoreLabel.horizontalAlignmentMode = .right
-        scoreLabel.position = CGPoint(x: 490, y: 360)
+        scoreLabel.position = CGPoint(x: 490, y: 358)
         addChild(scoreLabel)
+        
+        editLabel = SKLabelNode(fontNamed: "Chalkduster")
+        editLabel.text = "Edite"
+        editLabel.horizontalAlignmentMode = .center
+        editLabel.position = CGPoint(x: 0, y: 355)
+        addChild(editLabel)
         
         clickLabel = SKLabelNode(fontNamed: "Chalkduster")
         clickLabel.text = "Click: 0"
         clickLabel.horizontalAlignmentMode = .left
-        clickLabel.position = CGPoint(x: -490, y: 360)
+        clickLabel.position = CGPoint(x: -490, y: 358)
         addChild(clickLabel)
         
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
@@ -192,122 +198,141 @@ extension GameScene {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
         
-        switch touches.count {
-        case 1:
-            addBall(at: location)
-            addCone(at: location)
-            click += 1
-        case 2:
-            addTriangle(at: location)
-            addBox(at: location)
-            click += 1
-        default:
-            break
+        let objects = nodes(at: location)
         
-        }
-        
-        func addCone(at location: CGPoint) {
-            let size: CGFloat = 32
-            let path = CGMutablePath()
-            let points = 4
-            let angleIncrement = .pi / CGFloat(points)
-            let radius = size / 2
-            let innerRadius = radius * 0.5
-            var angle: CGFloat = -.pi / 2
-            var firstPoint = true
-            
-            for _ in 0..<points * 2 {
-                let r = (firstPoint ? radius : innerRadius)
-                let x = r * cos(angle)
-                let y = r * sin(angle)
-                
-                if firstPoint {
-                    path.move(to: CGPoint(x: x, y: y))
-                    firstPoint = false
-                } else {
-                    path.addLine(to: CGPoint(x: x, y: y))
+        if objects.contains(editLabel){
+            editingMode.toggle()
+        } else {
+            if editingMode {
+                let size = CGSize(width: Int.random(in: 16...128), height: 16)
+                let box = SKSpriteNode(color: UIColor(red: CGFloat.random(in: 0...1), green: CGFloat.random(in: 0...1), blue: CGFloat.random(in: 0...3), alpha: 1), size: size)
+                box.zRotation = CGFloat.random(in: 0...6)
+                box.position = location
+
+                box.physicsBody = SKPhysicsBody(rectangleOf: box.size)
+                box.physicsBody?.isDynamic = false
+
+                addChild(box)
+            } else {
+                switch touches.count {
+                case 1:
+                    addBall(at: location)
+                    addCone(at: location)
+                    click += 1
+                case 2:
+                    addTriangle(at: location)
+                    addBox(at: location)
+                    click += 1
+                default:
+                    break
+                    
                 }
                 
-                angle += angleIncrement
+                func addCone(at location: CGPoint) {
+                    let size: CGFloat = 32
+                    let path = CGMutablePath()
+                    let points = 4
+                    let angleIncrement = .pi / CGFloat(points)
+                    let radius = size / 2
+                    let innerRadius = radius * 0.5
+                    var angle: CGFloat = -.pi / 2
+                    var firstPoint = true
+                    
+                    for _ in 0..<points * 2 {
+                        let r = (firstPoint ? radius : innerRadius)
+                        let x = r * cos(angle)
+                        let y = r * sin(angle)
+                        
+                        if firstPoint {
+                            path.move(to: CGPoint(x: x, y: y))
+                            firstPoint = false
+                        } else {
+                            path.addLine(to: CGPoint(x: x, y: y))
+                        }
+                        
+                        angle += angleIncrement
+                    }
+                    
+                    path.closeSubpath()
+                    
+                    let cone = SKShapeNode(path: path)
+                    cone.fillColor = .orange
+                    cone.strokeColor = .clear
+                    cone.position = location
+                    cone.name = "cone"
+                    
+                    cone.physicsBody = SKPhysicsBody(polygonFrom: path)
+                    cone.physicsBody?.restitution = 1.0
+                    cone.physicsBody?.contactTestBitMask = cone.physicsBody?.collisionBitMask ?? 0
+                    cone.physicsBody?.friction = 0.2
+                    cone.physicsBody?.linearDamping = 0.1
+                    
+                    addChild(cone)
+                }
+                
+                func addTriangle(at location: CGPoint) {
+                    
+                    let trianglePath = CGMutablePath()
+                    let size: CGFloat = 32
+                    let halfSize = size / 2
+                    
+                    // Define os três pontos do triângulo
+                    trianglePath.move(to: CGPoint(x: 0, y: halfSize)) //topo
+                    trianglePath.addLine(to: CGPoint(x: -halfSize, y: -halfSize)) // canto inferior esquerdo
+                    trianglePath.addLine(to: CGPoint(x: halfSize, y: -halfSize)) // canto inferior direito
+                    trianglePath.closeSubpath()
+                    
+                    let triangle = SKShapeNode(path: trianglePath)
+                    triangle.fillColor = .green
+                    triangle.strokeColor = .clear
+                    triangle.position = location // onde você quiser colocar
+                    triangle.name = "triangle"
+                    
+                    // Física
+                    triangle.physicsBody = SKPhysicsBody(polygonFrom: trianglePath)
+                    triangle.physicsBody?.isDynamic = true
+                    triangle.physicsBody?.restitution = 1.0
+                    triangle.physicsBody?.contactTestBitMask = triangle.physicsBody?.collisionBitMask ?? 0
+                    triangle.physicsBody?.friction = 0.2
+                    triangle.physicsBody?.linearDamping = 0.1
+                    
+                    addChild(triangle)
+                }
+                
+                func addBall(at location: CGPoint) {
+                    
+                    let ballNames = ["ballYellow", "ballBlue", "ballYellow", "ballCyan", "ballYellow", "ballGreen", "ballYellow", "ballGrey", "ballYellow", "ballPurple", "ballYellow", "ballRed"]
+                    
+                    let randomName = ballNames.randomElement() ?? "ballYellow"
+                    
+                    let ball = SKSpriteNode(imageNamed: randomName)
+                    ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
+                    ball.physicsBody?.restitution = 1.0
+                    ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
+                    ball.physicsBody?.friction = 0.2
+                    ball.physicsBody?.linearDamping = 0.1
+                    ball.position = location
+                    ball.name = "ball"
+                    
+                    addChild(ball)
+                }
+                
+                func addBox(at location: CGPoint) {
+                    let box = SKSpriteNode(color: .yellow, size: CGSize(width: 32, height: 32))
+                    box.position = location
+                    box.name = "box"
+                    
+                    // Física
+                    box.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 32, height: 32))
+                    box.physicsBody?.restitution = 1.0
+                    box.physicsBody?.contactTestBitMask = box.physicsBody?.collisionBitMask ?? 0
+                    box.physicsBody?.friction = 0.2
+                    box.physicsBody?.linearDamping = 0.1
+                    
+                    addChild(box)
+                }
+                
             }
-            
-            path.closeSubpath()
-            
-            let cone = SKShapeNode(path: path)
-            cone.fillColor = .orange
-            cone.strokeColor = .clear
-            cone.position = location
-            cone.name = "cone"
-            
-            cone.physicsBody = SKPhysicsBody(polygonFrom: path)
-            cone.physicsBody?.restitution = 1.0
-            cone.physicsBody?.contactTestBitMask = cone.physicsBody?.collisionBitMask ?? 0
-            cone.physicsBody?.friction = 0.2
-            cone.physicsBody?.linearDamping = 0.1
-            
-            addChild(cone)
-        }
-        
-        func addTriangle(at location: CGPoint) {
-            
-            let trianglePath = CGMutablePath()
-            let size: CGFloat = 32
-            let halfSize = size / 2
-            
-            // Define os três pontos do triângulo
-            trianglePath.move(to: CGPoint(x: 0, y: halfSize)) //topo
-            trianglePath.addLine(to: CGPoint(x: -halfSize, y: -halfSize)) // canto inferior esquerdo
-            trianglePath.addLine(to: CGPoint(x: halfSize, y: -halfSize)) // canto inferior direito
-            trianglePath.closeSubpath()
-            
-            let triangle = SKShapeNode(path: trianglePath)
-            triangle.fillColor = .green
-            triangle.strokeColor = .clear
-            triangle.position = location // onde você quiser colocar
-            triangle.name = "triangle"
-            
-            // Física
-            triangle.physicsBody = SKPhysicsBody(polygonFrom: trianglePath)
-            triangle.physicsBody?.isDynamic = true
-            triangle.physicsBody?.restitution = 1.0
-            triangle.physicsBody?.contactTestBitMask = triangle.physicsBody?.collisionBitMask ?? 0
-            triangle.physicsBody?.friction = 0.2
-            triangle.physicsBody?.linearDamping = 0.1
-            
-            addChild(triangle)
-        }
-
-        func addBall(at location: CGPoint) {
-            
-            let ballNames = ["ballYellow", "ballBlue", "ballYellow", "ballCyan", "ballYellow", "ballGreen", "ballYellow", "ballGrey", "ballYellow", "ballPurple", "ballYellow", "ballRed"]
-            
-            let randomName = ballNames.randomElement() ?? "ballYellow"
-            
-            let ball = SKSpriteNode(imageNamed: randomName)
-            ball.physicsBody = SKPhysicsBody(circleOfRadius: ball.size.width / 2.0)
-            ball.physicsBody?.restitution = 1.0
-            ball.physicsBody?.contactTestBitMask = ball.physicsBody?.collisionBitMask ?? 0
-            ball.physicsBody?.friction = 0.2
-            ball.physicsBody?.linearDamping = 0.1
-            ball.position = location
-            ball.name = "ball"
-            
-            addChild(ball)
-        }
-        
-        func addBox(at location: CGPoint) {
-            let box = SKSpriteNode(color: .yellow, size: CGSize(width: 32, height: 32))
-            box.position = location
-            box.name = "box"
-            
-            // Física
-            box.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 32, height: 32))
-            box.physicsBody?.restitution = 1.0
-            box.physicsBody?.contactTestBitMask = box.physicsBody?.collisionBitMask ?? 0
-            box.physicsBody?.friction = 0.2
-            box.physicsBody?.linearDamping = 0.1
-            
-            addChild(box)
         }
         
         if let label = self.label {
@@ -406,4 +431,3 @@ extension GameScene {
 
 }
 #endif
-
