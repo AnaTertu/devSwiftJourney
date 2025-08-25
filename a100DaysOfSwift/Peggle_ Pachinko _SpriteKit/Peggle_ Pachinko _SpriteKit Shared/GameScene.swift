@@ -429,6 +429,7 @@ extension SKNode  {
         
         fireFlies()
         fireParticles()
+        
         self.removeFromParent()
     }
 }
