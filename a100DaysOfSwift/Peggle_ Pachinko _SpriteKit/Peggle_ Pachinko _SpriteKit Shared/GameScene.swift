@@ -333,7 +333,6 @@ extension GameScene {
                     
                     addChild(box)
                 }
-                
             }
         }
         
@@ -361,32 +360,22 @@ extension GameScene {
         }
     }
     
-    func destroyBall(ball: SKNode) {
-        ball.removeFromParent()
-    }
-    
-    func destroyTriangle(triangle: SKNode) {
-        triangle.removeFromParent()
-    }
-    
-    func destroyBox(box: SKNode) {
-        box.removeFromParent()
-    }
-    
-    func destroyCone(cone: SKNode) {
-        cone.removeFromParent()
-    }
-    
     func handleCollision(target: SKNode, object: SKNode) {
+        let goodObjects: [String] = ["ball", "box"]
+        let badObjects: [String] = ["triangle", "cone"]
+        
         switch target.name {
+            
         case "good":
-            if object.name == "ball" { destroyBall(ball: object) }
-            if object.name == "box" { destroyBox(box: object)}
-            score += 1
+            if let name = object.name, goodObjects.contains(name) {
+                object.destroy()
+                score += 1
+            }
         case "bad":
-            if object.name == "triangle" { destroyTriangle(triangle: object) }
-            if object.name == "cone" { destroyCone(cone: object)}
-            score += 1
+            if let name = object.name, badObjects.contains(name) {
+                object.destroy()
+                score += 1
+            }
         default:
             break
         }
@@ -410,6 +399,26 @@ extension GameScene {
         }
     }
 }
+
+extension SKNode  {
+    func destroy() {
+        func fireParticles() {
+            if let fireParticles = SKEmitterNode(fileNamed: "FireParticles") {
+                fireParticles.position = self.position
+                self.scene?.addChild(fireParticles)
+                
+                fireParticles.run(SKAction.sequence ([
+                    SKAction.wait(forDuration: 2.0),
+                    SKAction.removeFromParent()
+                ]))
+            }
+        }
+        
+        fireParticles()
+        self.removeFromParent()
+    }
+}
+
 #endif
 
 #if os(OSX)
