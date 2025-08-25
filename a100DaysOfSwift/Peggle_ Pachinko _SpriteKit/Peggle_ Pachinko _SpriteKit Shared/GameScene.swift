@@ -402,6 +402,19 @@ extension GameScene {
 
 extension SKNode  {
     func destroy() {
+        
+        func fireFlies() {
+            if let fireFlies = SKEmitterNode(fileNamed: "Snow") {
+                fireFlies.position = self.position
+                self.scene?.addChild(fireFlies)
+                
+                fireFlies.run(SKAction.sequence ([
+                    SKAction.wait(forDuration: 2.0),
+                    SKAction.removeFromParent()
+                ]))
+            }
+        }
+        
         func fireParticles() {
             if let fireParticles = SKEmitterNode(fileNamed: "FireParticles") {
                 fireParticles.position = self.position
@@ -414,6 +427,7 @@ extension SKNode  {
             }
         }
         
+        fireFlies()
         fireParticles()
         self.removeFromParent()
     }

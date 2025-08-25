@@ -22,9 +22,15 @@
 			membershipExceptions = (
 				Actions.sks,
 				Assets.xcassets,
+				Bokeh.sks,
+				FireFlies.sks,
 				FireParticles.sks,
 				GameScene.sks,
 				GameScene.swift,
+				Magic.sks,
+				Rain.sks,
+				Snow.sks,
+				Spark.sks,
 			);
 			target = A15B3F112E381E7700CC1375 /* Peggle_ Pachinko _SpriteKit iOS */;
 		};
@@ -32,9 +38,15 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Actions.sks,
+				Bokeh.sks,
+				FireFlies.sks,
 				FireParticles.sks,
 				GameScene.sks,
 				GameScene.swift,
+				Magic.sks,
+				Rain.sks,
+				Snow.sks,
+				Spark.sks,
 			);
 			target = A15B3F222E381E7700CC1375 /* Peggle_ Pachinko _SpriteKit macOS */;
 		};
