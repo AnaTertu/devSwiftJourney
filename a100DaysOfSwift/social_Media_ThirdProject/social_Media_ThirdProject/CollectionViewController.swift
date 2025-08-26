@@ -108,6 +108,14 @@ class CollectionViewController: UICollectionViewController, UIImagePickerControl
             self?.present(renameAlert, animated: true)
         })
         
+        optionsAlert.addAction(UIAlertAction(title: "Local da imagem", style: .default) { [weak self] _ in
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary
+            self?.present(imagePicker, animated: true)
+            
+        })
+        
         optionsAlert.addAction(UIAlertAction(title: "Excluir", style: .destructive) { [weak self] _ in
             self?.people.remove(at: indexPath.item)
             self?.savePeople().self
