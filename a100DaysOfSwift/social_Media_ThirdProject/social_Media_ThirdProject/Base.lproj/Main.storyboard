@@ -53,7 +53,7 @@
                                     <fontDescription key="titleFontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="39"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <segue destination="D69-A8-i9n" kind="presentation" id="mKa-YT-jXY"/>
+                                    <segue destination="D69-A8-i9n" kind="show" id="mKa-YT-jXY"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -119,14 +119,14 @@
             <objects>
                 <viewController id="D69-A8-i9n" customClass="EditViewControler" customModule="social_Media_ThirdProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vMU-OC-j4w">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uml-b4-VDW">
-                                <rect key="frame" x="13" y="79" width="364" height="553"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uml-b4-VDW">
+                                <rect key="frame" x="13" y="162.00000000000003" width="364" height="470.66666666666674"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HND-LA-Wlg">
-                                        <rect key="frame" x="8" y="8" width="348" height="537"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HND-LA-Wlg">
+                                        <rect key="frame" x="8" y="8" width="348" height="454.66666666666669"/>
                                         <color key="backgroundColor" red="0.89055086630000002" green="0.80435872460000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </imageView>
                                 </subviews>
@@ -139,7 +139,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Intensity:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVc-cc-LID">
-                                <rect key="frame" x="31" y="670" width="77" height="21"/>
+                                <rect key="frame" x="31" y="671" width="77" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="Rr6-Ur-lk5"/>
                                     <constraint firstAttribute="width" constant="77" id="f1a-io-SeQ"/>
@@ -149,13 +149,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="KQT-nE-iBn">
-                                <rect key="frame" x="139" y="665.66666666666663" width="240" height="31"/>
+                                <rect key="frame" x="139" y="666.66666666666663" width="240" height="31"/>
                                 <connections>
                                     <action selector="intensityChanged:" destination="D69-A8-i9n" eventType="valueChanged" id="4Ay-S7-DcF"/>
                                 </connections>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g6T-10-GBR">
-                                <rect key="frame" x="272" y="714.66666666666663" width="91" height="34.333333333333371"/>
+                                <rect key="frame" x="272" y="715.66666666666663" width="91" height="34.333333333333371"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="91" id="t3W-4z-ndI"/>
                                 </constraints>
@@ -166,7 +166,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6D-jr-ks7">
-                                <rect key="frame" x="29.999999999999993" y="714" width="125.33333333333331" height="34.333333333333371"/>
+                                <rect key="frame" x="29.999999999999993" y="715" width="125.33333333333331" height="34.333333333333371"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Change Filter"/>
                                 <connections>
@@ -189,12 +189,13 @@
                             <constraint firstItem="uml-b4-VDW" firstAttribute="trailing" secondItem="KQT-nE-iBn" secondAttribute="trailing" id="aMf-DH-7sX"/>
                             <constraint firstItem="p6D-jr-ks7" firstAttribute="leading" secondItem="hRH-To-xS8" secondAttribute="leading" constant="30" id="h1U-g7-Fj5"/>
                             <constraint firstItem="KQT-nE-iBn" firstAttribute="top" secondItem="uml-b4-VDW" secondAttribute="bottom" constant="34" id="iFt-YU-2rB"/>
-                            <constraint firstItem="uml-b4-VDW" firstAttribute="top" secondItem="vMU-OC-j4w" secondAttribute="topMargin" constant="79" id="tkk-FP-PaD"/>
+                            <constraint firstItem="uml-b4-VDW" firstAttribute="top" secondItem="vMU-OC-j4w" secondAttribute="topMargin" id="tkk-FP-PaD"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Ap7-S0-1Ca"/>
                     <connections>
                         <outlet property="imageEdit" destination="HND-LA-Wlg" id="fMp-ep-pNc"/>
-                        <outlet property="intensity" destination="fVc-cc-LID" id="ZPz-P2-lv9"/>
+                        <outlet property="intensity" destination="KQT-nE-iBn" id="gSk-Jg-wf5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CUE-mG-Py1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
