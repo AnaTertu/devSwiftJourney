@@ -2,7 +2,35 @@ import CoreImage
 import Foundation
 import UIKit
 
-class  EditViewControler: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+enum FilterType: String, CaseIterable {
+    case bumpDistortion = "CIBumpDistortion"
+    case gaussianBlur = "CIGaussianBlur"
+    case pixellate = "CIPixellate"
+    case sepiaTone = "CISepiaTone"
+    case twirlDistortion = "CITwirlDistortion"
+    case unsharpMask = "CIUnsharpMask"
+    case vignette = "CIVignette"
+    case blendMode = "CIBlendMode"
+    case blendWithMask = "CIBlendWithMask"
+    case colorControls = "CIColorControls"
+    
+    var displayName: String {
+        switch self {
+            case .bumpDistortion: return "Bump Distortion"
+            case .gaussianBlur: return "Gaussian Blur"
+            case .pixellate: return "Pixellate"
+            case .sepiaTone: return "Sepia Tone"
+            case .twirlDistortion: return "Twirl Distortion"
+            case .unsharpMask: return "Unsharp Mask"
+            case .vignette: return "Vignette"
+            case .blendMode: return "Blend Mode"
+            case .blendWithMask: return "Blend With Mask"
+            case .colorControls: return "Color Controls"
+        }
+    }
+}
+
+class EditViewControler: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var imageEdit: UIImageView!
     
@@ -46,6 +74,13 @@ class  EditViewControler: UIViewController, UIImagePickerControllerDelegate, UIN
         
         let ac = UIAlertController(title: "Choose filter", message: nil, preferredStyle: .actionSheet)
         
+        for filter in FilterType.allCases {
+            ac.addAction(UIAlertAction(title: filter.displayName, style: .default, handler: { [weak self] _ in
+                self?.setFilter(filter)
+            }))
+        }
+        
+        /*
         ac.addAction(UIAlertAction(title: "CIBumpDistortion", style: .default, handler: setFilter))
         ac.addAction(UIAlertAction(title: "CIGaussianBlur", style: .default, handler: setFilter))
         ac.addAction(UIAlertAction(title: "CIPixellate", style: .default, handler: setFilter))
@@ -53,7 +88,9 @@ class  EditViewControler: UIViewController, UIImagePickerControllerDelegate, UIN
         ac.addAction(UIAlertAction(title: "CITwirlDistortion", style: .default, handler: setFilter))
         ac.addAction(UIAlertAction(title: "CIUnsharpMask", style: .default, handler: setFilter))
         ac.addAction(UIAlertAction(title: "CIVignette", style: .default, handler: setFilter))
-        ac.addAction(UIAlertAction(title: "Cancel", style: .default, handler: setFilter))
+         */
+        
+        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel)) //, handler: setFilter))
         
         if let popoverController = ac.popoverPresentationController {
             popoverController.sourceView = sender
@@ -63,11 +100,12 @@ class  EditViewControler: UIViewController, UIImagePickerControllerDelegate, UIN
         present(ac, animated:true)
     }
     
-    func setFilter(action: UIAlertAction) {
-        guard currentImage != nil else { return }
-        guard let actionTitle = action.title else { return }
+    func setFilter(_ filter: FilterType) { // (action: UIAlertAction) {
         
-        currentFilter = CIFilter(name: actionTitle)
+        guard currentImage != nil else { return }
+        //guard let actionTitle = action.title else { return }
+        
+        currentFilter = CIFilter(name: filter.rawValue) //(name: actionTitle)
         
         let beginImage = CIImage(cgImage: currentImage as! CGImage)
         currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
@@ -76,6 +114,8 @@ class  EditViewControler: UIViewController, UIImagePickerControllerDelegate, UIN
     }
     
     @IBAction func save(_ sender: Any) {
+        guard let image = imageEdit.image else { return }
+        UIImageWriteToSavedPhotosAlbum(image,self, nil, nil)// #selector(image(_:didFinishSavingWithError:contextInfo:)),
     }
     
     @IBAction func intensityChanged(_ sender: Any) {
@@ -107,6 +147,17 @@ class  EditViewControler: UIViewController, UIImagePickerControllerDelegate, UIN
         if let cgImage = context.createCGImage(outputImage, from: outputImage.extent) {
             let processedImage = UIImage(cgImage: cgImage)
             imageEdit.image = processedImage
+        }
+        
+        func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+            if let error = error {
+                let ac = UIAlertController(title: "Save Error", message: error.localizedDescription, preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title: "OK", style: .default))
+            } else  {
+                let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
+                ac.addAction(UIAlertAction(title:"OK", style: .default))
+                present(ac, animated: true)
+            }
         }
     }
 }
