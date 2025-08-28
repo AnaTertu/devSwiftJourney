@@ -1,7 +1,7 @@
 import CoreImage
-import Foundation
 import UIKit
 
+// MARK: - Filter Enum
 enum FilterType: String, CaseIterable {
     case bumpDistortion = "CIBumpDistortion"
     case gaussianBlur = "CIGaussianBlur"
@@ -30,17 +30,19 @@ enum FilterType: String, CaseIterable {
     }
 }
 
-class EditViewControler: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+// MARK: - View Controller
+class EditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    // MARK: - Outlets
     @IBOutlet weak var imageEdit: UIImageView!
-    
     @IBOutlet var intensity: UISlider!
     
+    // MARK: - Properties
     var currentImage: UIImage!
-    
     var context: CIContext!
     var currentFilter: CIFilter!
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,6 +52,10 @@ class EditViewControler: UIViewController, UIImagePickerControllerDelegate, UINa
         context = CIContext()
         currentFilter = CIFilter(name: "CISepiaTone")  //"CIColorControls")!
     }
+}
+
+// MARK: - Image Picker
+extension EditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @objc func importPicture() {
         let picker = UIImagePickerController()
@@ -79,16 +85,6 @@ class EditViewControler: UIViewController, UIImagePickerControllerDelegate, UINa
                 self?.setFilter(filter)
             }))
         }
-        
-        /*
-        ac.addAction(UIAlertAction(title: "CIBumpDistortion", style: .default, handler: setFilter))
-        ac.addAction(UIAlertAction(title: "CIGaussianBlur", style: .default, handler: setFilter))
-        ac.addAction(UIAlertAction(title: "CIPixellate", style: .default, handler: setFilter))
-        ac.addAction(UIAlertAction(title: "CISepiaTone", style: .default, handler: setFilter))
-        ac.addAction(UIAlertAction(title: "CITwirlDistortion", style: .default, handler: setFilter))
-        ac.addAction(UIAlertAction(title: "CIUnsharpMask", style: .default, handler: setFilter))
-        ac.addAction(UIAlertAction(title: "CIVignette", style: .default, handler: setFilter))
-         */
         
         ac.addAction(UIAlertAction(title: "Cancel", style: .cancel)) //, handler: setFilter))
         
@@ -148,16 +144,17 @@ class EditViewControler: UIViewController, UIImagePickerControllerDelegate, UINa
             let processedImage = UIImage(cgImage: cgImage)
             imageEdit.image = processedImage
         }
-        
-        func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-            if let error = error {
-                let ac = UIAlertController(title: "Save Error", message: error.localizedDescription, preferredStyle: .alert)
-                ac.addAction(UIAlertAction(title: "OK", style: .default))
-            } else  {
-                let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
-                ac.addAction(UIAlertAction(title:"OK", style: .default))
-                present(ac, animated: true)
-            }
+    }
+    
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            let ac = UIAlertController(title: "Save Error", message: error.localizedDescription, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        } else  {
+            let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title:"OK", style: .default))
+            present(ac, animated: true)
         }
     }
 }
