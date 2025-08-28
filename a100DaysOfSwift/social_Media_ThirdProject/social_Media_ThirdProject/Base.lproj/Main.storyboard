@@ -114,10 +114,10 @@
             </objects>
             <point key="canvasLocation" x="281.67938931297709" y="8.4507042253521139"/>
         </scene>
-        <!--Edit View Controler-->
+        <!--Edit View Controller-->
         <scene sceneID="rov-ou-iKm">
             <objects>
-                <viewController id="D69-A8-i9n" customClass="EditViewControler" customModule="social_Media_ThirdProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="D69-A8-i9n" customClass="EditViewController" customModule="social_Media_ThirdProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vMU-OC-j4w">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

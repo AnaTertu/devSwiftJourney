@@ -31,7 +31,7 @@ enum FilterType: String, CaseIterable {
 }
 
 // MARK: - View Controller
-class EditViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EditViewController: UIViewController {
     
     // MARK: - Outlets
     @IBOutlet weak var imageEdit: UIImageView!
@@ -67,14 +67,17 @@ extension EditViewController: UIImagePickerControllerDelegate, UINavigationContr
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
         guard let image = info[.editedImage] as? UIImage else { return }
-        //imageEdit.image = image
         dismiss(animated: true)
-        currentImage = image
         
+        currentImage = image
         let beginImage = CIImage(image: currentImage)
         currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
         applyProcessing()
     }
+}
+
+// MARK: - Filter Handling
+extension EditViewController {
     
     @IBAction func changeFilter(_ sender: UIButton) {
         
@@ -96,22 +99,16 @@ extension EditViewController: UIImagePickerControllerDelegate, UINavigationContr
         present(ac, animated:true)
     }
     
-    func setFilter(_ filter: FilterType) { // (action: UIAlertAction) {
+    func setFilter(_ filter: FilterType) {
         
         guard currentImage != nil else { return }
-        //guard let actionTitle = action.title else { return }
+        guard let beginImage = CIImage(image: currentImage) else { return }
         
-        currentFilter = CIFilter(name: filter.rawValue) //(name: actionTitle)
+        currentFilter = CIFilter(name: filter.rawValue)
         
-        let beginImage = CIImage(cgImage: currentImage as! CGImage)
         currentFilter.setValue(beginImage, forKey: kCIInputImageKey)
         
         applyProcessing()
-    }
-    
-    @IBAction func save(_ sender: Any) {
-        guard let image = imageEdit.image else { return }
-        UIImageWriteToSavedPhotosAlbum(image,self, nil, nil)// #selector(image(_:didFinishSavingWithError:contextInfo:)),
     }
     
     @IBAction func intensityChanged(_ sender: Any) {
@@ -145,16 +142,27 @@ extension EditViewController: UIImagePickerControllerDelegate, UINavigationContr
             imageEdit.image = processedImage
         }
     }
+}
+
+// MARK: - Save Handling
+extension EditViewController {
+    
+    @IBAction func save(_ sender: Any) {
+        guard let image = imageEdit.image else { return }
+        UIImageWriteToSavedPhotosAlbum(image,self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+    }
     
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        
+        let ac: UIAlertController
+        
         if let error = error {
-            let ac = UIAlertController(title: "Save Error", message: error.localizedDescription, preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: "OK", style: .default))
-            present(ac, animated: true)
+            ac = UIAlertController(title: "Save Error", message: error.localizedDescription, preferredStyle: .alert)
         } else  {
-            let ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title:"OK", style: .default))
-            present(ac, animated: true)
+            ac = UIAlertController(title: "Saved!", message: "Your altered image has been saved to your photos.", preferredStyle: .alert)
         }
+        
+        ac.addAction(UIAlertAction(title: "OK", style: .default))
+        present(ac, animated: true)
     }
 }
