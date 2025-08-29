@@ -10,9 +10,6 @@ enum FilterType: String, CaseIterable {
     case twirlDistortion = "CITwirlDistortion"
     case unsharpMask = "CIUnsharpMask"
     case vignette = "CIVignette"
-    case blendMode = "CIBlendMode"
-    case blendWithMask = "CIBlendWithMask"
-    case colorControls = "CIColorControls"
     
     var displayName: String {
         switch self {
@@ -23,9 +20,6 @@ enum FilterType: String, CaseIterable {
             case .twirlDistortion: return "Twirl Distortion"
             case .unsharpMask: return "Unsharp Mask"
             case .vignette: return "Vignette"
-            case .blendMode: return "Blend Mode"
-            case .blendWithMask: return "Blend With Mask"
-            case .colorControls: return "Color Controls"
         }
     }
 }
@@ -85,7 +79,7 @@ extension EditViewController {
         
         for filter in FilterType.allCases {
             ac.addAction(UIAlertAction(title: filter.displayName, style: .default, handler: { [weak self] _ in
-                self?.setFilter(filter)
+                self?.setFilter(filter).self
             }))
         }
         
