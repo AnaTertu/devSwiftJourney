@@ -1,13 +1,15 @@
 import UIKit
 
+// Mark: - View Controller
 class DetailViewController: UIViewController {
     
-    
+    // MARK: - Outlet
     @IBOutlet var imageView: UIImageView!
     
+    // MARK: - Properties
     var selectedImage: String?
     
-                    // Carregou
+    // MARK: - Carregar
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,23 +23,26 @@ class DetailViewController: UIViewController {
             imageView.image  = UIImage(named: imageToLoad)
         }
     }
-            // Aparecerá
+    
+    // MARK: - Aparecerá
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.hidesBarsOnTap = true
     }
     
-            // Apareceu
+    // MARK: - Apareceu
     func viewDidAppear() {}
     
-            // Desaparecerá
+    // MARK: Desaparecerá
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.hidesBarsOnTap = false
     }
-            //Desapareceu
+    
+    // MARK: - Desapareceu
     func viewDidDisappear() {}
     
+    // MARK: - Toque e compartilhe
     @objc func shareTapped() {
         
         guard let image = imageView.image?.jpegData(compressionQuality: 0.8)

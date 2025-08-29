@@ -3,6 +3,7 @@ import UIKit
 // MARK: - View Controller
 class CollectionViewController: UICollectionViewController {
     
+    // MARK: - Properties
     var people = [Person]()
     
     override func viewDidLoad() {
