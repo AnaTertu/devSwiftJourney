@@ -51,7 +51,6 @@ class ViewController: UIViewController {
         } else {
             cluesLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         }
-        cluesLabel.text = "CLUES"
         cluesLabel.numberOfLines = 0
         cluesLabel.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
         cluesLabel.backgroundColor = .systemGray5
@@ -64,7 +63,6 @@ class ViewController: UIViewController {
         } else {
             answersLabel.font = UIFont.systemFont(ofSize: 30, weight: .bold)
         }
-        answersLabel.text = "Answers"
         answersLabel.numberOfLines = 0
         answersLabel.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
         answersLabel.backgroundColor = .systemGray3
