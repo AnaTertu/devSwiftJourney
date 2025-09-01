@@ -75,7 +75,7 @@ class ViewController: UIViewController {
         currentAnswer.translatesAutoresizingMaskIntoConstraints = false
         currentAnswer.placeholder = "Toque nas letras para adivinhar" //Tap letters to guess
         currentAnswer.textAlignment = .center
-        currentAnswer.font = UIFont.systemFont(ofSize: 44)
+        currentAnswer.font = UIFont.systemFont(ofSize: 28)
         currentAnswer.isUserInteractionEnabled = false
         view.addSubview(currentAnswer)
         
@@ -125,7 +125,7 @@ class ViewController: UIViewController {
             clear.centerYAnchor.constraint(equalTo: submit.centerYAnchor),
             clear.heightAnchor.constraint(equalToConstant: 44),
             
-            buttonsView.widthAnchor.constraint(equalToConstant: 750),
+            buttonsView.widthAnchor.constraint(equalToConstant: 730),
             buttonsView.heightAnchor.constraint(equalToConstant: 320),
             buttonsView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             buttonsView.topAnchor.constraint(equalTo: submit.bottomAnchor, constant: 20),
