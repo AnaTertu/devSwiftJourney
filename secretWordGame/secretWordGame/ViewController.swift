@@ -37,14 +37,14 @@ class ViewController: UIViewController {
     override func loadView() {
         view = UIView()
         view.backgroundColor = .yellow
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
         setupViews()
         setupHierarchy()
         setupConstraints()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         loadLevel()
     }
@@ -81,12 +81,16 @@ class ViewController: UIViewController {
 extension ViewController {
     func setupViews() {
         scoreLabel = makeLabel(
+            fontSize: 22,
+            weight: .bold,
             alignment: .right,
             textColor: .systemBlue
         )
         scoreLabel.text = "Score: 0"
         
         levelLabel = makeLabel(
+            fontSize: 22,
+            weight: .bold,
             alignment: .left,
             textColor: .systemBlue
         )
@@ -111,7 +115,7 @@ extension ViewController {
         }
         answersLabel = makeLabel(
             alignment: .center,
-            textColor: .systemBlue
+            textColor: .white
         )
         answersLabel.numberOfLines = 0
         answersLabel.setContentHuggingPriority(UILayoutPriority(1), for: .vertical)
@@ -173,12 +177,12 @@ extension ViewController {
             levelLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor),
             
             cluesLabel.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor),
-            cluesLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 100),
-            cluesLabel.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.7, constant: -100),
+            cluesLabel.leadingAnchor.constraint(equalTo: view.layoutMarginsGuide.leadingAnchor, constant: 60),
+            cluesLabel.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.7, constant: -60),
             
             answersLabel.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor),
-            answersLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -100),
-            answersLabel.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.3, constant: -100),
+            answersLabel.trailingAnchor.constraint(equalTo: view.layoutMarginsGuide.trailingAnchor, constant: -60),
+            answersLabel.widthAnchor.constraint(equalTo: view.layoutMarginsGuide.widthAnchor, multiplier: 0.3, constant: -60),
             answersLabel.heightAnchor.constraint(equalTo: cluesLabel.heightAnchor),
             
             correctAnswer.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -193,32 +197,32 @@ extension ViewController {
             clearButton.centerYAnchor.constraint(equalTo: submitButton.centerYAnchor),
             clearButton.heightAnchor.constraint(equalToConstant: 44),
             
-            buttonsView.widthAnchor.constraint(equalToConstant: 730),
+            buttonsView.widthAnchor.constraint(equalToConstant: 680),
             buttonsView.heightAnchor.constraint(equalToConstant: 320),
             buttonsView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             buttonsView.topAnchor.constraint(equalTo: submitButton.bottomAnchor, constant: 20),
             buttonsView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -20)
         ])
         
-        let width = 150
-        let height = 80
+        let width = 112
+        let height = 63
         
         for row in 0..<5 {
-            for column in 0..<5 {
-                let letterButton = makeButton(
-                    title: "A",
-                    backgroundColor: .systemIndigo,
-                    action: #selector(letterTapped(_:)),
-                    target: self
-                )
-                letterButton.layer.cornerRadius = 25
+            for column in 0..<6 {
+                let letterButton = UIButton(type: .system)
+                letterButton.titleLabel?.font = UIFont.systemFont(ofSize: 18) //, weight: .bold)
+                letterButton.setTitleColor(.white, for: .normal)
+                letterButton.backgroundColor = .systemIndigo
+                letterButton.layer.cornerRadius = 16
+                letterButton.setTitle("W", for: .normal) // temporário
                 
-                
+                // Calcule a moldura deste botão usando suas colunas e linhas
                 let frame = CGRect(x: column * width, y: row * height, width: width, height: height)
                 letterButton.frame = frame
                 
                 buttonsView.addSubview(letterButton)
                 letterButtons.append(letterButton)
+                letterButton.addTarget(self, action: #selector(letterTapped(_:)), for: .touchUpInside) //(letterTapped), for: .touchUpInside)
             }
         }
     }
@@ -293,8 +297,6 @@ extension ViewController {
             
             correctAnswer.text = ""
             score += 1
-            //scoreLabel.text = "Score: \(score)"
-            //levelLabel.text = "Level: \(level)"
             
             if score == solutions.count { //% 7 == 0 {
                 let ac = UIAlertController(title: "Bom Trabalho!", message: "Você está pronto para o próximo nível?", preferredStyle: .alert)
