@@ -9,6 +9,17 @@
     <body>
         <header>
             <nav>
+                <a href="../index.html">
+                    <img src="./img/catIppIcon.png" alt="logo" width="60">
+                </a>
+
+                <ul>
+                    <li><a href="./aulas_html.html">Aulas em HTML</a></li>
+                    <li><a href="./portfolio.html">Portfólio</a></li>
+                    <li><a href="./curriculo.html">Currículo</a></li>
+                    <li><a href="./tabela_controle_financeiro.html">Tabela de controle financeiro</a></li>
+                </ul>
+
                 <p>
                     Hello, World! Olá ADA, eu sou a Ana Tertuliano
                 </p>
@@ -36,14 +47,14 @@
                 <h2>Elementos semânticos</h2>
 
                 <pre>
-                    header/cabeçalho
-                        nav/barra de navegação
-                    main/conteúdo principal
-                        section/sessões
+                    header|cabeçalho
+                        nav|barra de navegação
+                    main|conteúdo principal
+                        section|sessões
                         article
                         figure
-                    aside/barra lateral
-                    footer/rodapé.
+                    aside|barra lateral
+                    footer|rodapé.
                 </pre>
                 <p>Visualmente não ocorre diferença, a importância de seu uso é semântica, faz mais setido para os mecanismos de busca. </p>
                 <p id="single-paragraph">Usamos nas tags 'id' como identificador único.</p>
@@ -123,7 +134,7 @@
             <p>'mark' -> <mark>para destacar um texto.</mark></p>
 
             <pre>
-                'pre' -> pega qualquer formatação que eu colocar, ótimo para escrever código e manter a formatação
+                'pre' -> pre-formatação pega qualquer formatação que eu colocar, ótimo para escrever código e manter a formatação
 
                 se quebro linha.        se escrevo mais espaçado.
 recuado.         Diferente do paragrafo(p) que preciso usar (br) para quebra de linha.
@@ -141,6 +152,49 @@ recuado.         Diferente do paragrafo(p) que preciso usar (br) para quebra de 
             <hr>
             <p> Subscrito 'sup' 2<sup>10</sup> "embaixo"e sobrescrito 'sub' H<sub>2</sub>O "em cima".</p>
 
+            <hr>
+
+            <h1>Tabelas HTML</h1>
+
+            <p>'table' -> tabelas, 'thead' -> cabeçalho da tabela, 'tr' table rol rade -> linha, 'th' -> formatação especial coluna do cabeçalho, 'tbody'-> corpo da tabela, 'tr' table rol rade -> linha, 'td' table data -> dado em uma célula dentro da tabela - coluna,  </p>
+            <pre>
+                table|tabela
+                    thead|cabeçalho
+                        tr|linha
+                          th|célula de cada coluna do cabeçalho | negrito | centralizado | por padrão
+                    tbody|corpo
+                        tr|linha
+                          td|célula de cada coluna do corpo    
+            </pre>
+
+            <h2>Tabela de alunos</h2>
+            <table border="2">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Email</th>
+                        <th>Matrícula</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ana</td>
+                        <td>ana@gmail.com</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Pedro</td>
+                        <td>pedro@gmail.com</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>Carol</td>
+                        <td>carol@gmail.com</td>
+                        <td>3</td>
+                    </tr>
+
+                </tbody>
+            </table>
             <hr>
         </main>
         <footer>
