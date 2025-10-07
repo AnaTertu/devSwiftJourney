@@ -13,7 +13,7 @@
         <hr>
         <br>
         <!-- Cabeçalhos -->
-        <h1> Título principal (h1) </h1>
+        <h1>Título principal (h1)</h1>
         <h2>Cabeçalho (h2)</h2>
         <h3>Cabeçalho (h2)</h3>
         <h4>Cabeçalho (h2)</h4>
@@ -26,6 +26,7 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam incidunt nisi officia ut, nemo rerum aliquam rem beatae repudiandae, voluptatem, necessitatibus ipsam eligendi qui aliquid atque obcaecati eaque vel doloremque!</p>
 
         <!--propriedades/atributo link/ancora | msm pág | atributo target > _self msm aba / _blank nova aba -->
+        <hr>
         <a href="https://www.linkedin.com/in/anatertuliano/" target="_blank">Linkedin - Ana Tertuliano</a> 
 
         <!-- Imagem - atributos >> src - onde está a imagem, alt - descrição alternativa / acesibilidade -->
@@ -33,29 +34,64 @@
         <img src="https://media.licdn.com/dms/image/v2/D4D16AQEPj1TxoU3GMQ/profile-displaybackgroundimage-shrink_350_1400/B4DZmcCQ3AJYAY-/0/1759259463911?e=1762992000&v=beta&t=rc9Wozj4YkmqJB8geXH-KPBnK4VMEFQ2xgP6usSA1oc" alt="Imagem de fundo azul escuro, com linhas lilás, com logo Apple, iOS" width="480" />
     </body>
 
+    <hr>
     <h2>Listas</h2>
 
     <ul>
-        <h3>Lista não ordenada</h3>
+        <h3>Lista não ordenada (ul)</h3>
+        <li>linha (li)</li>
         <li>html</li>
         <li>css</li>
         <li>javaScript</li>
     </ul>
     <br/> <!-- li*3 / tab-->
     <ol>
-        <h3>Lista ordenada</h3>
+        <h3>Lista ordenada (ol)</h3>
+        <li>linha (li)</li>
         <li>HTML</li>
         <li>CSS</li>
         <li>JavaScript</li>
     </ol>
 
-    <h2> Tags de uso Genérico. </h2>
+    <hr>
+    <h2>Tags de uso Genérico.</h2>
     
-    <h3> Span : inline </h3>
+    <h3>'span' : inline</h3>
 
     <p>Lorem ipsum dolor sit amet <span>consectetur</span> adipisicing elit. Fuga tempore omnis dolorum ullam officia facere cumque, quisquam dolore ad soluta alias laudantium amet similique sapiente deleniti excepturi placeat. Voluptatem, ex?</p>
 
-    <h3> Div : block </h3>
+    <h3>'div' : block</h3>
 
     <p>Lorem ipsum, dolor sit amet <div>consectetur</div> adipisicing elit. Numquam, id repellendus, aperiam quo quis ut magnam magni, minus optio non blanditiis corrupti iure ipsum reprehenderit possimus necessitatibus quod ipsa tenetur.</p>
+
+    <hr>
+    <h2>Tags de formatação</h2>
+
+    <p><b> 'b' -> Negrito, formatação simples</b> ou utilize <strong> strong -> negrito e texto com semantica, em destaque, importante </strong>, </p>
+    <p><i>'i' -> Italico, formatação simples</i> ou use <em> em -> italico com semantica, destaque, ênfase, palavra importante</em></p>
+    <p> e 's' -> <s> texto riscado </s></p>
+    <p><u> 'u' -> sublinhado, descontinado, agora deve usar CSS com text-decoration = "underline" </u>.</p>
+    <p>'mark' -> <mark>para destacar um texto.</mark></p>
+
+    <pre>
+        'pre' -> pega qualquer formatação que eu colocar, ótimo para escrever código e manter a formatação
+
+        se quebro linha.        se escrevo mais espaçado.
+recuado.         Diferente do paragrafo(p) que preciso usar (br) para quebra de linha.
+        
+        let frutas = ["maçã", "banana", "laranja"]
+
+        for fruta in frutas {
+            print("Eu gosto de \(fruta)")
+        }
+    </pre>
+    <hr>
+    <p>'code' -> para inserir formatação de código inline exemplo <code>String</code></p>
+    <code>print('Hello, world!')</code>
+
+    <hr>
+    <blockquote> 'blockquote' -> para citação "E o Amor se reflete em amor" MBE </blockquote>
+
+    <hr>
+    <p> Subscrito 'sup' 2<sup>10</sup> e sobrescrito 'sub' H<sub>2</sub>O.</p>
 </html>
