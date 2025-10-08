@@ -113,12 +113,13 @@
                     <li>JavaScript</li>
                 </ol>
             </section>
+
             <hr>
             <h2>Tags de uso Genérico.</h2>
             
             <h3>'span' : inline</h3>
 
-            <p>Lorem ipsum dolor sit amet <span>consectetur</span> adipisicing elit. Fuga tempore omnis dolorum ullam officia facere cumque, quisquam dolore ad soluta alias laudantium amet similique sapiente deleniti excepturi placeat. Voluptatem, ex?</p>
+            <p>Lorem ipsum dolor sit amet <span class="underline">consectetur</span> adipisicing elit. Fuga tempore omnis dolorum ullam officia facere cumque, quisquam dolore ad soluta alias laudantium amet similique sapiente deleniti excepturi placeat. Voluptatem, ex?</p>
 
             <h3>'div' : block</h3>
 
@@ -127,11 +128,20 @@
             <hr>
             <h2>Tags de formatação</h2>
 
-            <p><b> 'b' -> Negrito, formatação simples</b> ou utilize <strong> strong -> negrito e texto semântico, em destaque, importante </strong>, </p>
-            <p><i>'i' -> Italico, formatação simples</i> ou use <em> em -> itálico semântico, destaque, ênfase, palavra importante</em></p>
-            <p> e 's' -> <s> texto riscado </s></p>
-            <p><u> 'u' -> sublinhado, descontinado, agora deve usar CSS com text-decoration = "underline" </u>.</p>
-            <p>'mark' -> <mark>para destacar um texto.</mark></p>
+            <h3>'b'</h3>
+            <p> -> <b> Negrito, formatação simples</b> ou utilize <strong> strong -> negrito e texto semântico, em destaque, importante </strong>, </p>
+            
+            <h3>'i'</h3>
+            <p> -> <i> Italico, formatação simples</i> ou use <em> em -> itálico semântico, destaque, ênfase, palavra importante</em></p>
+            
+            <h3>'s'</h3>
+            <p> -> <s> texto riscado </s></p>
+
+            <h3>'u'</h3>
+            <p> -> <u>sublinhado, descontinado, agora deve usar CSS com text-decoration = "underline" </u>.</p>
+
+            <h3>'mark'</h3>
+            <p> -> <mark>para destacar um texto.</mark></p>
 
             <pre>
                 'pre' -> pre-formatação pega qualquer formatação que eu colocar, ótimo para escrever código e manter a formatação
@@ -150,6 +160,7 @@ recuado.         Diferente do paragrafo(p) que preciso usar (br) para quebra de 
             <code>print('Hello, world!')</code>
 
             <hr>
+            <h3>'sup' e 'sub'</h3>
             <p> Subscrito 'sup' 2<sup>10</sup> "embaixo"e sobrescrito 'sub' H<sub>2</sub>O "em cima".</p>
 
             <hr>
@@ -164,7 +175,10 @@ recuado.         Diferente do paragrafo(p) que preciso usar (br) para quebra de 
                           th|célula de cada coluna do cabeçalho | negrito | centralizado | por padrão
                     tbody|corpo
                         tr|linha
-                          td|célula de cada coluna do corpo    
+                          td|célula de cada coluna do corpo
+                    borde|Borda
+                    colspan|união coluna
+                    rowspan|união linha    
             </pre>
 
             <h2>Tabela de alunos</h2>
@@ -195,6 +209,88 @@ recuado.         Diferente do paragrafo(p) que preciso usar (br) para quebra de 
 
                 </tbody>
             </table>
+            <hr>
+
+            <h2>Formulário</h2>
+
+            <form> 
+                <p><form> == <form action="" method="get"> action >>> recarrega a página, padrão já vem com 'get' > envia dados url sem proteção senha visivel, method="post" envia pro back 
+                for == id
+                </p>
+                <div>
+                    <label for="text">Input text: </label>
+                    <input type="text" id="text" value="Nome: Valor inicial">
+                </div>
+                 <div>
+                    <label for="texto">Nome: </label>
+                    <input type="text" id="texto" name="nome" placeholder="Informe o seu nome...">
+                </div>
+                <div>
+                    <label for="senha">Senha:</label>
+                    <input type="password" name="senha" id="senha">
+                </div>
+                <div>
+                    <label for="email">E-mail</label>
+                    <input type="email" name="email" id="email">
+                </div>
+                <div>
+                    <label for="data">Data</label>
+                    <input type="datetime-local" name="date" id="data">
+                </div>
+                <div>
+                    <label for="date">Data</label>
+                    <input type="date" name="date" id="date">
+                </div>
+
+                <div>
+                    <label for="dat">Data</label>
+                    <input type="datetime" name="date" id="dat">
+                </div>
+                <div>
+                    <label for="number">Número:</label>
+                    <input type="number" name="number" id="number">
+                </div>
+                <div>
+                    <label for="file"></label>
+                    <input type="file" name="file" id="file">
+                </div>
+                <div>
+                    <label for="url"></label>
+                    <input type="url" name="url" id="url">
+                </div>
+                <div>
+                    <label for="color"></label>
+                    <input type="color" name="color" id="color">
+                </div>
+                <div>
+                    <label for="range"></label>
+                    <input type="range" name="range" id="range" value="100" min="30" max="200"> <!-- 100 por padrão-->
+                </div>
+                <div>
+                    <select name="select" id="select">
+                        <option value="" disabled selected>Selecione uma opção:</option>
+                        <option value="receita">Receita</option>
+                        <option value="despesas">Despesas</option>
+                        <option value="transferencias">Transferências</option>
+                        <option value="investimento">Investimento</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="checkbox"></label>
+                    <input type="checkbox" name="checkbox" id="checkbox" checked>
+                </div>
+                <div>
+                    <label for="radio"></label>
+                    <input type="radio" name="radio" id="radio">
+                </div>
+                <div>
+                    <textarea name="bio" id="bio" cols="25" rows="5"></textarea>
+                </div>
+                <div>
+                    <input type="reset" name="" id="" value="clear">
+                    <input type="submit" name="" id="" value="Enviar">
+                </div>
+            </form>
             <hr>
         </main>
         <footer>
